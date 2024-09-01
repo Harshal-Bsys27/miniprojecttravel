@@ -51,14 +51,14 @@ section h2 {
 .package-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 3rem;
 }
 
 .package {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    width: 300px;
+    width: 450px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

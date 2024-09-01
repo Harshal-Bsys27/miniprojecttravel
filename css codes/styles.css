@@ -8,14 +8,14 @@ body, h1, h2, h3, p, ul {
 /* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 2.5;
     color: #333;
     background-color: #f4f4f4;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
+    width: 98%;
+    margin 0, auto;
 }
 
 /* Header and navigation */
@@ -32,7 +32,7 @@ nav {
 }
 
 nav h1 {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 nav ul {
@@ -94,12 +94,12 @@ section {
 .destination-list, .trip-list, .package-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
 }
 
 .destination-card, .trip-card, .package-card {
     background: #fff;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(105, 37, 37, 0.1);
     overflow: hidden;
     width: 30%;

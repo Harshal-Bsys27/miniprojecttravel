@@ -8,7 +8,7 @@ body, h1, h2, h3, p, ul, li, form, input, select, textarea, button {
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #b64141;
+    color: #141010;
 }
 
 a {
@@ -22,7 +22,7 @@ a:hover {
 
 /* Header */
 header {
-    background-color: #333;
+    background-color: #b64141;#333;
     color: #fff;
     padding: 10px 0;
 }

@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    color: #b62727;
+    color: #0f0c0c;
 }
 
 header {
@@ -43,7 +43,7 @@ main {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -92,7 +92,7 @@ h2 {
 }
 
 .details-btn {
-    background-color: #e91e63;
+    background-color:#216cb7;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -103,7 +103,7 @@ h2 {
 }
 
 .details-btn:hover {
-    background-color: #d05285;
+    background-color:#216cb7 ;
 }
 
 #destination-details {
@@ -121,7 +121,7 @@ h2 {
 }
 
 #close-details {
-    background-color: #e91e63;
+    background-color: #216cb7;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -135,11 +135,11 @@ h2 {
 }
 
 #close-details:hover {
-    background-color: #c2185b;
+    background-color: #216cb7;
 }
 
 footer {
-    background-color: #333;
+    background: #216cb7;
     color: #fff;
     text-align: center;
     padding: 15px 0;
