@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Tokyo Trip</title>
+    <link rel="stylesheet" href="/css codes/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>letstravel.com</h1>
+                <ul class="nav-links">
+                    <li><a href="frontpage.html">Home</a></li>
+                    <li><a href="explore destinations.html">Destinations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="/css codes/europebook.css">
+    </header>
+
+    <main>
+        <section class="booking-header">
+            <div class="container">
+                <h2>Book Your EUROPE tour</h2>
+                <p>Enjoy a 10-day tour across Europe visiting major cities.</p>
+            </div>
+        </section>
+
+        <section class="booking-form">
+            <div class="container">
+                <h3>Reserve Your Spot</h3>
+                <form action="submit-booking.php" method="post">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="check-in">Check-in Date:</label>
+                    <input type="date" id="check-in" name="check-in" required>
+
+                    <label for="check-out">Check-out Date:</label>
+                    <input type="date" id="check-out" name="check-out" required>
+
+                    <label for="guests">Number of Guests:</label>
+                    <input type="number" id="guests" name="guests" min="1" required>
+
+                    <label for="room-type">Room Type:</label>
+                    <select id="room-type" name="room-type">
+                        <option value="single">Single Room</option>
+                        <option value="double">Double Room</option>
+                        <option value="suite">Suite</option>
+                    </select>
+
+                    <label for="special-requests">Special

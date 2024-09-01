@@ -1,0 +1,143 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header and navigation */
+header {
+    background: #9a1515;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #b18080;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #804141;
+}
+
+/* Sections */
+section {
+    padding: 40px 0;
+}
+
+.destination-list, .trip-list, .package-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.destination-card, .trip-card, .package-card {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(105, 37, 37, 0.1);
+    overflow: hidden;
+    width: 30%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.destination-card img, .package-card img {
+    width: 100%;
+    height: auto;
+}
+
+.destination-card h3, .package-card h3 {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.destination-card p, .package-card p {
+    padding: 0 10px 10px;
+}
+
+.destination-card a, .package-card a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #dbd7d7;
+    text-decoration: none;
+    border-top: 1px solid #ddd;
+    background: #f4f4f4;
+}
+
+.destination-card a:hover, .package-card a:hover {
+    background: #ddd;
+}
+
+/* Footer */
+footer {
+    background: #9d6b6b;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
