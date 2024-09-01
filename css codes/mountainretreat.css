@@ -84,13 +84,13 @@ nav ul li a {
 
 /* Sections */
 section {
-    padding: 40px 0;
+    padding: 30px 0;
 }
 
 .location-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .location-card {
@@ -125,7 +125,7 @@ section {
     display: inline-block;
     padding: 10px 20px;
     color: #fff;
-    background: #2c3e50;
+    background: #216cb7;
     text-decoration: none;
     border-radius: 5px;
 }
