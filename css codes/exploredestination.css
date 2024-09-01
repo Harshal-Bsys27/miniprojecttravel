@@ -4,11 +4,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    color: #b65151;
+    color: #b62727;
 }
 
 header {
-    background-color: #b04040;
+    background-color: #a02727;
     color: #fff;
     padding: 15px 0;
     text-align: center;
@@ -83,7 +83,7 @@ h2 {
 .card-content h3 {
     margin: 0;
     font-size: 1.5em;
-    color: #e91e63;
+    color: #170e11;
 }
 
 .card-content p {
