@@ -1,5 +1,5 @@
-/* Reset some basic styles */
-* {
+/* Reset and base styles */
+body, h1, h2, h3, p, ul, li, form, input, select, textarea, button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,82 +7,82 @@
 
 body {
     font-family: Arial, sans-serif;
-    color: #333;
+    background-color: #f4f4f4;
+    color: #b64141;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+a {
+    color: #007bff;
+    text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
 header {
-    background: #1e90ff;
-    color: white;
-    padding: 20px 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 
-nav {
+nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
-.logo {
-    font-size: 2em;
+h1 {
+    margin: 0;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
+    gap: 15px;
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin: 0;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-}
-
-.booking-header {
-    background: url('images/tokyo-bg.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 60px 20px;
+/* Hero Section */
+.hero {
+    background: url('europe-tour.jpg') no-repeat center center/cover;
+    color: #fff;
     text-align: center;
+    padding: 60px 20px;
 }
 
-.booking-header h2 {
-    font-size: 2.5em;
+.hero h2 {
+    font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
-.booking-header p {
-    font-size: 1.2em;
+.hero p {
+    font-size: 1.2rem;
 }
 
+/* Booking Form */
 .booking-form {
-    padding: 50px 20px;
+    background: #fff;
+    padding: 40px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .booking-form h3 {
-    text-align: center;
     margin-bottom: 20px;
-}
-
-.booking-form form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .booking-form label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .booking-form input,
@@ -96,34 +96,27 @@ nav {
 }
 
 .booking-form button {
-    background: #ff6347;
-    color: white;
-    padding: 15px 30px;
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .booking-form button:hover {
-    background: #e53e36;
+    background-color: #0056b3;
 }
 
-.tokyo-info {
-    padding: 50px 20px;
-    background: #f0f0f0;
-}
-
-.tokyo-info h3 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+/* Footer */
 footer {
-    background: #f1f1f1;
-    padding: 20px 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
     text-align: center;
 }
 
 footer p {
-    margin: 0;
-}
+    mar

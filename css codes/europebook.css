@@ -1,146 +1,122 @@
-/* General Styles */
+/* Reset and base styles */
+body, h1, h2, h3, p, ul, li, form, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333;
+    color: #b64141;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 15px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
+a {
+    color: #007bff;
     text-decoration: none;
 }
 
-main {
-    padding: 20px;
+a:hover {
+    text-decoration: underline;
 }
 
-#destinations {
-    padding: 20px 0;
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
 }
 
-h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.destination-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.destination-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 30%;
-    transition: transform 0.3s;
-}
-
-.destination-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.card-content {
-    padding: 15px;
-}
-
-.card-content h3 {
+h1 {
     margin: 0;
-    font-size: 1.5em;
-    color: #e91e63;
 }
 
-.card-content p {
-    font-size: 1.1em;
-    margin: 10px 0;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
 }
 
-.details-btn {
-    background-color: #e91e63;
+.nav-links li {
+    margin: 0;
+}
+
+/* Hero Section */
+.hero {
+    background: url('europe-tour.jpg') no-repeat center center/cover;
     color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+    text-align: center;
+    padding: 60px 20px;
 }
 
-.details-btn:hover {
-    background-color: #c2185b;
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-#destination-details {
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Booking Form */
+.booking-form {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 600px;
+    padding: 40px 20px;
     margin: 20px auto;
-    position: relative;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.hidden {
-    display: none;
+.booking-form h3 {
+    margin-bottom: 20px;
 }
 
-#close-details {
-    background-color: #e91e63;
+.booking-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.booking-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    transition: background-color 0.3s;
+    font-size: 1rem;
 }
 
-#close-details:hover {
-    background-color: #c2185b;
+.booking-form button:hover {
+    background-color: #0056b3;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
+    padding: 10px 0;
     text-align: center;
-    padding: 15px 0;
 }
+
+footer p {
+    mar
