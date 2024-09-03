@@ -22,7 +22,7 @@ a:hover {
 
 /* Header */
 header {
-    background-color: #b64141;;
+    background-color: #b64141; /* Fixed background color */
     color: #fff;
     padding: 10px 0;
 }
@@ -114,9 +114,82 @@ h1 {
 footer {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 20px; /* Consistent padding */
     text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 footer p {
-    mar
+    margin: 0; /* Fixed incomplete rule */
+}
+
+/* Responsive Design */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 50px 15px;
+    }
+
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .booking-form {
+        padding: 30px 15px;
+    }
+}
+
+/* Tablets and Small Screens */
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 10px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .booking-form {
+        padding: 25px 10px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .hero {
+        padding: 20px 10px;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .booking-form {
+        padding: 20px;
+    }
+
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+        font-size: 0.9rem;
+    }
+
+    .booking-form button {
+        font-size: 0.9rem;
+    }
+}

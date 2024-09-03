@@ -19,6 +19,9 @@ header h1 {
 nav ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
@@ -46,21 +49,30 @@ section {
 section h2 {
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
+    text-align: left; /* Align heading to the left */
 }
 
+/* Ensure proper alignment of package cards */
 .package-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem; /* Adjust gap between cards */
+    justify-content: center; /* Center align the cards horizontally */
 }
 
 .package {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    width: 450px;
+    width: 100%; /* Full width to handle responsive resizing */
+    max-width: 450px; /* Maximum width for larger screens */
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    margin-bottom: 2rem; /* Space between cards */
+    position: relative; /* For absolute positioning of the button */
 }
 
 .package img {
@@ -75,20 +87,23 @@ section h2 {
 .package p {
     padding: 0 1rem;
     color: #555;
+    margin-bottom: 2rem; /* Space between text and button */
 }
 
-.btn {
-    display: inline-block;
-    margin: 1rem 0;
+/* Align the button at the bottom of the card */
+.package .btn {
+    display: block;
+    margin-top: auto; /* Push the button to the bottom of the container */
     padding: 0.5rem 1rem;
     background: #0056b3;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
+    text-align: center;
 }
 
-.btn:hover {
-    background: #0056b3;
+.package .btn:hover {
+    background: #003d80; /* Darker shade on hover */
 }
 
 footer {
@@ -99,4 +114,21 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .package-container {
+        gap: 1rem; /* Reduce gap for smaller screens */
+    }
+    
+    .package {
+        width: calc(50% - 1rem); /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .package {
+        width: calc(100% - 2rem); /* Full width for mobile screens */
+    }
 }

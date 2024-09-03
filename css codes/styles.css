@@ -8,14 +8,14 @@ body, h1, h2, h3, p, ul {
 /* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 2.5;
+    line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
 }
 
 .container {
     width: 98%;
-    margin 0, auto;
+    margin: 0 auto;
 }
 
 /* Header and navigation */
@@ -23,21 +23,27 @@ header {
     background: #9a1515;
     color: #fff;
     padding: 10px 0;
+    position: relative; /* Positioning for search bar */
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 10px;
 }
 
 nav h1 {
-    margin-left: 10px;
+    margin: 0;
+    font-size: 3em; /* Increased size of the header text */
+    text-align: left; /* Ensure header text is aligned to the left */
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -50,26 +56,49 @@ nav ul li a {
     font-weight: bold;
 }
 
+/* Search Form */
+.search-form {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.search-form input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 150px;
+}
+
+.search-form button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #e7e7e7;
+}
+
 /* Hero Section */
-.hero {
-    background: url('images/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    padding: 100px 0;
+#home {
     text-align: center;
+    padding: 50px 10px;
 }
 
-.hero-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.hero h2 {
-    font-size: 3em;
+#home h1 {
+    font-size: 2.5em;
     margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 1.2em;
+#home h3 {
+    font-size: 1.5em;
     margin-bottom: 20px;
 }
 
@@ -88,13 +117,19 @@ nav ul li a {
 
 /* Sections */
 section {
-    padding: 40px 0;
+    padding: 40px 10px;
+}
+
+h2 {
+    font-size: 1.8em; /* Adjusted size for better visibility */
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .destination-list, .trip-list, .package-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 20px;
 }
 
 .destination-card, .trip-card, .package-card {
@@ -102,7 +137,7 @@ section {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(105, 37, 37, 0.1);
     overflow: hidden;
-    width: 30%;
+    width: calc(33.333% - 20px);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -114,7 +149,7 @@ section {
 
 .destination-card h3, .package-card h3 {
     padding: 10px;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .destination-card p, .package-card p {
@@ -124,7 +159,7 @@ section {
 .destination-card a, .package-card a {
     display: inline-block;
     padding: 5px 10px;
-    color:rgb(0, 64, 85);
+    color: rgb(0, 64, 85);
     text-decoration: none;
     border-top: 1px solid #ddd;
     background: #f4f4f4;
@@ -138,6 +173,55 @@ section {
 footer {
     background: #9d6b6b;
     color: #fff;
-    text-align: center;
+    text-align: left; /* Align footer text to the left */
     padding: 10px 0;
+    margin: 0 auto;
+    width: 98%;
+}
+
+/* Contact Section */
+#contact {
+    text-align: left; /* Align text and button to the left */
+}
+
+#contact h2 {
+    font-size: 1.8em; /* Same as other headings */
+}
+
+#contact p {
+    margin-bottom: 20px;
+}
+
+#contact .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #b18080;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#contact .btn:hover {
+    background: #804141;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .destination-card, .trip-card, .package-card {
+        width: calc(50% - 20px);
+    }
+
+    .destination-list, .trip-list, .package-list {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .destination-card, .trip-card, .package-card {
+        width: calc(100% - 20px);
+    }
+
+    .destination-list, .trip-list, .package-list {
+        gap: 10px;
+    }
 }

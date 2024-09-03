@@ -13,6 +13,13 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Container styling for consistent spacing */
+.container {
+    max-width: 1200px; /* Increase the max-width for a larger container */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 /* Header and navigation */
 header {
     background: #951439;
@@ -49,17 +56,17 @@ nav ul li a {
 .hero {
     background: url('https://example.com/hero-bg.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 80px 20px;
-    text-align: center;
+    padding: 80px 15px; /* Adjusted padding for better spacing */
+    text-align: center; /* Center-align text and button */
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 1000px; /* Increase the max-width for a larger container */
     margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-size: 2.5em; /* Slightly smaller font size for better responsiveness */
     margin-bottom: 20px;
 }
 
@@ -79,12 +86,12 @@ nav ul li a {
 }
 
 .btn:hover {
-    background: #0058d3;
+    background: #004bb5;
 }
 
 /* Sections */
 section {
-    padding: 30px 0;
+    padding: 30px 15px; /* Added padding for better spacing */
 }
 
 .location-list {
@@ -98,8 +105,7 @@ section {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 100%;
-    max-width: 30%;
+    flex: 1 1 calc(33.333% - 30px);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -139,5 +145,27 @@ footer {
     background: #2c3e50;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .location-card {
+        flex: 1 1 calc(50% - 30px);
+    }
+}
+
+@media (max-width: 480px) {
+    .location-card {
+        flex: 1 1 100%;
+    }
 }

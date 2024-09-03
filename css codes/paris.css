@@ -22,18 +22,21 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 10px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
 }
 
+/* Main Section Styling */
 section {
     padding: 50px 20px;
     background-color: #fff;
@@ -50,6 +53,7 @@ h2 {
     text-align: center;
 }
 
+/* Package Styling */
 .package, .review {
     margin-bottom: 40px;
 }
@@ -96,6 +100,7 @@ h2 {
     background-color: #c2185b;
 }
 
+/* Review Styling */
 .review {
     background: #f9f9f9;
     padding: 20px;
@@ -108,6 +113,7 @@ h2 {
     color: #e91e63;
 }
 
+/* Footer Styling */
 footer {
     background-color: #cb2727;
     color: #fff;
@@ -116,4 +122,56 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .package h3 {
+        font-size: 1.8em;
+    }
+
+    .package p {
+        font-size: 1em;
+    }
+
+    .package a {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 30px 15px;
+    }
+
+    .package h3 {
+        font-size: 1.6em;
+    }
+
+    .package p {
+        font-size: 0.9em;
+    }
+
+    .package a {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    footer {
+        padding: 10px 5px;
+    }
 }

@@ -1,90 +1,102 @@
-/* Reset some basic styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* General styling for the page */
 body {
     font-family: Arial, sans-serif;
-    background: url('images/travel-bg.jpg') no-repeat center center/cover;
+    background-color: #ec9b9b;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
+/* Login page container */
 .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    height: 100vh; /* Adjusted to fit the viewport height */
+    padding: 20px; /* Added padding to prevent content from touching edges */
 }
 
+/* Login container styling */
 .login-container {
-    background: white;
-    padding: 30px;
+    background-color: #ffffff;
+    padding: 30px; /* Increased padding for more space inside the container */
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(175, 70, 70, 0.1);
     width: 100%;
-    max-width: 400px;
-}
-
-.login-container h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #ff1e62;
+    max-width: 600px; /* Responsive max-width for larger screens */
     text-align: center;
 }
 
-.login-container label {
+/* Styling for form elements */
+label {
     display: block;
-    margin-bottom: 5px;
-    color: #555;
+    margin-bottom: 8px; /* Slightly more space above the input fields */
 }
 
-.login-container input {
+input[type="text"],
+input[type="password"] {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-.login-container input:focus {
-    border-color: #ff1e96;
-    outline: none;
+    padding: 10px; /* Increased padding for better input appearance */
+    margin-bottom: 15px; /* Increased margin for more space between fields */
+    border: 1px solid #e7e4e4;
+    border-radius: 4px; /* Rounded corners for the inputs */
 }
 
 .login-button {
-    width: 100%;
-    padding: 15px;
-    background: #971161;
-    color: white;
+    width: 100%; /* Full width for the button */
+    padding: 10px;
+    background-color: #b2364f;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1.1em;
 }
 
 .login-button:hover {
-    background: #ee1c51;
+    background-color: #cc4874;
 }
 
-.forgot-password {
-    text-align: center;
-    margin-top: 15px;
+/* Center-align links */
+.login-container p {
+    margin: 15px 0; /* More space around the links */
 }
 
-.forgot-password a {
-    color: #1e90ff;
+.login-container a {
     text-decoration: none;
-    font-size: 0.9em;
+    color: #007BFF;
 }
 
-.forgot-password a:hover {
+.login-container a:hover {
     text-decoration: underline;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-color: #ec9b9b; /* Ensuring the background color covers full viewport */
+    }
+
+    .login-container {
+        padding: 15px; /* Reduced padding for very small screens */
+        width: 100%; /* Full width for very small screens */
+        max-width: none; /* Remove max-width restriction */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
+
+    .login-button {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
 }
