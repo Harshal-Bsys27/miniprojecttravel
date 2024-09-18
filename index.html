@@ -14,17 +14,22 @@
             background-color: #f4f4f4;
         }
         .hero-section {
-            background: url('/images.png/index\ bg.jpg') no-repeat center center;
-            background-size: cover;
+            position: relative;
+            overflow: hidden;
             color: #fff;
-            padding: 100px 0;
             text-align: center;
         }
-        .hero-section h1 {
-            font-size: 3em;
+        .carousel-item {
+            height: 60vh; /* Adjust height for landscape effect */
+            background-size: cover;
+            background-position: center;
         }
-        .hero-section h3 {
-            font-size: 1.5em;
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
         .hero-section .btn {
             background: #b18080;
@@ -33,15 +38,25 @@
         .hero-section .btn:hover {
             background: #804141;
         }
-        .destination-card img, .package-card img {
-            width: 100%;
-            height: auto;
-        }
         footer {
             background: #9d6b6b;
             color: #fff;
             padding: 20px 0;
             text-align: center;
+        }
+        .nav-link {
+            transition: color 0.3s, transform 0.3s;
+        }
+        .nav-link:hover {
+            color: #b18080; /* Change color on hover */
+            transform: scale(1.1); /* Slightly enlarge */
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05); /* Enlarge on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
         }
     </style>
 </head>
@@ -61,15 +76,47 @@
                 <li class="nav-item"><a class="nav-link" href="#recents">Recent Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="/allcodeshtml/login.html">Log In</a></li>
             </ul>
+            <form class="form-inline ml-3">
+                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
-
-    <!-- Hero Section -->
+    
+    <!-- Hero Section with Carousel -->
     <section id="home" class="hero-section">
-        <div class="container">
-            <h1>"Plan Your Destiny and Your Adventures"</h1>
-            <h3>Explore the world with our curated travel options.</h3>
-            <a href="/allcodeshtml/explore destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
+        <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('/images.png/index\ bg.jpg');">
+                    <div class="hero-content">
+                        <h1>"Plan Your Destiny and Your Adventures"</h1>
+                        <h3>Explore the world with our curated travel options.</h3>
+                        <a href="/allcodeshtml/explore destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider2..jpg');">
+                    <div class="hero-content">
+                        <h1>"Discover the Beauty of the World"</h1>
+                        <h3>Your next adventure awaits.</h3>
+                        <a href="/allcodeshtml/explore_destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider3..jpg');">
+                    <div class="hero-content">
+                        <h1>"Create Unforgettable Memories"</h1>
+                        <h3>Join us for the journey of a lifetime.</h3>
+                        <a href="/allcodeshtml/explore_destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </section>
 
@@ -83,7 +130,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Paris</h5>
                         <p class="card-text">Experience the romance of the City of Lights.</p>
-                        <a href="/allcodeshtml/parisvacation..html" class="btn btn-primary">Learn More</a>
+                        <a href="/allcodeshtml/parisvacation.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>

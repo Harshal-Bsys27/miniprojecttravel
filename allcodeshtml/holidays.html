@@ -4,128 +4,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holiday Packages</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css codes/holidays.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header, footer {
+            background-color: #883776;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .package-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .package {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px; /* Set a fixed width for each card */
+        }
+        .package:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .package img {
+            width: 100%;
+            height: auto;
+        }
+        .btn-small {
+            font-size: 0.8rem; /* Smaller font size */
+            padding: 0.25rem 0.5rem; /* Reduced padding for a more compact button */
+            margin-top: 10px; /* Add some space above the button */
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Holiday Packages</h1>
         <nav>
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="#domestic">Domestic Packages</a></li>
-                <li><a href="#international">International Packages</a></li>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="/index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#domestic">Domestic Packages</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#international">International Packages</a></li>
             </ul>
         </nav>
     </header>
     
-    <main>
+    <main class="container mt-4">
         <section id="domestic">
             <h2>Domestic Packages</h2>
             <div class="package-container">
-                <article class="package">
-                    <img src="/images.png/delhi.png" alt="Delhi">
-                    <h3>Delhi</h3>
-                    <p>Explore the vibrant city of Delhi with guided tours and cultural experiences.</p>
-                 <a href="https://example.com/delhi" class="btn">Learn More..</a>
+                <article class="package card shadow">
+                    <img src="/images.png/delhi.png" alt="Delhi" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Delhi</h3>
+                        <p class="card-text">Explore the vibrant city of Delhi with guided tours and cultural experiences.</p>
+                        <a href="https://example.com/delhi" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-                <article class="package">
-                    <img src="/images.png/mumbai.png" alt="Mumbai">
-                    <h3>Mumbai </h3>
-                    <p>Experience the bustling life of Mumbai, including beach visits and local markets.</p>
-                    <a href="https://example.com/mumbai" class="btn">Learn More..</a>
+                <article class="package card shadow">
+                    <img src="/images.png/mumbai.png" alt="Mumbai" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Mumbai</h3>
+                        <p class="card-text">Experience the bustling life of Mumbai, including beach visits and local markets.</p>
+                        <a href="https://example.com/mumbai" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-            </article>
-            <article class="package">
-                <img src="/images.png/kolkata.png" alt="Kolkata">
-                <h3>Kolkata</h3>
-                <p>Kolkata, where the past meets the present, explore  this beautiful city" </p>
-                <a href="https://example.com/delhi" class="btn">Learn More..</a>
-            </article>
-        </article>
-        <article class="package">
-            <img src="/images.png/kerala.jpg" alt="Kerala">
-            <h3>Kerala</h3>
-            <p>"God's Own Country" awaits, with its lush landscapes and warm hospitality."</p>
-            <a href="https://example.com/delhi" class="btn">Learn More..</a>
-        </article>
-    </article>
-    <article class="package">
-        <img src="/images.png/ladakh.jpg" alt="Ladakh">
-        <h3>Ladakh</h3>
-        <p> "Ladakh – a celestial wonderland that will leave you speechless."</p>
-        <a href="https://example.com/delhi" class="btn">Learn More..</a>
-    </article>
-</article>
-<article class="package">
-    <img src="/images.png/dehradun.webp" alt="Dehradun">
-    <h3>Dehradun</h3>
-    <p>“Discover the charm of Dehradun, where nature’s beauty meets rich cultural heritage in the heart of the Doon Valley.”.</p>
-    <a href="https://example.com/delhi" class="btn">Learn More..</a>
-</article>
-<article class="package">
-    <img src="/images.png/darjeeling.jpg" alt="Darjeeling">
-    <h3>Darjeeling</h3>
-    <p>“In Darjeeling, every sunrise paints a masterpiece on the canvas of the Himalayan sky.”</p>
-    <a href="https://example.com/delhi" class="btn">Learn More..</a>
-</article>
-<article class="package">
-    <img src="/images.png/varanasi.jpg" alt="Delhi">
-    <h3>Varanasi</h3>
-    <p>“Varanasi is not just a destination; it is a pilgrimage, a journey within, where the soul finds its true reflection in the sacred waters of the Ganges.”</p>
-    <a href="https://example.com/delhi" class="btn">Learn More..</a>
-</article>
-<article class="package">
-    <img src="/images.png/The-Golden-Temple.jpg" alt="Amritsar">
-    <h3>Amritsar</h3>
-    <p>"A journey to Amritsar is a journey of self-discovery."”</p>
-    <a href="https://example.com/delhi" class="btn">Learn More..</a>
-</article>
-                <!-- Add more domestic packages here -->
+                <article class="package card shadow">
+                    <img src="/images.png/kolkata.png" alt="Kolkata" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Kolkata</h3>
+                        <p class="card-text">Kolkata, where the past meets the present, explore this beautiful city.</p>
+                        <a href="https://example.com/kolkata" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/kerala.jpg" alt="Kerala" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Kerala</h3>
+                        <p class="card-text">"God's Own Country" awaits, with its lush landscapes and warm hospitality.</p>
+                        <a href="https://example.com/kerala" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/ladakh.jpg" alt="Ladakh" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Ladakh</h3>
+                        <p class="card-text">Ladakh – a celestial wonderland that will leave you speechless.</p>
+                        <a href="https://example.com/ladakh" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/dehradun.webp" alt="Dehradun" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Dehradun</h3>
+                        <p class="card-text">Discover the charm of Dehradun, where nature’s beauty meets rich cultural heritage.</p>
+                        <a href="https://example.com/dehradun" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/darjeeling.jpg" alt="Darjeeling" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Darjeeling</h3>
+                        <p class="card-text">In Darjeeling, every sunrise paints a masterpiece on the canvas of the Himalayan sky.</p>
+                        <a href="https://example.com/darjeeling" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/varanasi.jpg" alt="Varanasi" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Varanasi</h3>
+                        <p class="card-text">Varanasi is not just a destination; it is a pilgrimage, a journey within.</p>
+                        <a href="https://example.com/varanasi" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/The-Golden-Temple.jpg" alt="Amritsar" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Amritsar</h3>
+                        <p class="card-text">A journey to Amritsar is a journey of self-discovery.</p>
+                        <a href="https://example.com/amritsar" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section id="international">
+        <section id="international" class="mt-5">
             <h2>International Packages</h2>
             <div class="package-container">
-                <article class="package">
-                    <img src="/images.png/dubai.png" alt="DUBAI">
-                    <h3>Dubai Experience</h3>
-                    <p>Discover the royalty of Dubai,If you want to fall in love with Dubai, you just have to come here once .</p>
-                    <a href="https://example.com/paris" class="btn">Learn More..</a>
+                <article class="package card shadow">
+                    <img src="/images.png/dubai.png" alt="Dubai" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Dubai Experience</h3>
+                        <p class="card-text">Discover the royalty of Dubai, fall in love with this vibrant city.</p>
+                        <a href="https://example.com/dubai" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-                <article class="package">
-                    <img src="/images.png/australia.png" alt="Australia">
-                    <h3>Australia </h3>
-                    <p>Explore the vibrant streets of New York, from Broadway shows to Central Park.</p>
-                    <a href="https://example.com/new-york" class="btn">Learn More..</a>
+                <article class="package card shadow">
+                    <img src="/images.png/australia.png" alt="Australia" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Australia</h3>
+                        <p class="card-text">Explore the vibrant streets of Australia, from iconic landmarks to natural wonders.</p>
+                        <a href="https://example.com/australia" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-                <article class="package">
-                    <img src="/images.png/Bali.jpg" alt="Bali">
-                    <h3>Bali </h3>
-                    <p>“Bali is more than a place. It’s a mood, it’s magical. It’s a tropical state of mind.”.</p>
-                    <a href="##" class="btn">Learn More..</a>
+                <article class="package card shadow">
+                    <img src="/images.png/Bali.jpg" alt="Bali" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Bali</h3>
+                        <p class="card-text">"Bali is more than a place. It’s a mood, it’s magical."</p>
+                        <a href="https://example.com/bali" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-                <article class="package">
-                    <img src="/images.png/Singapore.jpg" alt="Singapore">
-                    <h3>Singapore</h3>
-                    <p>Singapore, where every corner has a story to tell.
-
-                    </p>
-                    <a href="https://example.com/new-york" class="btn">Learn More</a>
+                <article class="package card shadow">
+                    <img src="/images.png/Singapore.jpg" alt="Singapore" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Singapore</h3>
+                        <p class="card-text">Singapore, where every corner has a story to tell.</p>
+                        <a href="https://example.com/singapore" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-                <article class="package">
-                    <img src="/images.png/maldives.jpg" alt="Maldives">
-                    <h3>Maldives</h3>
-                    <p>"Travel far, travel wide, but don't forget the Maldives."</p>
-                    <a href="https://example.com/new-york" class="btn">Learn More</a>
+                <article class="package card shadow">
+                    <img src="/images.png/maldives.jpg" alt="Maldives" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Maldives</h3>
+                        <p class="card-text">"Travel far, travel wide, but don't forget the Maldives."</p>
+                        <a href="https://example.com/maldives" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
                 </article>
-               <article class="package">
-                <img src="/images.png/TAIWAN (2).jpg" alt="Taiwan">
-                <h3>Taiwan</h3>
-                <p>"Embracing the beauty of Taiwan, one breathtaking landscape at a time." </p>
-                <a href="https://example.com/new-york" class="btn">Learn More</a>
-            </article>
-                <!-- Add more international packages here -->
+                <article class="package card shadow">
+                    <img src="/images.png/TAIWAN (2).jpg" alt="Taiwan" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Taiwan</h3>
+                        <p class="card-text">"Embracing the beauty of Taiwan, one breathtaking landscape at a time."</p>
+                        <a href="https://example.com/taiwan" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
             </div>
         </section>
     </main>
@@ -134,6 +194,8 @@
         <p>&copy; 2024 Holiday Packages. All rights reserved.</p>
     </footer>
 
-    <script src="/js code/holidays.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

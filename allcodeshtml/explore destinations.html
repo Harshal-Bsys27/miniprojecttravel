@@ -4,10 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Destinations</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background:#883776;
+            color: #fff;
+            padding: 20px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            color: #b18080;
+            transform: scale(1.1);
+        }
+        .destination-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .destination-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="text-center">
         <h1>Travel Explorer</h1>
         <nav>
             <ul>
@@ -17,38 +60,42 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <link rel="stylesheet" href="/css codes/exploredestination.css">
     </header>
 
-    <main>
+    <main class="container my-5">
         <section id="destinations">
-            <div class="container">
-                <h2>Explore Top Destinations</h2>
-                <div class="destination-grid">
-                    <div class="destination-card" data-name="Paris">
-                        <img src="/images.png/image.png" alt="Paris">
-                        <div class="card-content">
-                            <h3>Paris</h3>
-                            <p>Experience the romantic charm of the City of Light.</p>
-                            <button class="details-btn">View Details</button>
+            <h2 class="text-center mb-4">Explore Top Destinations</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card destination-card" data-name="Paris">
+                        <img src="/images.png/image.png" class="card-img-top" alt="Paris">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Paris</h3>
+                            <p class="card-text">Experience the romantic charm of the City of Light.</p>
+                            <button class="btn btn-primary details-btn">View Details</button>
                         </div>
                     </div>
-                    <div class="destination-card" data-name="New York">
-                        <img src="/images.png/newyork.png"New York">
-                        <div class="card-content">
-                            <h3>New York</h3>
-                            <p>Discover the vibrant energy of the Big Apple.</p>
-                            <button class="details-btn">View Details</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="card destination-card" data-name="New York">
+                        <img src="/images.png/newyork.png" class="card-img-top" alt="New York">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">New York</h3>
+                            <p class="card-text">Discover the vibrant energy of the Big Apple.</p>
+                            <button class="btn btn-primary details-btn">View Details</button>
                         </div>
                     </div>
-                   
-                    <div class="destination-card" data-name="Tokyo">
-                        <img src="/images.png/tokyoo.png" alt="Tokyo">
-                        <div class="card-content">
-                            <h3>Tokyo</h3>
-                            <p>Immerse yourself in the bustling culture of Tokyo.</p>
-                            <button class="details-btn">View Details</button
-                           
+                </div>
+                <div class="col-md-4">
+                    <div class="card destination-card" data-name="Tokyo">
+                        <img src="/images.png/tokyoo.png" class="card-img-top" alt="Tokyo">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Tokyo</h3>
+                            <p class="card-text">Immerse yourself in the bustling culture of Tokyo.</p>
+                            <button class="btn btn-primary details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -56,7 +103,7 @@
             <div class="container">
                 <h2 id="details-title">Destination Details</h2>
                 <p id="details-description">Information about the selected destination will be displayed here.</p>
-                <button id="close-details">Close</button>
+                <button id="close-details" class="btn btn-secondary">Close</button>
             </div>
         </section>
     </main>
@@ -65,6 +112,9 @@
         <p>&copy; 2024 Travel Explorer. All rights reserved.</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/js code/exploredestination.js"></script>
 </body>
 </html>

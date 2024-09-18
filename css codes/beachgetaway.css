@@ -13,13 +13,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Container styling for consistent spacing */
-.container {
-    max-width: 1200px; /* Increase the max-width for a larger container */
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
 /* Header and navigation */
 header {
     background: #951439;
@@ -37,55 +30,26 @@ nav h1 {
     margin-left: 20px;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
 /* Hero Section */
 .hero {
     background: url('https://example.com/hero-bg.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 80px 15px; /* Adjusted padding for better spacing */
+    padding: 80px 0; /* Adjusted padding for better spacing */
     text-align: center; /* Center-align text and button */
 }
 
 .hero-content {
-    max-width: 1000px; /* Increase the max-width for a larger container */
+    max-width: 1000px; /* Increase max-width for a larger container */
     margin: 0 auto;
 }
 
-.hero h1 {
-    font-size: 2.5em; /* Slightly smaller font size for better responsiveness */
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
+/* Button styles */
+.btn-primary {
     background: #0058d3;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1em;
+    border: none;
 }
 
-.btn:hover {
+.btn-primary:hover {
     background: #004bb5;
 }
 
@@ -153,10 +117,6 @@ footer {
     nav ul {
         flex-direction: column;
         align-items: center;
-    }
-
-    nav ul li {
-        margin: 10px 0;
     }
 
     .location-card {

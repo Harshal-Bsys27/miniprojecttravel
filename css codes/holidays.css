@@ -1,19 +1,22 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f4f4f4; /* Light background for contrast */
 }
 
 header {
-    background: #bd4646;
+    background: #180404; /* Bootstrap danger color for modern look */
     color: #fff;
-    padding: 1rem;
+    padding: 1.5rem 0; /* Added padding for more space */
     text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 header h1 {
     margin: 0;
+    font-size: 2.5rem; /* Increased font size for prominence */
 }
 
 nav ul {
@@ -26,16 +29,18 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold; /* Make the links stand out */
+    transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    color: #ffd700; /* Gold color on hover */
 }
 
 main {
@@ -43,13 +48,15 @@ main {
 }
 
 section {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; /* More space between sections */
 }
 
 section h2 {
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
-    text-align: left; /* Align heading to the left */
+    text-align: left;
+    font-size: 2rem; /* Larger heading for emphasis */
+    color: #d9534f; /* Match header color for consistency */
 }
 
 /* Ensure proper alignment of package cards */
@@ -61,49 +68,57 @@ section h2 {
 }
 
 .package {
-    border: 1px solid #ddd;
+    background: #fff; /* White background for cards */
     border-radius: 8px;
     overflow: hidden;
-    width: 100%; /* Full width to handle responsive resizing */
-    max-width: 450px; /* Maximum width for larger screens */
+    width: 100%;
+    max-width: 450px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    margin-bottom: 2rem; /* Space between cards */
-    position: relative; /* For absolute positioning of the button */
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    transition: transform 0.3s; /* Smooth scale effect on hover */
+}
+
+.package:hover {
+    transform: scale(1.05); /* Slightly scale the card on hover */
 }
 
 .package img {
     width: 100%;
     height: auto;
+    border-bottom: 2px solid #d9534f; /* Stylish bottom border */
 }
 
 .package h3 {
     margin: 1rem 0 0.5rem;
+    color: #333; /* Darker color for better readability */
 }
 
 .package p {
     padding: 0 1rem;
-    color: #555;
-    margin-bottom: 2rem; /* Space between text and button */
+    color: #666; /* Lighter gray for text */
+    margin-bottom: 2rem;
 }
 
 /* Align the button at the bottom of the card */
 .package .btn {
     display: block;
-    margin-top: auto; /* Push the button to the bottom of the container */
-    padding: 0.5rem 1rem;
-    background: #0056b3;
+    margin-top: auto; /* Push the button to the bottom */
+    padding: 0.75rem 1.5rem; /* Larger padding for modern button look */
+    background: #007bff; /* Bootstrap primary color */
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
-    text-align: center;
+    font-weight: bold; /* Bold button text */
+    transition: background 0.3s, transform 0.3s; /* Smooth transition */
 }
 
 .package .btn:hover {
-    background: #003d80; /* Darker shade on hover */
+    background: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
 footer {
@@ -111,9 +126,8 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem;
-    position: fixed;
+    position: relative; /* Changed to relative for better control */
     width: 100%;
-    bottom: 0;
 }
 
 /* Responsive Design */

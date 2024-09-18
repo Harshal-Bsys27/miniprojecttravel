@@ -4,25 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Travel Planner</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css codes/login.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('/path/to/your/image.jpg') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Cover the entire area */
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #6a11cb;
+            font-size: 2.5rem;
+        }
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        .forgot-password, .Sign-Up, .Home {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        .forgot-password a, .Sign-Up a, .Home a {
+            color: #6a11cb;
+            text-decoration: none;
+        }
+        .forgot-password a:hover, .Sign-Up a:hover, .Home a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-page">
-        <div class="login-container">
-            <h1>letstravel.com</h1>
-            <form action="login.php" method="post">
+
+<div class="login-page">
+    <div class="login-container">
+        <h1>letstravel.com</h1>
+        <form action="login.php" method="post">
+            <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" class="form-control form-control-lg" required>
+            </div>
 
+            <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" class="form-control form-control-lg" required>
+            </div>
 
-                <button type="submit" class="login-button">Log In</button>
-            </form>
-            <p class="forgot-password"><a href="#">Forgot your password?</a></p>
-            <p class="Sign Up Account"><a href="#">Sign Up </a></p>
-            <p class="Home"><a href="/index.html">Home </a></p>
-        </div>
+            <button type="submit" class="btn btn-primary login-button">Log In</button>
+        </form>
+        <p class="forgot-password"><a href="#">Forgot your password?</a></p>
+        <p class="Sign-Up"><a href="#">Sign Up</a></p>
+        <p class="Home"><a href="/index.html">Home</a></p>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
