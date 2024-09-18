@@ -4,113 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>letstravel.com</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css codes/styles.css">
     <link rel="stylesheet" href="/css codes/logo.css">
+    <style>
+        /* Additional custom styles */
+        body {
+            background-color: #f4f4f4;
+        }
+        .hero-section {
+            background: url('/images.png/index\ bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3em;
+        }
+        .hero-section h3 {
+            font-size: 1.5em;
+        }
+        .hero-section .btn {
+            background: #b18080;
+            border: none;
+        }
+        .hero-section .btn:hover {
+            background: #804141;
+        }
+        .destination-card img, .package-card img {
+            width: 100%;
+            height: auto;
+        }
+        footer {
+            background: #9d6b6b;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <h1>letstravel.com</h1>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#destinations">Destinations</a></li>
-                    <li><a href="/allcodeshtml/trips.html">Trips</a></li>
-                    <li><a href="/allcodeshtml/holidays.html">Holiday Packages</a></li>
-                    <li><a href="#recents">Recent search</a></li>
-                    <li><a href="/allcodeshtml/login.html">log in</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">letstravel.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
+                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/trips.html">Trips</a></li>
+                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/holidays.html">Holiday Packages</a></li>
+                <li class="nav-item"><a class="nav-link" href="#recents">Recent Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/login.html">Log In</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <section id="home" class="container">
-        <div class="home-content">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
             <h1>"Plan Your Destiny and Your Adventures"</h1>
             <h3>Explore the world with our curated travel options.</h3>
-            <a href="/allcodeshtml/explore destinations.html" class="btn">Explore Destinations</a>
+            <a href="/allcodeshtml/explore destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
         </div>
     </section>
 
-    <section id="destinations" class="container">
-        <h2>Destinations</h2>
-        <div class="destination-list">
-            <div class="destination-card">
-                <img src="https://th.bing.com/th/id/OIP.yu45SLTLXb_BHxjFUjhqSwHaEo?rs=1&pid=ImgDetMain" alt="Paris">
-                <h3>Paris</h3>
-                <p>Experience the romance of the City of Lights.</p>
-                <a href="/allcodeshtml/parisvacation..html">Learn More</a>
+    <!-- Destinations Section -->
+    <section id="destinations" class="container my-5">
+        <h2 class="text-center mb-4">Destinations</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://th.bing.com/th/id/OIP.yu45SLTLXb_BHxjFUjhqSwHaEo?rs=1&pid=ImgDetMain" class="card-img-top" alt="Paris">
+                    <div class="card-body">
+                        <h5 class="card-title">Paris</h5>
+                        <p class="card-text">Experience the romance of the City of Lights.</p>
+                        <a href="/allcodeshtml/parisvacation..html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </div>
-            <div class="destination-card">
-                <img src="https://th.bing.com/th/id/OIP.i4_jnWJ82Pt8z0jidAzICgHaE1?rs=1&pid=ImgDetMain" alt="New York">
-                <h3>New York</h3>
-                <p>The bustling metropolis of the Big Apple.</p>
-                <a href="learnmore1 copy 2.html">Learn More</a>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://th.bing.com/th/id/OIP.i4_jnWJ82Pt8z0jidAzICgHaE1?rs=1&pid=ImgDetMain" class="card-img-top" alt="New York">
+                    <div class="card-body">
+                        <h5 class="card-title">New York</h5>
+                        <p class="card-text">The bustling metropolis of the Big Apple.</p>
+                        <a href="learnmore1 copy 2.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </div>
-            <div class="destination-card">
-                <img src="https://th.bing.com/th/id/OIP.Zxfk-TZRNDS_YpZUQeThxQAAAA?rs=1&pid=ImgDetMain" alt="Tokyo">
-                <h3>Tokyo</h3>
-                <p>Immerse yourself in the vibrant culture of Japan.</p>
-                <a href="learnmore1 copy.html">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="trips" class="container">
-        <h2>Tour and Booking</h2>
-        <div class="trip-list">
-            <div class="trip-card">
-                <h3>European Tour</h3>
-                <p>Enjoy a 10-day tour across Europe visiting major cities.</p>
-                <a href="/allcodeshtml/europebooknow.html">Book Now</a>
-            </div>
-            <div class="trip-card">
-                <h3>Asian Adventure</h3>
-                <p>A 7-day journey exploring the best of Asia.</p>
-                <a href="/allcodeshtml/asiaadventure.html">Book Now</a>
-            </div>
-            <div class="trip-card">
-                <h3>American Highlights</h3>
-                <p>Discover the highlights of the USA in a 5-day trip.</p>
-                <a href="book2.html">Book Now</a>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://th.bing.com/th/id/OIP.Zxfk-TZRNDS_YpZUQeThxQAAAA?rs=1&pid=ImgDetMain" class="card-img-top" alt="Tokyo">
+                    <div class="card-body">
+                        <h5 class="card-title">Tokyo</h5>
+                        <p class="card-text">Immerse yourself in the vibrant culture of Japan.</p>
+                        <a href="learnmore1 copy.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="packages" class="container">
-        <h2>Category</h2>
-        <div class="package-list">
-            <div class="package-card">
-                <img src="https://wallpaperaccess.com/full/359970.jpg" alt="Beach Package">
-                <h3>Beach Getaway</h3>
-                <p>Relax on pristine beaches with our all-inclusive package.</p>
-                <a href="\allcodeshtml\beachgetaway.html">Explore more</a>
+    <!-- Trips Section -->
+    <section id="trips" class="container my-5">
+        <h2 class="text-center mb-4">Tour and Booking</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">European Tour</h5>
+                        <p class="card-text">Enjoy a 10-day tour across Europe visiting major cities.</p>
+                        <a href="/allcodeshtml/europebooknow.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
             </div>
-            <div class="package-card">
-                <img src="https://images.livemint.com/img/2022/05/20/original/Big_Story_Himalayan_Treks_Nepal_1653055597386.jpg" alt="Mountain Package">
-                <h3>Mountain Retreat</h3>
-                <p>Escape to the mountains with a luxurious stay.</p>
-                <a href="\allcodeshtml\mountainretreat.html">Explore more</a>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Asian Adventure</h5>
+                        <p class="card-text">A 7-day journey exploring the best of Asia.</p>
+                        <a href="/allcodeshtml/asiaadventure.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
             </div>
-            <div class="package-card">
-                <img src="https://th.bing.com/th/id/OIP.c1XsWKEFfcPFZidEsSVvOAHaEn?rs=1&pid=ImgDetMain" alt="City Package">
-                <h3>City Explorer</h3>
-                <p>Experience the excitement of urban life with our city packages.</p>
-                <a href="#">Explore more</a>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">American Highlights</h5>
+                        <p class="card-text">Discover the highlights of the USA in a 5-day trip.</p>
+                        <a href="book2.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="container">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to reach out to us!</p>
-        <a href="letstravel@gmail.com" class="btn">Email Us</a>
+    <!-- Packages Section -->
+    <section id="packages" class="container my-5">
+        <h2 class="text-center mb-4">Category</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://wallpaperaccess.com/full/359970.jpg" class="card-img-top" alt="Beach Package">
+                    <div class="card-body">
+                        <h5 class="card-title">Beach Getaway</h5>
+                        <p class="card-text">Relax on pristine beaches with our all-inclusive package.</p>
+                        <a href="\allcodeshtml\beachgetaway.html" class="btn btn-primary">Explore More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.livemint.com/img/2022/05/20/original/Big_Story_Himalayan_Treks_Nepal_1653055597386.jpg" class="card-img-top" alt="Mountain Package">
+                    <div class="card-body">
+                        <h5 class="card-title">Mountain Retreat</h5>
+                        <p class="card-text">Escape to the mountains with a luxurious stay.</p>
+                        <a href="\allcodeshtml\mountainretreat.html" class="btn btn-primary">Explore More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://th.bing.com/th/id/OIP.c1XsWKEFfcPFZidEsSVvOAHaEn?rs=1&pid=ImgDetMain" class="card-img-top" alt="City Package">
+                    <div class="card-body">
+                        <h5 class="card-title">City Explorer</h5>
+                        <p class="card-text">Experience the excitement of urban life with our city packages.</p>
+                        <a href="#" class="btn btn-primary">Explore More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="container my-5">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <p class="text-center">If you have any questions, feel free to reach out to us!</p>
+        <div class="text-center">
+            <a href="mailto:letstravel@gmail.com" class="btn btn-primary btn-lg">Email Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; letstravel.com</p>
+            <p class="mb-0">&copy; 2024 letstravel.com</p>
         </div>
     </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

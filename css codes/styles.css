@@ -8,8 +8,8 @@ body, h1, h2, h3, p, ul {
 /* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    line-height: 2.2;
+    color: #b35050;
     background-color: #f4f4f4;
 }
 
@@ -39,20 +39,8 @@ nav h1 {
     text-align: left; /* Ensure header text is aligned to the left */
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
+.navbar-nav .nav-item .nav-link {
     color: #fff;
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -70,7 +58,7 @@ nav ul li a {
     border: none;
     border-radius: 4px;
     margin-right: 5px;
-    width: 150px;
+    width: 200px; /* Increased width */
 }
 
 .search-form button {
@@ -129,15 +117,15 @@ h2 {
 .destination-list, .trip-list, .package-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px; /* Increased gap for better spacing */
 }
 
 .destination-card, .trip-card, .package-card {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(105, 37, 37, 0.1);
+    box-shadow: 0 0 15px rgba(105, 37, 37, 0.1); /* Increased shadow for a modern look */
     overflow: hidden;
-    width: calc(33.333% - 20px);
+    width: calc(25% - 30px); /* Increased width of the cards */
     margin-bottom: 20px;
     text-align: center;
 }
@@ -149,7 +137,7 @@ h2 {
 
 .destination-card h3, .package-card h3 {
     padding: 10px;
-    font-size: 1.2em;
+    font-size: 1.4em; /* Increased font size for headings */
 }
 
 .destination-card p, .package-card p {
@@ -208,20 +196,58 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .destination-card, .trip-card, .package-card {
-        width: calc(50% - 20px);
+        width: calc(50% - 30px); /* Adjust width for smaller screens */
     }
 
     .destination-list, .trip-list, .package-list {
-        gap: 15px;
+        gap: 20px; /* Adjust gap for smaller screens */
     }
 }
 
 @media (max-width: 480px) {
     .destination-card, .trip-card, .package-card {
-        width: calc(100% - 20px);
+        width: calc(100% - 30px); /* Adjust width for very small screens */
     }
 
     .destination-list, .trip-list, .package-list {
-        gap: 10px;
+        gap: 15px; /* Adjust gap for very small screens */
     }
+}
+
+/* Bootstrap utility classes for alignment and spacing */
+.text-center {
+    text-align: center;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.px-3, .py-3 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
 }
