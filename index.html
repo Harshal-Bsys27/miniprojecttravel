@@ -92,18 +92,18 @@
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
-            background-color: #df7385; /* Button color */
+            background-color: #df7385;
             color: #fff;
             cursor: pointer;
             margin-left: 10px;
         }
         .search-form button:hover {
-            background-color: #b18080; /* Button hover color */
+            background-color: #b18080;
         }
         /* Responsive Design */
         @media (max-width: 768px) {
             .search-form input[type="text"] {
-                width: 100%; /* Full width on smaller screens */
+                width: 100%;
             }
         }
     </style>
@@ -127,10 +127,10 @@
                 <li class="nav-item"><a class="nav-link" href="#recents"><i class="fas fa-history fa-lg mb-1"></i><br>Recent Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="allcodeshtml/login.html"><i class="fas fa-user fa-lg mb-1"></i><br>Log In</a></li>
             </ul>
-            <form class="search-form">
+            <form class="search-form" role="search" aria-label="Site Search">
                 <div class="input-group">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="Search...">
+                    <span class="search-icon" aria-hidden="true">🔍</span>
+                    <input type="text" aria-label="Search" placeholder="Search...">
                 </div>
                 <button type="submit">Search</button>
             </form>        
@@ -139,7 +139,7 @@
     
     <!-- Hero Section with Carousel -->
     <section id="home" class="hero-section">
-        <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover">
+        <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover" aria-label="Travel Destinations">
             <div class="carousel-inner">
                 <div class="carousel-item active" style="background-image: url('images.png/index bg.jpg');">
                     <div class="hero-content">
