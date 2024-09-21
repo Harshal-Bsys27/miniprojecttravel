@@ -1,5 +1,5 @@
 /* Reset some default styles */
-body, h1, h2, h3, p, ul {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,118 +7,159 @@ body, h1, h2, h3, p, ul {
 
 /* Basic styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f0f0f0; /* Soft background color */
 }
 
 /* Header and navigation */
 header {
-    background: #951439;
+    background: #007bff; /* Updated header color */
     color: #fff;
-    padding: 10px 0;
+    padding: 15px 0; /* Slightly reduced padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px; /* Centering with max width */
+    margin: 0 auto; /* Centering */
 }
 
-nav h1 {
-    margin-left: 20px;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px; /* Increased padding for better click area */
+    font-weight: 500; /* Medium weight for modern look */
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transition */
+}
+
+nav a:hover {
+    color: #ffcc00; /* Change color on hover */
+    transform: scale(1.05); /* Slight scale on hover */
 }
 
 /* Hero Section */
-.hero {
-    background: url('https://example.com/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    padding: 80px 0; /* Adjusted padding for better spacing */
-    text-align: center; /* Center-align text and button */
+.hero-content {
+    position: relative; /* Position for absolute elements */
+    overflow: hidden; /* Hide overflow */
+    text-align: center;
+    padding-top: 20px; /* Add spacing above */
 }
 
-.hero-content {
-    max-width: 1000px; /* Increase max-width for a larger container */
-    margin: 0 auto;
+.discover-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for visibility */
+    color: white; /* Ensure text is visible */
+}
+
+/* Carousel styles */
+.carousel-item {
+    height: 60vh; /* Adjust height for the carousel */
+}
+
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8; /* Slightly more opaque */
 }
 
 /* Button styles */
-.btn-primary {
-    background: #0058d3;
+.btn-custom {
+    background: #0058d3; /* Button color */
     border: none;
+    border-radius: 25px; /* Rounded button */
+    padding: 12px 30px;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease; /* Added transform */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.btn-primary:hover {
+.btn-custom:hover {
     background: #004bb5;
+    transform: scale(1.05); /* Slight scale on hover */
 }
 
 /* Sections */
 section {
-    padding: 30px 15px; /* Added padding for better spacing */
+    padding: 60px 15px; /* Increased padding for a spacious feel */
+    background-color: #fff; /* White background for sections */
+    border-radius: 10px; /* Rounded corners for sections */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 30px; /* Spacing between sections */
 }
 
+h1, h2, h3 {
+    margin-bottom: 20px;
+    text-align: center; /* Centered section titles */
+}
+
+/* Location list */
 .location-list {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    justify-content: center;
 }
 
+/* Card styles */
 .location-card {
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     flex: 1 1 calc(33.333% - 30px);
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Spacing between cards */
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .location-card img {
     width: 100%;
     height: auto;
+    border-top-left-radius: 10px; /* Rounded corners for images */
+    border-top-right-radius: 10px;
 }
 
 .location-info {
-    padding: 15px;
+    padding: 20px; /* Increased padding */
 }
 
 .location-card h3 {
-    margin: 10px 0;
+    margin: 15px 0 10px; /* Improved spacing */
 }
 
 .location-card p {
     margin-bottom: 15px;
-}
-
-.location-card a {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    background: #216cb7;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.location-card a:hover {
-    background: #34495e;
+    font-size: 0.95rem; /* Smaller text for readability */
 }
 
 /* Footer */
 footer {
-    background: #2c3e50;
+    background: #343a40; /* Updated footer color */
     color: #fff;
     text-align: center;
-    padding: 10px 15px;
+    padding: 20px 0; /* Adjusted padding */
+    position: relative; /* Added for footer positioning */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .location-card {
         flex: 1 1 calc(50% - 30px);
     }
@@ -127,5 +168,9 @@ footer {
 @media (max-width: 480px) {
     .location-card {
         flex: 1 1 100%;
+    }
+
+    .discover-title {
+        font-size: 1.8rem; /* Smaller title on mobile */
     }
 }
