@@ -12,7 +12,7 @@
             background-color: #f0e4eb;
         }
         header {
-            background-color: #007bff;
+            background-color: #2f639a;
             padding: 10px 0;
         }
         .navbar {
@@ -44,12 +44,12 @@
         }
         .discover-title {
             position: absolute;
-            top: 20px; /* Adjust for vertical positioning */
+            top: 20px; 
             left: 50%;
             transform: translateX(-50%);
             font-size: 2.5rem;
             z-index: 10;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for readability */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
         footer {
             background-color: #343a40;
@@ -75,6 +75,9 @@
         .btn-section {
             margin: 20px 0;
         }
+        .nav-item i {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -90,9 +93,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="/index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#locations">Locations</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#locations"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -189,7 +192,7 @@
         <h2 class="text-center mb-4">Contact Us</h2>
         <p class="text-center">If you have any questions or need more information, feel free to reach out!</p>
         <div class="text-center btn-section">
-            <a href="mailto:info@beachgetaway.com" class="btn btn-contact btn-lg">Email Us</a>
+            <a href="mailto:info@beachgetaway.com" class="btn btn-custom btn-lg">Email Us</a>
         </div>
     </section>
 

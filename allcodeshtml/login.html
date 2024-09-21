@@ -5,60 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>letstravel.com</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #f0e4eb; /* Soft background color */
+            background: #f0e4eb;
         }
         .login-page {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* Full height */
-            background: url('/images.png/login.jpg') no-repeat center center fixed; /* Background image */
-            background-size: cover; /* Cover the entire area */
+            height: 100vh;
+            background: url('/images.png/login.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         .login-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 450px;
-            position: relative; /* For positioning the pseudo-element */
         }
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            color: #8b3177; /* Title color */
+            color: #8b3177;
             font-size: 2.5rem;
             display: flex;
-            align-items: center; /* Align icon and text */
-            justify-content: center; /* Center the content */
+            align-items: center;
+            justify-content: center;
         }
         .login-button {
             width: 100%;
             padding: 12px;
             font-size: 1.2rem;
-            background: #0058d3; /* Button color */
+            background: #0058d3;
             border: none;
             color: white;
             transition: background 0.3s ease;
-            z-index: 1; /* Bring to front */
         }
         .login-button:hover {
-            background: #004bb5; /* Button hover color */
+            background: #004bb5;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .input-icon {
+            color: #6a11cb;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        input {
+            height: 50px;
         }
         .forgot-password, .Sign-Up, .Home {
             text-align: center;
             margin-top: 15px;
             font-size: 1rem;
-            z-index: 1; /* Bring to front */
         }
         .forgot-password a, .Sign-Up a, .Home a {
-            color: #6a11cb; /* Link color */
+            color: #6a11cb;
             text-decoration: none;
         }
         .forgot-password a:hover, .Sign-Up a:hover, .Home a:hover {
@@ -66,52 +74,55 @@
         }
         .error-message {
             color: red;
-            display: none; /* Initially hidden */
-            font-size: 0.9rem; /* Smaller font for error message */
-            margin-top: 5px; /* Spacing between input and error message */
-            z-index: 1; /* Bring to front */
+            display: none;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
-        .form-group {
-            position: relative; /* Position for absolutely positioned error message */
-        }
-        input {
-            height: 50px; /* Fixed height for input fields */
-            z-index: 1; /* Bring to front */
+        .valid-message {
+            color: green;
+            display: none;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
         .travel-icon {
-            margin-right: 10px; /* Space between icon and text */
-            font-size: 2.5rem; /* Size of the icon */
-            color: #6a11cb; /* Icon color */
+            margin-right: 10px;
+            font-size: 2.5rem;
+            color: #6a11cb;
         }
     </style>
 </head>
 <body>
 
-<!-- Login Container -->
 <div class="login-page">
     <div class="login-container">
         <h1>
-            <i class="fas fa-plane-departure travel-icon" style="color: rgb(102, 51, 177);"></i> <!-- Travel Icon -->
+            <i class="fas fa-plane-departure travel-icon"></i>
             letstravel.com
         </h1>
         <form id="loginForm" action="login.php" method="post">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="form-control form-control-lg" required>
-                <small class="error-message" id="usernameError">Username must be 3-15 characters and contain only letters and numbers.</small>
+                <label for="username">
+                    <i class="fas fa-user input-icon"></i> Username:
+                </label>
+                <input type="text" id="username" name="username" class="form-control form-control-lg" maxlength="10" required>
+                <small class="error-message" id="usernameError">Username must be 10 characters long, with 6 letters (at least one uppercase), 3 numbers, and 1 special character.</small>
+                <small class="valid-message" id="usernameValid">✔</small>
             </div>
 
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="form-control form-control-lg" required>
-                <small class="error-message" id="passwordError">Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.</small>
+                <label for="password">
+                    <i class="fas fa-lock input-icon"></i> Password:
+                </label>
+                <input type="password" id="password" name="password" class="form-control form-control-lg" maxlength="12" required>
+                <small class="error-message" id="passwordError">Password must have 4 numbers, 7 letters (at least one uppercase), and 1 special character, with a maximum of 12 characters.</small>
+                <small class="valid-message" id="passwordValid">✔</small>
             </div>
 
             <button type="submit" class="btn login-button">Log In</button>
         </form>
-        <p class="forgot-password"><a href="#">Forgot your password?</a></p>
-        <p class="Sign-Up"><a href="#">Sign Up</a></p>
-        <p class="Home"><a href="/index.html">Home</a></p>
+        <p class="forgot-password"><i class="fas fa-key"></i> <a href="#">Forgot your password?</a></p>
+        <p class="Sign-Up"><i class="fas fa-user-plus"></i> <a href="#">Sign Up</a></p>
+        <p class="Home"><i class="fas fa-home"></i> <a href="/index.html">Home</a></p>
     </div>
 </div>
 
@@ -119,37 +130,56 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+    // Username validation
+    document.getElementById('username').addEventListener('input', function() {
+        const usernameInput = this;
+        const usernameError = document.getElementById('usernameError');
+        const usernameValid = document.getElementById('usernameValid');
+
+        const usernameRegex = /^(?=.*[A-Z])(?=(?:[^a-z]*[a-z]){6})(?=(?:[^0-9]*[0-9]){3})(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10}$/;
+
+        if (usernameInput.value.length > 10) {
+            usernameError.innerText = "Username cannot exceed 10 characters.";
+            usernameError.style.display = 'block';
+            usernameValid.style.display = 'none';
+        } else if (usernameRegex.test(usernameInput.value)) {
+            usernameError.style.display = 'none';
+            usernameValid.style.display = 'inline'; // Show tick
+        } else {
+            usernameError.style.display = 'block';
+            usernameValid.style.display = 'none'; // Hide tick
+        }
+    });
+
+    // Password validation
+    document.getElementById('password').addEventListener('input', function() {
+        const passwordInput = this;
+        const passwordError = document.getElementById('passwordError');
+        const passwordValid = document.getElementById('passwordValid');
+
+        const passwordRegex = /^(?=.{7,12}$)(?=.*[A-Z])(?=(.*[a-z]){7,})(?=(.*\d){4,})(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,12}$/;
+
+        if (passwordInput.value.length > 12) {
+            passwordError.innerText = "Password cannot exceed 12 characters.";
+            passwordError.style.display = 'block';
+            passwordValid.style.display = 'none';
+        } else if (passwordRegex.test(passwordInput.value)) {
+            passwordError.style.display = 'none';
+            passwordValid.style.display = 'inline'; // Show tick
+        } else {
+            passwordError.style.display = 'block';
+            passwordValid.style.display = 'none'; // Hide tick
+        }
+    });
+
+    // Form submission validation
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         const usernameInput = document.getElementById('username');
-        const usernameError = document.getElementById('usernameError');
         const passwordInput = document.getElementById('password');
-        const passwordError = document.getElementById('passwordError');
 
-        const usernameRegex = /^[a-zA-Z0-9]{3,15}$/; // Regex for valid username
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Regex for valid password
-
-        let valid = true;
-
-        // Validate username
-        if (!usernameRegex.test(usernameInput.value)) {
+        // Prevent submission if invalid
+        if (!usernameRegex.test(usernameInput.value) || !passwordRegex.test(passwordInput.value)) {
             event.preventDefault(); // Prevent form submission
-            usernameError.style.display = 'block'; // Show error message
-            usernameInput.classList.add('is-invalid'); // Add Bootstrap invalid class
-            valid = false;
-        } else {
-            usernameError.style.display = 'none'; // Hide error message
-            usernameInput.classList.remove('is-invalid'); // Remove Bootstrap invalid class
-        }
-
-        // Validate password
-        if (!passwordRegex.test(passwordInput.value)) {
-            event.preventDefault(); // Prevent form submission
-            passwordError.style.display = 'block'; // Show error message
-            passwordInput.classList.add('is-invalid'); // Add Bootstrap invalid class
-            valid = false;
-        } else {
-            passwordError.style.display = 'none'; // Hide error message
-            passwordInput.classList.remove('is-invalid'); // Remove Bootstrap invalid class
         }
     });
 </script>

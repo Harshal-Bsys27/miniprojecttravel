@@ -7,12 +7,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css codes/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             background-color: #f8f9fa;
         }
         header {
-            background:#883776;
+            background: #883776;
             color: #fff;
             padding: 20px 0;
         }
@@ -47,17 +48,24 @@
             text-align: center;
             padding: 15px 0;
         }
+        .header-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
     <header class="text-center">
-        <h1>Travel Explorer</h1>
+        <h1>
+            <i class="fas fa-globe header-icon"></i>
+            Travel Explorer
+        </h1>
         <nav>
             <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </nav>
     </header>
