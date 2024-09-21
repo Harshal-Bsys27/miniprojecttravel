@@ -5,71 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>letstravel.com</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css codes/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
     <style>
         body {
             margin: 0;
             padding: 0;
+            background: #f0e4eb; /* Soft background color */
         }
         .login-page {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            background: url('/path/to/your/image.jpg') no-repeat center center fixed; /* Background image */
+            height: 100vh; /* Full height */
+            background: url('/images.png/login.jpg') no-repeat center center fixed; /* Background image */
             background-size: cover; /* Cover the entire area */
         }
         .login-container {
             background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-            padding: 60px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 450px;
+            position: relative; /* For positioning the pseudo-element */
         }
         h1 {
             text-align: center;
-            margin-bottom: 40px;
-            color: #6a11cb;
+            margin-bottom: 30px;
+            color: #8b3177; /* Title color */
             font-size: 2.5rem;
+            display: flex;
+            align-items: center; /* Align icon and text */
+            justify-content: center; /* Center the content */
         }
         .login-button {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             font-size: 1.2rem;
-            margin-top: 20px;
+            background: #0058d3; /* Button color */
+            border: none;
+            color: white;
+            transition: background 0.3s ease;
+            z-index: 1; /* Bring to front */
+        }
+        .login-button:hover {
+            background: #004bb5; /* Button hover color */
         }
         .forgot-password, .Sign-Up, .Home {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             font-size: 1rem;
+            z-index: 1; /* Bring to front */
         }
         .forgot-password a, .Sign-Up a, .Home a {
-            color: #6a11cb;
+            color: #6a11cb; /* Link color */
             text-decoration: none;
         }
         .forgot-password a:hover, .Sign-Up a:hover, .Home a:hover {
             text-decoration: underline;
         }
+        .error-message {
+            color: red;
+            display: none; /* Initially hidden */
+            font-size: 0.9rem; /* Smaller font for error message */
+            margin-top: 5px; /* Spacing between input and error message */
+            z-index: 1; /* Bring to front */
+        }
+        .form-group {
+            position: relative; /* Position for absolutely positioned error message */
+        }
+        input {
+            height: 50px; /* Fixed height for input fields */
+            z-index: 1; /* Bring to front */
+        }
+        .travel-icon {
+            margin-right: 10px; /* Space between icon and text */
+            font-size: 2.5rem; /* Size of the icon */
+            color: #6a11cb; /* Icon color */
+        }
     </style>
 </head>
 <body>
 
+<!-- Login Container -->
 <div class="login-page">
     <div class="login-container">
-        <h1>letstravel.com</h1>
-        <form action="login.php" method="post">
+        <h1>
+            <i class="fas fa-plane-departure travel-icon" style="color: rgb(102, 51, 177);"></i> <!-- Travel Icon -->
+            letstravel.com
+        </h1>
+        <form id="loginForm" action="login.php" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" class="form-control form-control-lg" required>
+                <small class="error-message" id="usernameError">Username must be 3-15 characters and contain only letters and numbers.</small>
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" class="form-control form-control-lg" required>
+                <small class="error-message" id="passwordError">Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.</small>
             </div>
 
-            <button type="submit" class="btn btn-primary login-button">Log In</button>
+            <button type="submit" class="btn login-button">Log In</button>
         </form>
         <p class="forgot-password"><a href="#">Forgot your password?</a></p>
         <p class="Sign-Up"><a href="#">Sign Up</a></p>
@@ -80,5 +118,40 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        const usernameInput = document.getElementById('username');
+        const usernameError = document.getElementById('usernameError');
+        const passwordInput = document.getElementById('password');
+        const passwordError = document.getElementById('passwordError');
+
+        const usernameRegex = /^[a-zA-Z0-9]{3,15}$/; // Regex for valid username
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Regex for valid password
+
+        let valid = true;
+
+        // Validate username
+        if (!usernameRegex.test(usernameInput.value)) {
+            event.preventDefault(); // Prevent form submission
+            usernameError.style.display = 'block'; // Show error message
+            usernameInput.classList.add('is-invalid'); // Add Bootstrap invalid class
+            valid = false;
+        } else {
+            usernameError.style.display = 'none'; // Hide error message
+            usernameInput.classList.remove('is-invalid'); // Remove Bootstrap invalid class
+        }
+
+        // Validate password
+        if (!passwordRegex.test(passwordInput.value)) {
+            event.preventDefault(); // Prevent form submission
+            passwordError.style.display = 'block'; // Show error message
+            passwordInput.classList.add('is-invalid'); // Add Bootstrap invalid class
+            valid = false;
+        } else {
+            passwordError.style.display = 'none'; // Hide error message
+            passwordInput.classList.remove('is-invalid'); // Remove Bootstrap invalid class
+        }
+    });
+</script>
 </body>
 </html>
