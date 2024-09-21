@@ -22,7 +22,7 @@
             text-align: center;
         }
         .carousel-item {
-            height: 60vh; /* Adjust height for landscape effect */
+            height: 60vh;
             background-size: cover;
             background-position: center;
         }
@@ -31,7 +31,6 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
         }
         .hero-section .btn {
             background: #b18080;
@@ -50,52 +49,99 @@
             transition: color 0.3s, transform 0.3s;
         }
         .nav-link:hover {
-            color: #b18080; /* Change color on hover */
-            transform: scale(1.1); /* Slightly enlarge */
+            color: #b18080;
+            transform: scale(1.1);
         }
         .card {
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
-            transform: scale(1.05); /* Enlarge on hover */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        /* Search Form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .input-group {
+            display: flex;
+            position: relative;
+        }
+        .search-form input[type="text"] {
+            padding: 10px 40px;
+            border: none;
+            border-radius: 4px;
+            width: 250px;
+            background-color: #fff;
+            transition: box-shadow 0.2s;
+        }
+        .search-form input[type="text"]:focus {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #df7385;
+            pointer-events: none;
+        }
+        .search-form button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #df7385; /* Button color */
+            color: #fff;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .search-form button:hover {
+            background-color: #b18080; /* Button hover color */
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-form input[type="text"] {
+                width: 100%; /* Full width on smaller screens */
+            }
         }
     </style>
 </head>
 <body>
-    </body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="fas fa-plane-departure fa-2x mr-2" style="color: yellow;"></i> <!-- Travel icon -->
+            <i class="fas fa-plane-departure fa-2x mr-2" style="color: yellow;"></i> 
             <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
-                <li class="nav-item"><a class="nav-link" href="allcodeshtml/trips.html">Trips</a></li>
-                <li class="nav-item"><a class="nav-link" href="allcodeshtml/holidays.html">Holiday Packages</a></li>
-                <li class="nav-item"><a class="nav-link" href="#recents">Recent Search</a></li>
-                <li class="nav-item"><a class="nav-link" href="allcodeshtml/login.html">Log In</a></li>
+            <ul class="navbar-nav ml-auto text-center">
+                <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home fa-lg mb-1"></i><br>Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#destinations"><i class="fas fa-globe fa-lg mb-1"></i><br>Destinations</a></li>
+                <li class="nav-item"><a class="nav-link" href="allcodeshtml/trips.html"><i class="fas fa-suitcase fa-lg mb-1"></i><br>Trips</a></li>
+                <li class="nav-item"><a class="nav-link" href="allcodeshtml/holidays.html"><i class="fas fa-calendar-alt fa-lg mb-1"></i><br>Holiday Packages</a></li>
+                <li class="nav-item"><a class="nav-link" href="#recents"><i class="fas fa-history fa-lg mb-1"></i><br>Recent Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="allcodeshtml/login.html"><i class="fas fa-user fa-lg mb-1"></i><br>Log In</a></li>
             </ul>
-            <form class="form-inline ml-3">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <form class="search-form">
+                <div class="input-group">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button type="submit">Search</button>
+            </form>        
         </div>
     </nav>
-    
-    
     
     <!-- Hero Section with Carousel -->
     <section id="home" class="hero-section">
         <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover">
             <div class="carousel-inner">
-                <div class="carousel-item active" style="background-image: url('images.png/index\ bg.jpg');">
+                <div class="carousel-item active" style="background-image: url('images.png/index bg.jpg');">
                     <div class="hero-content">
                         <h1>"Plan Your Destiny and Your Adventures"</h1>
                         <h3>Explore the world with our curated travel options.</h3>
@@ -116,7 +162,7 @@
                         <a href="allcodeshtml/explore destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('images.png/frontslider4.\ \(2\).jpg');">
+                <div class="carousel-item" style="background-image: url('images.png/frontslider4. (2).jpg');">
                     <div class="hero-content">
                         <h1>"Adventure Awaits"</h1>
                         <h3>Seek new horizons and experiences.</h3>
@@ -223,7 +269,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Beach Getaway</h5>
                         <p class="card-text">Relax on pristine beaches with our all-inclusive package.</p>
-                        <a href="allcodeshtml\beachgetaway.html" class="btn btn-primary">Explore More</a>
+                        <a href="allcodeshtml/beachgetaway.html" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
             </div>
@@ -233,7 +279,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Mountain Retreat</h5>
                         <p class="card-text">Escape to the mountains with a luxurious stay.</p>
-                        <a href="allcodeshtml\mountainretreat.html" class="btn btn-primary">Explore More</a>
+                        <a href="allcodeshtml/mountainretreat.html" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
             </div>

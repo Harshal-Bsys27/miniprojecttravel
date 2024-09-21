@@ -22,21 +22,26 @@ body {
 header {
     background: #9a1515;
     color: #fff;
-    padding: 10px 0;
-    position: relative; /* Positioning for search bar */
+    padding: 10px 20px;
+    position: relative;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    width: 100%;
 }
 
 nav h1 {
     margin: 0;
-    font-size: 3em; /* Increased size of the header text */
-    text-align: left; /* Ensure header text is aligned to the left */
+    font-size: 3em;
+    text-align: left;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 20px;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -48,26 +53,44 @@ nav h1 {
 .search-form {
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    margin-left: auto;
+}
+
+.search-form .input-group {
+    display: flex;
+    position: relative;
 }
 
 .search-form input[type="text"] {
-    padding: 5px;
+    padding: 10px 40px 10px 40px; /* Add padding for icon */
     border: none;
     border-radius: 4px;
-    margin-right: 5px;
-    width: 200px; /* Increased width */
+    width: 250px;
+    background-color: #fff;
+    transition: box-shadow 0.2s;
+}
+
+.search-form input[type="text"]:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-form .search-icon {
+    position: absolute;
+    left: 15px; /* Align with padding */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #df7385;
+    pointer-events: none;
 }
 
 .search-form button {
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
     background-color: #fff;
     color: #df7385;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .search-form button:hover {
@@ -100,7 +123,7 @@ nav h1 {
 }
 
 .btn:hover {
-    background:  #114eb1;
+    background: #114eb1;
 }
 
 /* Sections */
@@ -109,7 +132,7 @@ section {
 }
 
 h2 {
-    font-size: 1.8em; /* Adjusted size for better visibility */
+    font-size: 1.8em;
     text-align: left;
     margin-bottom: 20px;
 }
@@ -117,15 +140,15 @@ h2 {
 .destination-list, .trip-list, .package-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Increased gap for better spacing */
+    gap: 30px;
 }
 
 .destination-card, .trip-card, .package-card {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(105, 37, 37, 0.1); /* Increased shadow for a modern look */
+    box-shadow: 0 0 15px rgba(105, 37, 37, 0.1);
     overflow: hidden;
-    width: calc(25% - 30px); /* Increased width of the cards */
+    width: calc(25% - 30px);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -137,7 +160,7 @@ h2 {
 
 .destination-card h3, .package-card h3 {
     padding: 10px;
-    font-size: 1.4em; /* Increased font size for headings */
+    font-size: 1.4em;
 }
 
 .destination-card p, .package-card p {
@@ -161,7 +184,7 @@ h2 {
 footer {
     background: #9d6b6b;
     color: #fff;
-    text-align: left; /* Align footer text to the left */
+    text-align: left;
     padding: 10px 0;
     margin: 0 auto;
     width: 98%;
@@ -169,11 +192,11 @@ footer {
 
 /* Contact Section */
 #contact {
-    text-align: left; /* Align text and button to the left */
+    text-align: left;
 }
 
 #contact h2 {
-    font-size: 1.8em; /* Same as other headings */
+    font-size: 1.8em;
 }
 
 #contact p {
@@ -196,21 +219,33 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .destination-card, .trip-card, .package-card {
-        width: calc(50% - 30px); /* Adjust width for smaller screens */
+        width: calc(50% - 30px);
     }
 
     .destination-list, .trip-list, .package-list {
-        gap: 20px; /* Adjust gap for smaller screens */
+        gap: 20px;
     }
 }
 
 @media (max-width: 480px) {
     .destination-card, .trip-card, .package-card {
-        width: calc(100% - 30px); /* Adjust width for very small screens */
+        width: calc(100% - 30px);
     }
 
     .destination-list, .trip-list, .package-list {
-        gap: 15px; /* Adjust gap for very small screens */
+        gap: 15px;
+    }
+
+    nav h1 {
+        font-size: 2em;
+    }
+
+    #home h1 {
+        font-size: 2em;
+    }
+
+    #home h3 {
+        font-size: 1.2em;
     }
 }
 
