@@ -7,7 +7,7 @@ body, h1, h2, h3, p, ul {
 
 /* Basic styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Updated font for a modern look */
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
@@ -22,19 +22,20 @@ body {
 
 /* Header and navigation */
 header {
-    background: #951439;
+    background: #343a40; /* Dark grey for a modern look */
     color: #fff;
-    padding: 10px 0;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 0;
 }
 
 nav h1 {
     margin-left: 20px;
+    font-size: 1.8em; /* Increased font size for prominence */
 }
 
 nav ul {
@@ -50,39 +51,54 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+nav ul li a:hover {
+    color: #dfdfdf; /* Slightly lighter color on hover */
 }
 
 /* Hero Section */
 .hero {
-    background: url('https://example.com/hero-bg.jpg') no-repeat center center/cover;
+    position: relative;
     color: #fff;
-    padding: 80px 15px; /* Adjusted padding for better spacing */
-    text-align: center; /* Center-align text and button */
+    padding: 100px 15px; /* Increased padding */
+    text-align: center;
+    overflow: hidden; /* Clip overflow */
 }
 
-.hero-content {
-    max-width: 1000px; /* Increase the max-width for a larger container */
-    margin: 0 auto;
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; /* Reduced opacity for background image */
 }
 
 .hero h1 {
-    font-size: 2.5em; /* Slightly smaller font size for better responsiveness */
+    font-size: 2.5em;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 1; /* Bring text above the image */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
 }
 
 .hero p {
     font-size: 1.2em;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1; /* Bring text above the image */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
 }
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px; /* Slightly larger button */
     color: #fff;
     background: #0058d3;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.1em;
+    transition: background 0.3s; /* Smooth transition */
 }
 
 .btn:hover {
@@ -91,28 +107,33 @@ nav ul li a {
 
 /* Sections */
 section {
-    padding: 30px 15px; /* Added padding for better spacing */
+    padding: 40px 15px; /* Added padding for better spacing */
 }
 
 .location-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .location-card {
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    flex: 1 1 calc(33.333% - 30px);
-    margin-bottom: 20px;
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform */
+}
+
+.location-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .location-card img {
     width: 100%;
-    height: auto;
+    height: 200px; /* Set fixed height for uniformity */
+    object-fit: cover; /* Cover image */
 }
 
 .location-info {
@@ -134,6 +155,7 @@ section {
     background: #216cb7;
     text-decoration: none;
     border-radius: 5px;
+    transition: background 0.3s; /* Smooth transition */
 }
 
 .location-card a:hover {
@@ -145,7 +167,7 @@ footer {
     background: #2c3e50;
     color: #fff;
     text-align: center;
-    padding: 10px 15px;
+    padding: 15px;
 }
 
 /* Responsive Design */
@@ -157,15 +179,5 @@ footer {
 
     nav ul li {
         margin: 10px 0;
-    }
-
-    .location-card {
-        flex: 1 1 calc(50% - 30px);
-    }
-}
-
-@media (max-width: 480px) {
-    .location-card {
-        flex: 1 1 100%;
     }
 }
