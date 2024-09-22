@@ -14,6 +14,35 @@
         /* Additional custom styles */
         body {
             background-color: #f4f4f4;
+            /* Add styles for the login popup */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+            justify-content: center; /* Center the modal */
+            align-items: center; /* Center the modal vertically */
+        }
+        .modal-content {
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Padding */
+            width: 300px; /* Fixed width */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow */
+            text-align: center; /* Center text */
+        }
+        .modal h5 {
+            margin-bottom: 20px; /* Space below heading */
+        }
+        .modal button {
+            margin: 5px; /* Space between buttons */
+        }
         }
         .hero-section {
             position: relative;
@@ -318,6 +347,15 @@
         </div>
     </section>
 
+     <!-- Pop-up for Login/Sign Up -->
+     <div class="modal" id="loginPopup">
+        <div class="modal-content">
+            <h5>Would you like to Log In</h5>
+            <button id="yesBtn" class="btn btn-primary">Yes</button>
+            <button id="noBtn" class="btn btn-secondary">No</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -325,9 +363,41 @@
         </div>
     </footer>
 
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let timeout;
+
+        // Function to show the login popup
+        function showLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
+
+        // Reset the timer
+        function resetTimer() {
+            clearTimeout(timeout);
+            timeout = setTimeout(showLoginPopup, 25000); // 25 seconds
+        }
+
+        // Start the timer on page load
+        window.onload = resetTimer;
+
+        // Reset the timer on user interactions
+        window.onmousemove = resetTimer;
+        window.onkeypress = resetTimer;
+        window.onscroll = resetTimer;
+        window.onclick = resetTimer;
+
+        // Event listeners for buttons
+        document.getElementById('yesBtn').onclick = function() {
+            window.location.href = 'allcodeshtml/login.html'; // Redirect to login
+        };
+        document.getElementById('noBtn').onclick = function() {
+            document.getElementById('loginPopup').style.display = 'none'; // Close popup
+        };
+    </script>
 </body>
 </html>
