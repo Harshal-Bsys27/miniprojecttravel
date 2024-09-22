@@ -12,7 +12,7 @@
             background-color: #f0e4eb;
         }
         header {
-            background-color: #2f639a;
+            background-color: #0056b3; /* Darker blue for a beachy feel */
             padding: 10px 0;
         }
         .navbar {
@@ -20,12 +20,20 @@
         }
         .navbar-brand {
             font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem; /* Increased size */
             font-weight: bold;
-            color: white;
+            color: #ffff00; /* Bright yellow */
         }
         .navbar-brand i {
             margin-right: 10px;
+        }
+        .nav-link {
+            font-size: 1.5rem; /* Increased size for nav links */
+            transition: color 0.3s, transform 0.3s; /* Transition for hover */
+        }
+        .nav-link:hover {
+            color: #ffff00; /* Change color on hover */
+            transform: scale(1.1); /* Scale up on hover */
         }
         .hero-content {
             text-align: center;
@@ -47,7 +55,7 @@
             top: 20px; 
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2.5rem;
+            font-size: 3rem; /* Increased size */
             z-index: 10;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
@@ -65,18 +73,18 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .btn-custom {
-            background-color: #0056b3;
+            background-color: #007bff; /* Bright blue */
             color: white;
+            font-size: 1.5rem; /* Increased size */
+            padding: 10px 20px; /* More padding */
+            transition: background-color 0.3s, transform 0.3s; /* Transition for hover */
         }
         .btn-custom:hover {
-            background-color: #004085;
-            color: white;
+            background-color: #0056b3; /* Darker on hover */
+            transform: scale(1.1); /* Scale up on hover */
         }
         .btn-section {
             margin: 20px 0;
-        }
-        .nav-item i {
-            margin-right: 5px;
         }
     </style>
 </head>
@@ -85,7 +93,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-umbrella-beach" style="color: #ffff00cd;"></i>
+                    <i class="fas fa-umbrella-beach" style="color: rgba(191, 210, 44, 0.941);"></i>
                     Beach Getaway
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,9 +101,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#locations"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/index.html">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#locations">
+                                <i class="fas fa-map-marker-alt"></i> Locations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#contact">
+                                <i class="fas fa-envelope"></i> Contact
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -206,4 +226,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> 

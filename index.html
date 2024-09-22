@@ -100,6 +100,13 @@
         .search-form button:hover {
             background-color: #b18080;
         }
+        /* Hover effect for logo and text */
+        .navbar-brand {
+            transition: transform 0.3s;
+        }
+        .navbar-brand:hover {
+            transform: scale(1.1);
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .search-form input[type="text"] {
@@ -111,8 +118,8 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i> 
+        <a class="navbar-brand d-flex align-items-center" href="/index.html">
+            <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>  
             <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,7 +129,7 @@
             <ul class="navbar-nav ml-auto text-center">
                 <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#destinations"><i class="fas fa-globe fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Destinations</a></li>
-                <li class="nav-item"><a class="nav-link" href="allcodeshtml/trips.html"><i class="fas fa-suitcase fa-lg mb-1" style="color: yellow;"></i><br>Trips</a></li>
+                <li class="nav-item"><a class="nav-link" href="allcodeshtml/trips.html"><i class="fas fa-suitcase fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Trips</a></li>
                 <li class="nav-item"><a class="nav-link" href="allcodeshtml/holidays.html"><i class="fas fa-calendar-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Holiday Packages</a></li>
                 <li class="nav-item"><a class="nav-link" href="#recents"><i class="fas fa-history fa-lg mb-1" style="color:rgba(248, 231, 42, 0.884) "></i><br>Recent Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="allcodeshtml/login.html"><i class="fas fa-user fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884)"></i><br>Log In</a></li>

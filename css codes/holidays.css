@@ -36,11 +36,12 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold; /* Make the links stand out */
-    transition: color 0.3s; /* Smooth transition for hover effect */
+    transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
 }
 
 nav ul li a:hover {
     color: #ffd700; /* Gold color on hover */
+    transform: scale(1.1); /* Slight scale effect on hover */
 }
 
 main {
