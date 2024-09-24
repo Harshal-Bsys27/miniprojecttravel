@@ -1,0 +1,53 @@
+body {
+    background-image: url('path/to/your/background.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.card {
+    width: 500px; /* Adjust width as needed */
+    height: auto; /* Allow height to adjust */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the card */
+}
+
+.header {
+    color: black; /* Text color */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center the icon and text vertically */
+    justify-content: center; /* Center the content horizontally */
+    margin-top: 20px; /* Lower the header */
+}
+
+.logo {
+    margin-right: 0; /* No margin for perfect alignment */
+    font-size: 1.5rem; /* Decrease size of the icon */
+}
+
+.form-group label {
+    display: flex;
+    align-items: center; /* Align icon with label text */
+}
+
+.form-group label i {
+    margin-right: 8px; /* Space between icon and label text */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff; /* Bootstrap border color */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    border-color: #6c757d; /* Bootstrap border color */
+}
+
+.text-center a {
+    color: #007bff; /* Link color */
+}
+
+.text-center a:hover {
+    color: #0056b3; /* Darker color on hover */
+}
