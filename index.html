@@ -344,13 +344,48 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="container my-5">
-        <h2 class="text-center mb-4">Contact Us</h2>
-        <p class="text-center">If you have any questions, feel free to reach out to us!</p>
-        <div class="text-center">
-            <a href="mailto:letstravel0899@gmail.com" class="btn btn-primary btn-lg">Email Us</a>
+<section id="contact" class="container my-5">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <p class="text-center">Feel free to reach out to us through any of the options below. We're here to help!</p>
+    
+    <!-- Contact Details -->
+    <div class="row text-center mb-4">
+        <div class="col-md-4">
+            <i class="fas fa-envelope fa-2x mb-2"></i>
+            <h5>Email Us</h5>
+            <a href="mailto:letstravel0899@gmail.com" class="btn btn-primary btn-lg">letstravel0899@gmail.com</a>
         </div>
-    </section>
+        <div class="col-md-4">
+            <i class="fas fa-phone-alt fa-2x mb-2"></i>
+            <h5>Call Us</h5>
+            <button id="copyPhone" class="btn btn-primary btn-lg" onclick="copyToClipboard('+91 98765 43210')">+91 98765 43210</button>
+        </div>
+        <div class="col-md-4">
+            <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+            <h5>Visit Us</h5>
+            <button class="btn btn-primary btn-lg">123 Travel Street, Mumbai, India</button>
+        </div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="text-center">
+        <a href="https://facebook.com" class="btn btn-primary btn-lg mx-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://instagram.com" class="btn btn-danger btn-lg mx-2"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://twitter.com" class="btn btn-info btn-lg mx-2"><i class="fab fa-twitter"></i> Twitter</a>
+    </div>
+</section>
+
+<!-- Script to Copy Phone Number -->
+<script>
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Phone number copied to clipboard!');
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+</script>
+
 
      <!-- Pop-up for Login/Sign Up -->
      <div class="modal" id="loginPopup">
