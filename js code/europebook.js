@@ -18,3 +18,4 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsSection.classList.add('hidden');
     });
 });
+//check
