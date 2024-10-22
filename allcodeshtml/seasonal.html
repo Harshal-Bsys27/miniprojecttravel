@@ -14,53 +14,65 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4; /* Light background for contrast */
+            background-color: #f4f4f4;
         }
-        
+
         header {
-            background: #95a842; /* Deep blue background */
+            background: #95a842; /* Restored original header color */
             color: #fff;
-            padding: 1rem;
+            padding: 1.5rem 0; /* Increased padding for better spacing */
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
-            position: relative; /* Maintain positioning context */
-            z-index: 10; /* Ensure header is above other content */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem; /* Larger header size */
-            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
         }
 
         .nav-link {
-            font-weight: bold; /* Make nav links bold */
-            font-size: 1.2rem; /* Increase size of nav links */
-            color: #ffffff; /* Set nav link text color to white */
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffffff;
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        .nav-link:hover {
+            color: #350fca; /* Gold on hover */
         }
 
         .card {
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow for rounded corners */
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         footer {
-            padding: 10px 0;
-        }
-
-        .carousel-item img {
-            max-height: 400px;
-            object-fit: cover;
+            padding: 1rem 0;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
 
+        .carousel-item img {
+            max-height: 500px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 10px; /* Rounded corners for images */
+        }
+
         .season-icon {
-            font-size: 2rem; /* Adjust icon size */
-            transition: color 0.3s ease; /* Transition for hover effect */
+            font-size: 2rem;
+            transition: transform 0.3s;
         }
 
         .winter-icon {
@@ -76,7 +88,7 @@
         }
 
         .season-icon:hover {
-            transform: scale(1.2); /* Scale on hover */
+            transform: scale(1.2);
         }
 
         main {
@@ -90,36 +102,32 @@
         section h2 {
             border-bottom: 2px solid #333;
             padding-bottom: 0.5rem;
-            font-size: 1.8rem; /* Modern font size for section headers */
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            width: 100%;
-            bottom: 0;
+            font-size: 2rem; /* Increased size for headers */
+            margin-bottom: 1rem; /* Space below headers */
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
             .nav-link {
-                display: block; /* Stack nav items on smaller screens */
-                margin: 10px 0; /* Vertical spacing */
+                margin: 10px 0;
             }
 
             header h1 {
-                font-size: 2rem; /* Smaller header size for mobile */
+                font-size: 2rem;
             }
 
             section h2 {
-                font-size: 1.5rem; /* Smaller section header size for mobile */
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 1.5rem; /* Adjusted padding for smaller screens */
             }
         }
 
         @media (max-width: 576px) {
             header {
-                padding: 0.5rem; /* Less padding for mobile */
+                padding: 1rem; /* Less padding for mobile */
             }
 
             main {
@@ -129,11 +137,11 @@
     </style>
 </head>
 <body>
-    <header class="text-center my-4">
+    <header>
         <h1>Seasonal Travel in India</h1>
         <nav>
             <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html"><i class="fas fa-home"></i> Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#winter"><i class="fas fa-snowflake season-icon winter-icon"></i> Winter Destinations</a></li>
                 <li class="nav-item"><a class="nav-link" href="#summer"><i class="fas fa-sun season-icon summer-icon"></i> Summer Escapes</a></li>
                 <li class="nav-item"><a class="nav-link" href="#monsoon"><i class="fas fa-cloud-rain season-icon monsoon-icon"></i> Monsoon Adventures</a></li>
@@ -145,19 +153,19 @@
     <div id="travelCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/images.png/seasonal.rain.jpg" class="d-block w-100" alt="Travel Image 1">
+                <img src="../images.png/seasonal.rain.jpg" class="d-block w-100" alt="Travel Image 1">
             </div>
             <div class="carousel-item">
-                <img src="/images.png/season.winter.avif" class="d-block w-100" alt="Travel Image 2">
+                <img src="../images.png/season.winter.avif" class="d-block w-100" alt="Travel Image 2">
             </div>
             <div class="carousel-item">
-                <img src="/images.png/season.summer.jpg" class="d-block w-100" alt="Travel Image 3">
+                <img src="../images.png/season.summer.jpg" class="d-block w-100" alt="Travel Image 3">
             </div>
             <div class="carousel-item">
-                <img src="/images.png/seasonimage4.webp" class="d-block w-100" alt="Travel Image 4">
+                <img src="../images.png/seasonimage4.webp" class="d-block w-100" alt="Travel Image 4">
             </div>
             <div class="carousel-item">
-                <img src="/images.png/seasonimage5.jpg" class="d-block w-100" alt="Travel Image 5">
+                <img src="../images.png/seasonimage5.jpg" class="d-block w-100" alt="Travel Image 5">
             </div>
         </div>
         <a class="carousel-control-prev" href="#travelCarousel" role="button" data-slide="prev">
@@ -172,11 +180,11 @@
 
     <main class="container">
         <section id="winter">
-            <h2 class="text-center mb-4"><i class="fas fa-snowflake season-icon winter-icon" id="winter-icon"></i> Winter Destinations</h2>
+            <h2 class="text-center mb-4"><i class="fas fa-snowflake season-icon winter-icon"></i> Winter Destinations</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/winter.shimla.jpg" class="card-img-top" alt="Shimla">
+                        <img src="../images.png/winter.shimla.jpg" class="card-img-top" alt="Shimla">
                         <div class="card-body">
                             <h5 class="card-title">Shimla</h5>
                             <p class="card-text">Experience the charm of snow-covered hills.</p>
@@ -186,7 +194,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/winter.manali.jpg" class="card-img-top" alt="Manali">
+                        <img src="../images.png/winter.manali.jpg" class="card-img-top" alt="Manali">
                         <div class="card-body">
                             <h5 class="card-title">Manali</h5>
                             <p class="card-text">Adventure awaits in the picturesque valleys.</p>
@@ -196,7 +204,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/winter.ladakh.jpg" class="card-img-top" alt="Ladakh">
+                        <img src="../images.png/winter.ladakh.jpg" class="card-img-top" alt="Ladakh">
                         <div class="card-body">
                             <h5 class="card-title">Ladakh</h5>
                             <p class="card-text">Explore the breathtaking landscapes of the Himalayas.</p>
@@ -208,11 +216,11 @@
         </section>
 
         <section id="summer">
-            <h2 class="text-center mb-4"><i class="fas fa-sun season-icon summer-icon" id="summer-icon"></i> Summer Escapes</h2>
+            <h2 class="text-center mb-4"><i class="fas fa-sun season-icon summer-icon"></i> Summer Escapes</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/summer.goa.webp" class="card-img-top" alt="Goa">
+                        <img src="../images.png/summer.goa.webp" class="card-img-top" alt="Goa">
                         <div class="card-body">
                             <h5 class="card-title">Goa</h5>
                             <p class="card-text">Relax on beautiful beaches and enjoy the vibrant nightlife.</p>
@@ -222,7 +230,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/summer.kerala.webp" class="card-img-top" alt="Kerala">
+                        <img src="../images.png/summer.kerala.webp" class="card-img-top" alt="Kerala">
                         <div class="card-body">
                             <h5 class="card-title">Kerala</h5>
                             <p class="card-text">Experience the serene backwaters and lush greenery.</p>
@@ -244,11 +252,11 @@
         </section>
 
         <section id="monsoon">
-            <h2 class="text-center mb-4"><i class="fas fa-cloud-rain season-icon monsoon-icon" id="monsoon-icon"></i> Monsoon Adventures</h2>
+            <h2 class="text-center mb-4"><i class="fas fa-cloud-rain season-icon monsoon-icon"></i> Monsoon Adventures</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/rain.karnataka.jpg" class="card-img-top" alt="Mumbai">
+                        <img src="../images.png/rain.karnataka.jpg" class="card-img-top" alt="Karnataka">
                         <div class="card-body">
                             <h5 class="card-title">Karnataka</h5>
                             <p class="card-text">Experience Karnataka's lushiness.</p>
@@ -258,7 +266,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/rain.lonavala.jpg" class="card-img-top" alt="Lonavala">
+                        <img src="../images.png/rain.lonavala.jpg" class="card-img-top" alt="Lonavala">
                         <div class="card-body">
                             <h5 class="card-title">Lonavala</h5>
                             <p class="card-text">Enjoy the scenic beauty and waterfalls.</p>
@@ -268,7 +276,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="/images.png/rain.mahabaleshwar.webp" class="card-img-top" alt="Mahabaleshwar">
+                        <img src="../images.png/rain.mahabaleshwar.webp" class="card-img-top" alt="Mahabaleshwar">
                         <div class="card-body">
                             <h5 class="card-title">Mahabaleshwar</h5>
                             <p class="card-text">Experience the refreshing hill station vibes.</p>
@@ -280,8 +288,8 @@
         </section>
     </main>
 
-    <footer class="text-center">
-        <p>&copy; 2024 Travel Trips. All rights reserved. | Visit us at <a href="https://letstravel.com" target="_blank">letstravel.com</a></p>
+    <footer>
+        <p>&copy; 2024 letstravel.com traveltrips | Visit us at <a href="https://letstravel.com" target="_blank" style="color: #FFD700;">letstravel.com</a></p>
     </footer>
 
     <!-- Bootstrap JS and dependencies -->
