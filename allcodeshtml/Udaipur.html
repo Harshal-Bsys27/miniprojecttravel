@@ -13,10 +13,18 @@
             color: white;
             font-family: Arial, sans-serif;
         }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem; /* Reduce navbar height */
+        }
+        .navbar-nav .nav-link {
+            margin: 0 10px; /* Space between links */
+        }
         .header {
             text-align: center;
-            padding: 60px 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 20px; /* Adjust padding for the header */
+            background-color: white; /* White background for header text */
+            color: black; /* Black text color for contrast */
         }
         .card {
             border: none;
@@ -33,11 +41,33 @@
         }
         .price {
             font-size: 1.5rem;
-            color: #FFD700; /* Gold color for pricing */
+            color: #1f116a; /* Gold color for pricing */
         }
     </style>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Udaipur Vacations</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-map-marker-alt"></i> Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <header class="header">
     <h1>Soothing Vacation in Udaipur</h1>
@@ -70,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <!-- Hotel 3 -->
+       <!-- Hotel 3 -->
         <div class="col-md-4 mb-4">
             <div class="card shadow-lg">
                 <img src="../images.png/udaipurhotel3.jpg" class="card-img-top" alt="Hotel Name 3">
@@ -78,7 +108,43 @@
                     <h5 class="card-title">Hotel Name 3</h5>
                     <p class="card-text">Relax in this serene retreat with lush gardens and a spa to rejuvenate your senses.</p>
                     <p class="price">₹6,500 per night</p>
-                    <a href="#" class="btn btn-primary">Book Now</a>
+                    <a  href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+         <!-- Hotel 4-->
+         <div class="col-md-4 mb-4">
+            <div class="card shadow-lg">
+                <img src="../images.png/udaipurhotel4.jpg" class="card-img-top" alt="HotelamargarhName 4">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Name 4</h5>
+                    <p class="card-text">Relax in this serene retreat with lush gardens and a spa to rejuvenate your senses.</p>
+                    <p class="price">₹7,715 per night</p>
+                    <a  href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+         <!-- Hotel 5 -->
+         <div class="col-md-4 mb-4">
+            <div class="card shadow-lg">
+                <img src="../images.png/udaipurhotel5.webp" class="card-img-top" alt="HotelpandoraName 5">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Name 5</h5>
+                    <p class="card-text">Relax in this serene retreat with lush gardens and a spa to rejuvenate your senses.</p>
+                    <p class="price">₹6,254 per night</p>
+                    <a  href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+         <!-- Hotel 6 -->
+         <div class="col-md-4 mb-4">
+            <div class="card shadow-lg">
+                <img src="../images.png/udaipurhotel6.webp" class="card-img-top" alt="HotelCambayName 6">
+                <div class="card-body">
+                    <h5 class="card-title">Hotel Name 6</h5>
+                    <p class="card-text">Relax in this serene retreat with lush gardens and a spa to rejuvenate your senses.</p>
+                    <p class="price">₹6,500 per night</p>
+                    <a  href="#" class="btn btn-primary">Book Now</a>
                 </div>
             </div>
         </div>
