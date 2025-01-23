@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             detailsTitle.textContent = name;
             detailsDescription.textContent = `Detailed information about ${name} will be available soon.`;
             detailsSection.classList.remove('hidden');
+            //hardik
         });
     });
 
