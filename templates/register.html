@@ -118,43 +118,6 @@
         </div>
     </div>
 
-    <script>
-        function validateForm() {
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            const password = document.getElementById('password').value;
-            const confirm_password = document.getElementById('confirm_password').value;
-
-            if (!username || !email || !mobile || !password || !confirm_password) {
-                alert('Please fill in all fields');
-                return false;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return false;
-            }
-
-            const mobileRegex = /^\d{10}$/;
-            if (!mobileRegex.test(mobile)) {
-                alert('Please enter a valid 10-digit mobile number');
-                return false;
-            }
-
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters long');
-                return false;
-            }
-
-            if (password !== confirm_password) {
-                alert('Passwords do not match');
-                return false;
-            }
-
-            return true;
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
 </html>

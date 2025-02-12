@@ -18,7 +18,42 @@
             padding: 30px 0;
             text-align: center;
         }
+        /* Modern header styling */
+        #header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(30, 30, 47, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
 
+        .nav {
+            margin-top: 15px;
+        }
+
+        /* Animated underline effect for nav links */
+        .nav-link {
+            position: relative;
+            padding: 5px 0;
+            transition: 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
         #header h1 {
             margin: 0;
             font-size: 2.5rem;
@@ -75,7 +110,7 @@
     <div class="container">
         <h1>✈️ Personalized Travel Itineraries</h1>
         <nav class="nav justify-content-center">
-            <a class="nav-link" href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <a class="nav-link" href="../allcodeshtml/Planyourtrip.html"><i class="fas fa-home"></i> Home</a>
             <a class="nav-link" href="#itinerary"><i class="fas fa-plane"></i> Itineraries</a>
         </nav>
     </div>

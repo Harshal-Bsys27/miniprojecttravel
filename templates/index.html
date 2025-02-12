@@ -13,7 +13,7 @@
     <style>
        /* Additional custom styles  harshal hardik*/
       body {
-        background: url("images.png/indexback.jpg") no-repeat center center
+        background: url("/images.png/indexback.jpg") no-repeat center center
           fixed;
             /* Add styles for the login pop                   hello*/
         .modal {
@@ -160,61 +160,131 @@
         <ul class="navbar-nav ml-auto text-center">
             <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#destinations"><i class="fas fa-globe fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Destinations</a></li>
-            <li class="nav-item"><a class="nav-link" href="allcodeshtml/seasonal.html"><i class="fas fa-calendar-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Seasonal</a></li>
-            <li class="nav-item"><a class="nav-link" href="allcodeshtml/holidays.html"><i class="fas fa-calendar-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Holiday Packages</a></li>
-            <li class="nav-item"><a class="nav-link" href="allcodeshtml/Planyourtrip.html"><i class="fas fa-map fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Plan Your Trip</a></li>
-            <li class="nav-item"><a class="nav-link" href="allcodeshtml/login.html"><i class="fas fa-user fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Log In</a></li>
-            <li class="nav-item"><a class="nav-link" href="allcodeshtml/signup.html"><i class="fas fa-user-plus fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="/allcodeshtml/seasonal.html"><i class="fas fa-calendar-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Seasonal</a></li>
+            <li class="nav-item"><a class="nav-link" href="/allcodeshtml/holidays.html"><i class="fas fa-calendar-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Holiday Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="/allcodeshtml/Planyourtrip.html"><i class="fas fa-map fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Plan Your Trip</a></li>
+
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">
+                <a class="nav-link" href="http://127.0.0.1:5000/login">
                     <i class="fas fa-sign-out-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Logout
                 </a>
-            </li>
-        </ul>
+                </li>
+            </ul>
         <form class="search-form" role="search" aria-label="Site Search">
             <div class="input-group">
-                <span class="search-icon" aria-hidden="true">🔍</span>
-                <input type="text" aria-label="Search" placeholder="Search Indian Destinations...">
-            </div>
-            <button type="submit">Search</button>
-        </form>        
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input type="text" id="searchInput" list="searchSuggestions" aria-label="Search" placeholder="Search Indian Destinations...">
+            <datalist id="searchSuggestions">
+                </datalist>
+                <script>
+                    const destinations = {
+                        "Mysore": "/allcodeshtml/Mysore.html",
+                        "Andaman & Nicobar": "/allcodeshtml/AndamanSoothingvacNicobar.html", 
+                        "Mumbai": "/allcodeshtml/holidays.html",
+                        "Delhi": "/allcodeshtml/holidays.html",
+                        "Goa": "/allcodeshtml/holidays.html",
+                        "Kerala": "/allcodeshtml/Southindiantour.html",
+                        "Rajasthan": "/allcodeshtml/Nrthindiatour.html", 
+                        "Himachal pradesh": "/allcodeshtml/Northindiatour.html",
+                        "Kashmir": "/allcodeshtml/seasonal.html",
+                        "Udaipur": "/allcodeshtml/Udaipur.html"
+                    };
+
+                    const searchInput = document.getElementById('searchInput');
+                    const datalist = document.getElementById('searchSuggestions');
+
+                    // Create a dropdown list instead of datalist
+                    const dropdown = document.createElement('ul');
+                    dropdown.className = 'dropdown-menu';
+                    dropdown.style.display = 'none';
+                    dropdown.style.position = 'absolute';
+                    dropdown.style.width = '100%';
+                    dropdown.style.maxHeight = '200px';
+                    dropdown.style.overflowY = 'auto';
+                    dropdown.style.zIndex = '1000';
+                    dropdown.style.backgroundColor = '#fff';
+                    dropdown.style.border = '1px solid #ddd';
+                    searchInput.parentNode.appendChild(dropdown);
+
+                    searchInput.addEventListener('input', function(e) {
+                        const value = e.target.value.toLowerCase();
+                        dropdown.innerHTML = '';
+                        dropdown.style.display = 'none';
+
+                        if (value.length > 0) {
+                            Object.keys(destinations).forEach(dest => {
+                                if (dest.toLowerCase().includes(value)) {
+                                    const li = document.createElement('li');
+                                    li.className = 'dropdown-item';
+                                    li.style.padding = '10px';
+                                    li.style.cursor = 'pointer';
+                                    li.style.listStyle = 'none';
+                                    li.style.borderBottom = '1px solid #eee';
+                                    li.textContent = dest;
+                                    li.addEventListener('click', () => {
+                                        window.location.href = destinations[dest];
+                                    });
+                                    li.addEventListener('mouseover', () => {
+                                        li.style.backgroundColor = '#f8f9fa';
+                                    });
+                                    li.addEventListener('mouseout', () => {
+                                        li.style.backgroundColor = '#fff';
+                                    });
+                                    dropdown.appendChild(li);
+                                }
+                            });
+                            dropdown.style.display = 'block';
+                        }
+                    });
+
+                    // Hide dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!searchInput.contains(e.target)) {
+                            dropdown.style.display = 'none';
+                        }
+                    });
+                </script>
+            </datalist>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+            </button>
+            
     </div>
 </nav>
-
     
     <!-- Hero Section with Carousel -->
     <section id="home" class="hero-section">
         <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="8000" data-pause="hover" aria-label="Travel Destinations">
             <div class="carousel-inner">
-                <div class="carousel-item active" style="background-image: url('images.png/index bg.jpg');">
+                <div class="carousel-item active" style="background-image: url('/images.png/index bg.jpg');">
                     <div class="hero-content">
                         <h1>"Plan Your Destiny and Your Adventures"</h1>
                         <h3>Explore the world with our curated travel options.</h3>
                         <a href="/firstflight-travels-main/explore.html" class="btn btn-light btn-lg">Explore Destinations</a>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('images.png/frontslider2..jpg');">
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider2..jpg');">
                     <div class="hero-content">
                         <h1>"Discover the Beauty of the World"</h1>
                         <h3>Your next adventure awaits.</h3>
                         <a href="/firstflight-travels-main/explore.html" class="btn btn-light btn-lg">Explore Destinations</a>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('images.png/frontslider3..jpg');">
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider3..jpg');">
                     <div class="hero-content">
                         <h1>"Create Unforgettable Memories"</h1>
                         <h3>Join us for the journey of a lifetime.</h3>
                         <a href="/firstflight-travels-main/explore.html" class="btn btn-light btn-lg">Explore Destinations</a>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('images.png/frontslider4. (2).jpg');">
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider4. (2).jpg');">
                     <div class="hero-content">
                         <h1>"Adventure Awaits"</h1>
                         <h3>Seek new horizons and experiences.</h3>
                         <a href="allcodeshtml/explore destinations.html" class="btn btn-light btn-lg">Explore Destinations</a>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('images.png/frontslider5..jpg');">
+                <div class="carousel-item" style="background-image: url('/images.png/frontslider5..jpg');">
                     <div class="hero-content">
                         <h1>"Experience Nature's Wonders"</h1>
                         <h3>Embrace the great outdoors with us.</h3>
@@ -240,33 +310,33 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/vacation.udaipur.jpg" class="card-img-top" alt="Udaipur">
+                    <img src="/images.png/vacation.udaipur.jpg" class="card-img-top" alt="Udaipur">
                     <div class="card-body">
                         <h5 class="card-title">Udaipur</h5>
                         <p class="card-text">“Udaipur - where history meets beauty and serenity.”</p>
-                        <a href="allcodeshtml/Udaipur.html" class="btn btn-primary">Learn More</a>
+                        <a href="/allcodeshtml/Udaipur.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/vacation.Mysore.jpg" class="card-img-top" alt="Mysore">
+                    <img src="/images.png/vacation.Mysore.jpg" class="card-img-top" alt="Mysore">
                     <div class="card-body">
                         <h5 class="card-title">Mysore</h5>
                         <p class="card-text">“In Mysore, the past and the present intertwine to create a captivating story.”
                         </p>
-                        <a href="learnmore1 copy 2.html" class="btn btn-primary">Learn More</a>
+                        <a href="/allcodeshtml/Mysore.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/vacation.Andaman & Nicobar.jpg" class="card-img-top" alt="Andaman & Nicobar">
+                    <img src="/images.png/vacation.Andaman & Nicobar.jpg" class="card-img-top" alt="Andaman & Nicobar">
                     <div class="card-body">
                         <h5 class="card-title">Andaman and Nicobar Islands</h5>
                         <p class="card-text">“Andaman Nicobar: A tropical haven for adventure and relaxation.”
                         </p>
-                        <a href="learnmore1 copy.html" class="btn btn-primary">Learn More</a>
+                        <a href="/allcodeshtml/AndamanSoothingvacNicobar.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -279,31 +349,31 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/book.Mahrashtra.jpg" class="card-img-top" alt="Maharashtra Tour">
+                    <img src="/images.png/book.Mahrashtra.jpg" class="card-img-top" alt="Maharashtra Tour">
                     <div class="card-body">
                         <h5 class="card-title">Maharashtra Tour</h5>
                         <p class="card-text">Enjoy a tour across Maharashtra.</p>
-                        <a href="allcodeshtml/Maharashtratour.html" class="btn btn-primary">Book Now</a>
+                        <a href="/allcodeshtml/Maharashtratour.html" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/book.uttarpradesh-tourism.jpg" class="card-img-top" alt="North India Tour">
+                    <img src="/images.png/book.uttarpradesh-tourism.jpg" class="card-img-top" alt="North India Tour">
                     <div class="card-body">
                         <h5 class="card-title">North India Tour</h5>
                         <p class="card-text">A tour to the North of India.</p>
-                        <a href="allcodeshtml/NorthIndiatour.html" class="btn btn-primary">Book Now</a>
+                        <a href="/allcodeshtml/NorthIndiatour.html" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="images.png/book.south-india.jpg" class="card-img-top" alt="Cultural Tour">
+                    <img src="/images.png/book.south-india.jpg" class="card-img-top" alt="Cultural Tour">
                     <div class="card-body">
                         <h5 class="card-title">South India Tour</h5>
                         <p class="card-text">Discover the divinity of South India.</p>
-                        <a href="SouthIndiatour.html" class="btn btn-primary">Book Now</a>
+                        <a href="/allcodeshtml/Southindiatour.html" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -320,7 +390,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Beach Getaway</h5>
                         <p class="card-text">Relax on pristine beaches with our all-inclusive package.</p>
-                        <a href="allcodeshtml/beachgetaway.html" class="btn btn-primary">Explore More</a>
+                        <a href="/allcodeshtml/beachgetaway.html" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
             </div>
@@ -330,7 +400,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Mountain Retreat</h5>
                         <p class="card-text">Escape to the mountains with a luxurious stay.</p>
-                        <a href="allcodeshtml/mountainretreat.html" class="btn btn-primary">Explore More</a>
+                        <a href="/allcodeshtml/mountainretreat.html" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
             </div>
@@ -443,4 +513,3 @@ function copyToClipboard(text) {
     </script>
 </body>
 </html>
-

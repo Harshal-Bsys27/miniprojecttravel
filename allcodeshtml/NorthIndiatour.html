@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North India Tour - Book Now</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .tour-header {
+            background: url('/images.png/north-india-banner.jpg') no-repeat center;
+            background-size: cover;
+            height: 300px;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .tour-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        .tour-header * {
+            position: relative;
+            z-index: 2;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/templates/index.html">
+            <i class="fas fa-plane-departure mr-2"></i>
+            letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/templates/index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tour Header -->
+    <div class="tour-header">
+        <h1>North India Tour Packages</h1>
+        <p>Experience the Grandeur of North India's Culture and Heritage</p>
+    </div>
+
+    <!-- Tour Packages -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Package 1 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/golden-triangle.jpg" class="card-img-top" alt="Golden Triangle" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Golden Triangle Tour</h5>
+                        <p class="card-text">6 Days / 5 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Taj Mahal, Agra</li>
+                            <li><i class="fas fa-check text-success"></i> Red Fort, Delhi</li>
+                            <li><i class="fas fa-check text-success"></i> City Palace, Jaipur</li>
+                        </ul>
+                        <p class="text-primary">₹32,999/person</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/varanasi.jpg" class="card-img-top" alt="Varanasi Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Spiritual Varanasi Tour</h5>
+                        <p class="card-text">4 Days / 3 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Ganga Aarti</li>
+                            <li><i class="fas fa-check text-success"></i> Sarnath Temple</li>
+                            <li><i class="fas fa-check text-success"></i> Morning Boat Ride</li>
+                        </ul>
+                        <p class="text-primary">₹22,999/person</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/kashmir.jpg" class="card-img-top" alt="Kashmir Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Kashmir Paradise Tour</h5>
+                        <p class="card-text">7 Days / 6 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Dal Lake, Srinagar</li>
+                            <li><i class="fas fa-check text-success"></i> Gulmarg</li>
+                            <li><i class="fas fa-check text-success"></i> Pahalgam Valley</li>
+                        </ul>
+                        <p class="text-primary">₹38,999/person</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 4 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/himachal.jpg" class="card-img-top" alt="Himachal Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Himachal Adventure</h5>
+                        <p class="card-text">5 Days / 4 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Shimla</li>
+                            <li><i class="fas fa-check text-success"></i> Manali</li>
+                            <li><i class="fas fa-check text-success"></i> Kullu Valley</li>
+                        </ul>
+                        <p class="text-primary">₹26,999/person</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#bookingModal">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Book Your Tour</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Package</label>
+                            <select class="form-control" required>
+                                <option>Golden Triangle Tour</option>
+                                <option>Spiritual Varanasi Tour</option>
+                                <option>Kashmir Paradise Tour</option>
+                                <option>Himachal Adventure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2024 letstravel.com - North India Tours</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html></div></li>

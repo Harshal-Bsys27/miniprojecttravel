@@ -14,7 +14,9 @@ def get_db_connection():
     except sqlite3.Error as e:
         print(f"Database connection error: {e}")
         return None
-
+        # Configure static file serving
+        app.static_folder = 'static'
+        app.static_url_path = '/static'
 def close_db(conn):
     if conn is not None:
         conn.close()
