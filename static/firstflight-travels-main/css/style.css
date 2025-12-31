@@ -2,7 +2,7 @@
     padding:0;
     margin:0;
     box-sizing:border;
-    font-family:'Poppins',sans-serif;
+    font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
     text-decoration: none;
     list-style: none;
     scroll-behavior: smooth;
