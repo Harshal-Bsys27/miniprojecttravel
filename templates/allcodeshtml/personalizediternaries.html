@@ -8,42 +8,101 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/theme-toggler.css">
     <style>
+        :root {
+            /* Professional accent palette (green + amber) */
+            --accent: #16a34a;      /* green */
+            --accent-dark: #15803d; /* darker green */
+            --accent-2: #d97706;    /* amber */
+            --ink: #0f172a;
+            --nav-bg: rgba(17, 24, 39, 0.92);
+            --nav-bg-solid: #111827;
+        }
+
         body {
-            padding-top: 100px; /* Adjust this value based on your header height */
+            padding-top: 92px; /* space for fixed navbar */
             font-family: 'Arial', sans-serif;
             background-color: #f0f4f8;
         }
 
         #header {
-            background-color: #1e1e2f; /* Dark background */
+            background: var(--nav-bg);
             color: #ffffff;
-            padding: 20px 0;
+            padding: 14px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        #header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            opacity: 0.9;
         }
 
         #header.scrolled {
-            background-color: rgba(30, 30, 47, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(17, 24, 39, 0.97);
+            padding: 10px 0;
+            box-shadow: 0 12px 38px rgba(0, 0, 0, 0.22);
         }
 
-        #header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        .site-brand {
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            font-size: 1.15rem;
         }
 
-        .nav-link {
+        .site-brand .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.25), rgba(217, 119, 6, 0.22));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        #header .navbar {
+            padding: 0;
+        }
+
+        #header .navbar-nav {
+            gap: 8px;
+        }
+
+        #header .nav-link {
+            color: rgba(255, 255, 255, 0.88) !important;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        #header .nav-link:hover {
             color: #ffffff !important;
-            margin: 0 15px;
+            background: rgba(255, 255, 255, 0.10);
+            transform: translateY(-1px);
         }
 
-        .nav-link:hover {
-            color: #ffd700 !important; /* Gold color on hover */
+        #header .nav-link.active {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.28), rgba(217, 119, 6, 0.26));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        #header .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
         }
 
         #itinerary {
@@ -70,7 +129,7 @@
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: var(--accent);
             border: none;
             border-radius: 30px;
             padding: 12px 24px;
@@ -78,17 +137,17 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: var(--accent-dark);
             transform: scale(1.05);
         }
 
         .time {
-            color: #2563eb;
+            color: #0f766e;
             font-weight: 600;
         }
 
         .time-period {
-            color: #1e40af;
+            color: #065f46;
             margin-top: 1rem;
         }
 
@@ -98,7 +157,7 @@
         }
 
         .day-header {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
             color: white;
             padding: 10px 20px;
             border-radius: 8px;
@@ -124,7 +183,11 @@
         }
 
         body.dark-theme #header {
-            background-color: #2d2d2d;
+            background: rgba(17, 24, 39, 0.92);
+        }
+
+        body.dark-theme #header.scrolled {
+            background: rgba(17, 24, 39, 0.97);
         }
 
         body.dark-theme .itinerary-card {
@@ -149,11 +212,11 @@
         }
 
         body.dark-theme .time {
-            color: #66b3ff;
+            color: #34d399;
         }
 
         body.dark-theme .time-period {
-            color: #80bfff;
+            color: #a7f3d0;
         }
 
         body.dark-theme .cost {
@@ -161,7 +224,18 @@
         }
 
         body.dark-theme .day-header {
-            background: linear-gradient(135deg, #1a4b8c, #0d325e);
+            background: linear-gradient(135deg, #14532d, #92400e);
+        }
+
+        /* PDF export helper (forces light theme for capture) */
+        .pdf-export {
+            position: fixed;
+            left: -99999px;
+            top: 0;
+            width: 900px;
+            background: #ffffff;
+            color: #111827;
+            padding: 16px;
         }
     </style>
 </head>
@@ -169,21 +243,40 @@
 
 <header id="header">
     <div class="container">
-        <h1>✈️ Personalized Travel Itineraries</h1>
-        <nav class="nav justify-content-center">
-            <a class="nav-link" href="/templates/index.html"><i class="fas fa-home"></i> Home</a>
-            <a class="nav-link" href="#itinerary"><i class="fas fa-plane"></i> Itineraries</a>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand d-flex align-items-center gap-2 site-brand" href="/templates/index.html">
+                <span class="brand-mark">✈️</span>
+                <span>Personalized Itineraries</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#itinerary"><i class="fas fa-route me-1"></i>Itineraries</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center mt-3 mt-lg-0">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
         </nav>
     </div>
 </header>
 
 <section id="itinerary" class="container my-5">
     <h2 class="text-center mb-4">Create Your Personalized Itinerary</h2>
-    <form id="itinerary-form" class="mb-5">
+    <form id="itinerary-form" class="mb-5" onsubmit="return false;">
         <div class="mb-3">
             <label for="destination" class="form-label">Destination</label>
             <input type="text" class="form-control" id="destination" placeholder="Enter your destination" required>
@@ -221,9 +314,11 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-document.getElementById('itinerary-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+async function handleGenerateItinerary(e) {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
     
     const formData = {
         destination: document.getElementById('destination').value,
@@ -236,7 +331,7 @@ document.getElementById('itinerary-form').addEventListener('submit', async (e) =
     // Show loading spinner
     document.getElementById('result').innerHTML = `
         <div class="loading-spinner">
-            <div class="spinner-border text-primary" role="status">
+            <div class="spinner-border text-success" role="status">
                 <span class="visually-hidden">Creating your personalized itinerary...</span>
             </div>
             <p class="mt-3">Crafting your perfect journey...</p>
@@ -279,42 +374,66 @@ document.getElementById('itinerary-form').addEventListener('submit', async (e) =
             </div>
         `;
     }
+}
+
+// Attach handlers after DOM is ready (prevents null references and avoids refresh)
+window.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('itinerary-form');
+    if (form) {
+        form.addEventListener('submit', handleGenerateItinerary);
+    }
 });
 
 function displayItinerary(destination, text) {
-    // First try to split by days, if not found, split by newlines
-    let sections = text.split(/Day \d+:|DAY \d+:/i);
-    if (sections.length <= 1) {
-        sections = text.split('\n\n');
-    }
+    const duration = parseInt(document.getElementById('duration').value || '0', 10);
+    const safeDestination = escapeHtml(destination);
+    const parsed = parseItinerary(text, duration);
 
     let html = `
-        <div class="itinerary-card">
-            <h2 class="text-center mb-4">${destination} Travel Itinerary</h2>
-            <div class="itinerary-content">
+        <div class="itinerary-card" id="itineraryCard">
+            <h2 class="text-center mb-3">${safeDestination} Travel Itinerary</h2>
+            <p class="text-center text-muted mb-4">✨ Your personalized plan with stays, food, transport and budgets</p>
+            <div class="itinerary-content" id="itineraryContent">
     `;
 
-    sections.forEach((section, index) => {
-        if (!section.trim()) return; // Skip empty sections
-        
+    if (parsed.preamble) {
         html += `
             <div class="day-section mb-4">
-                <h3 class="day-header">Day ${index + 1}</h3>
+                <h3 class="day-header">📌 Overview</h3>
+                <div class="day-content">${formatBlock(parsed.preamble)}</div>
+            </div>
+        `;
+    }
+
+    // Always render exactly N days (no blank days)
+    const daysToRender = Math.max(1, duration || parsed.days.length || 1);
+    for (let day = 1; day <= daysToRender; day++) {
+        const dayText = parsed.daysByNumber[day] || parsed.days[day - 1] || '';
+        html += `
+            <div class="day-section mb-4">
+                <h3 class="day-header">🗓️ Day ${day}</h3>
                 <div class="day-content">
-                    ${formatDayContent(section)}
+                    ${formatDayBlock(dayText, day)}
                 </div>
             </div>
         `;
-    });
+    }
+
+    // Summary (if present)
+    if (parsed.summary) {
+        html += `
+            <div class="day-section mb-2">
+                <h3 class="day-header">💰 Total Budget Summary</h3>
+                <div class="day-content">${formatBlock(parsed.summary)}</div>
+            </div>
+        `;
+    }
 
     html += `
             </div>
             <div class="action-buttons mt-4 text-center">
-                <button onclick="window.print()" class="btn btn-outline-primary me-2">
-                    <i class="fas fa-print"></i> Print Itinerary
-                </button>
-                <button onclick="saveItinerary()" class="btn btn-outline-success">
-                    <i class="fas fa-download"></i> Save Itinerary
+                <button onclick="downloadItineraryPdf()" class="btn btn-outline-success" id="downloadPdfBtn">
+                    <i class="fas fa-file-pdf"></i> Download PDF
                 </button>
             </div>
         </div>
@@ -323,27 +442,204 @@ function displayItinerary(destination, text) {
     document.getElementById('result').innerHTML = html;
 }
 
-function formatDayContent(content) {
-    return content
-        .replace(/(\d{1,2}(?::\d{2})?(?:am|pm)?)/gi, '<span class="time">$1</span>')
-        .replace(/(Morning|Afternoon|Evening|Night):/gi, '<h4 class="time-period">$1:</h4>')
-        .replace(/(\$|€|£|\¥|\₹)\s*\d+(?:\.\d{2})?/g, '<span class="cost">$&</span>')
-        .replace(/(Activities|Meals|Transport|Tips):/gi, '<strong class="section-header">$1:</strong>')
-        .replace(/\n/g, '<br>')
-        .trim();
+function escapeHtml(str) {
+    return (str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
-function saveItinerary() {
-    const content = document.querySelector('.itinerary-content').innerText;
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'my_travel_itinerary.txt';
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+function parseItinerary(text, duration) {
+    const raw = (text || '').replace(/\r\n/g, '\n');
+    // Match DAY headers even if extra text follows on the same line.
+    // Examples matched:
+    // - "DAY 1:" (alone)
+    // - "DAY 1: <anything>" (same line)
+    const dayHeaderRe = /^\s*DAY\s+(\d+)\s*:\s*/gmi;
+    const summaryRe = /^\s*TOTAL BUDGET SUMMARY[\s\S]*$/gmi;
+
+    const summaryMatch = raw.match(summaryRe);
+    const summary = summaryMatch ? summaryMatch[0].trim() : '';
+    const withoutSummary = summary ? raw.replace(summaryRe, '').trim() : raw.trim();
+
+    const headers = [];
+    let m;
+    while ((m = dayHeaderRe.exec(withoutSummary)) !== null) {
+        headers.push({ index: m.index, day: parseInt(m[1], 10) });
+        // Prevent infinite loops on zero-length matches
+        if (m.index === dayHeaderRe.lastIndex) {
+            dayHeaderRe.lastIndex++;
+        }
+    }
+
+    let preamble = '';
+    const days = [];
+    const daysByNumber = {};
+
+    if (headers.length) {
+        preamble = withoutSummary.slice(0, headers[0].index).trim();
+        for (let i = 0; i < headers.length; i++) {
+            const start = headers[i].index;
+            const end = (i + 1 < headers.length) ? headers[i + 1].index : withoutSummary.length;
+            const block = withoutSummary.slice(start, end).trim();
+            const dayNum = headers[i].day;
+            if (block) {
+                days.push(block);
+                daysByNumber[dayNum] = block;
+            }
+        }
+    } else {
+        // No DAY headers; treat the whole thing as preamble
+        preamble = withoutSummary;
+    }
+
+    // If duration is provided, ensure we have at least placeholders to render
+    const count = Math.max(0, parseInt(duration || '0', 10));
+    if (count && !days.length) {
+        // Put everything into Day 1
+        daysByNumber[1] = 'DAY 1:\n' + withoutSummary;
+        days.push(daysByNumber[1]);
+    }
+
+    return { preamble, days, daysByNumber, summary };
+}
+
+function addEmojisToLabels(line) {
+    const upper = line.toUpperCase();
+    if (upper.startsWith('OVERVIEW')) return '📌 ' + line;
+    if (upper.startsWith('WHERE TO STAY')) return '🏨 ' + line;
+    if (upper.startsWith('LOCAL FOOD GUIDE')) return '🍽️ ' + line;
+    if (upper.startsWith('TRANSPORT')) return '🚇 ' + line;
+    if (upper.startsWith('MORNING')) return '🌅 ' + line;
+    if (upper.startsWith('AFTERNOON')) return '🌞 ' + line;
+    if (upper.startsWith('EVENING')) return '🌙 ' + line;
+    if (upper.startsWith('DAILY BUDGET')) return '💸 ' + line;
+    if (upper.startsWith('BOOKING/TIMING TIPS')) return '⏰ ' + line;
+    if (upper.startsWith('SAFETY NOTES')) return '🛡️ ' + line;
+    if (upper.startsWith('NEARBY EATERIES')) return '🍴 ' + line;
+    return line;
+}
+
+function formatBlock(content) {
+    const safe = escapeHtml(content || '');
+    const lines = safe.split('\n').map(l => addEmojisToLabels(l));
+    return lines.join('<br>');
+}
+
+function formatDayBlock(content, dayNumber) {
+    const c = (content || '').replace(/\r\n/g, '\n');
+    // Remove leading DAY X: line if present, since we already show Day header
+    const cleaned = c.replace(/^\s*DAY\s+\d+\s*:\s*\n?/i, '').trim();
+    const safe = escapeHtml(cleaned);
+    const withEmojis = safe.split('\n').map(l => addEmojisToLabels(l)).join('<br>');
+    // Highlight costs and times lightly
+    return withEmojis
+        .replace(/(\b\d{1,2}:\d{2}\b)/g, '<span class="time">$1</span>')
+        .replace(/(₹\d+(?:,\d{3})*(?:-₹\d+(?:,\d{3})*)?)/g, '<span class="cost">$1</span>')
+        .replace(/(\$\d+(?:-\$\d+)?)/g, '<span class="cost">$1</span>');
+}
+
+async function downloadItineraryPdf() {
+    const btn = document.getElementById('downloadPdfBtn');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Preparing PDF...';
+    }
+
+    try {
+        if (!window.html2canvas || !window.jspdf || !window.jspdf.jsPDF) {
+            throw new Error('PDF libraries not loaded. Please refresh and try again.');
+        }
+
+        const card = document.getElementById('itineraryCard');
+        if (!card) throw new Error('No itinerary found to export.');
+
+        // Clone into a hidden light container so PDF always looks clean.
+        const clone = card.cloneNode(true);
+        clone.style.boxShadow = 'none';
+        clone.style.background = '#ffffff';
+        clone.style.color = '#111827';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'pdf-export';
+        wrapper.appendChild(clone);
+        document.body.appendChild(wrapper);
+
+        const canvas = await window.html2canvas(wrapper, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            useCORS: true
+        });
+
+        document.body.removeChild(wrapper);
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'pt', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const marginX = 28;
+        const marginTop = 56;
+        const marginBottom = 44;
+        const contentWidth = pageWidth - marginX * 2;
+        const contentHeight = pageHeight - marginTop - marginBottom;
+
+        const scale = contentWidth / canvas.width;
+        const sliceHeight = contentHeight / scale;
+
+        let y = 0;
+        let page = 0;
+        const title = (document.getElementById('destination').value || 'Itinerary').trim();
+        while (y < canvas.height) {
+            const sliceCanvas = document.createElement('canvas');
+            sliceCanvas.width = canvas.width;
+            sliceCanvas.height = Math.min(sliceHeight, canvas.height - y);
+            const ctx = sliceCanvas.getContext('2d');
+            ctx.drawImage(
+                canvas,
+                0, y,
+                canvas.width, sliceCanvas.height,
+                0, 0,
+                canvas.width, sliceCanvas.height
+            );
+
+            const imgData = sliceCanvas.toDataURL('image/png');
+            if (page > 0) pdf.addPage();
+
+            // Header
+            pdf.setFont('helvetica', 'bold');
+            pdf.setFontSize(13);
+            pdf.text(`${title} — Travel Itinerary`, marginX, 28);
+            pdf.setDrawColor(229, 231, 235);
+            pdf.line(marginX, 36, pageWidth - marginX, 36);
+
+            // Content image
+            pdf.addImage(imgData, 'PNG', marginX, marginTop, contentWidth, sliceCanvas.height * scale);
+
+            // Footer
+            pdf.setFont('helvetica', 'normal');
+            pdf.setFontSize(10);
+            pdf.setTextColor(107, 114, 128);
+            pdf.text(`Page ${page + 1}`, pageWidth - marginX, pageHeight - 18, { align: 'right' });
+            pdf.setTextColor(0, 0, 0);
+
+            y += sliceHeight;
+            page++;
+        }
+
+        const destination = document.getElementById('destination').value || 'itinerary';
+        const filename = `${destination.replace(/[^a-z0-9\-\_ ]/gi, '').trim().replace(/\s+/g, '_')}_itinerary.pdf`;
+        pdf.save(filename || 'my_travel_itinerary.pdf');
+    } catch (err) {
+        console.error(err);
+        alert(err && err.message ? err.message : 'Failed to export PDF.');
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
+        }
+    }
 }
 
 // Add scroll event handler
@@ -353,6 +649,38 @@ window.addEventListener('scroll', function() {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+});
+
+// Navbar UX: active state + collapse behavior on mobile
+function setActiveNavLink() {
+    const links = document.querySelectorAll('#header .nav-link');
+    links.forEach(l => l.classList.remove('active'));
+
+    // Default: itinerary section on this page
+    let active = document.querySelector('#header .nav-link[href="#itinerary"]');
+    if (window.location.hash && window.location.hash.toLowerCase() === '#itinerary') {
+        active = document.querySelector('#header .nav-link[href="#itinerary"]');
+    }
+    if (!active) active = links[0];
+    if (active) active.classList.add('active');
+}
+
+window.addEventListener('hashchange', setActiveNavLink);
+window.addEventListener('DOMContentLoaded', () => {
+    setActiveNavLink();
+
+    // Auto close navbar on mobile after clicking a link
+    const collapseEl = document.getElementById('mainNav');
+    if (collapseEl && window.bootstrap && window.bootstrap.Collapse) {
+        const collapse = window.bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+        document.querySelectorAll('#header a.nav-link').forEach(a => {
+            a.addEventListener('click', () => {
+                if (window.getComputedStyle(document.querySelector('#header .navbar-toggler')).display !== 'none') {
+                    collapse.hide();
+                }
+            });
+        });
     }
 });
 </script>
