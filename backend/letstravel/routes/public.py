@@ -9,6 +9,8 @@ from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, abort, jsonify, redirect, render_template, request, send_from_directory, session, url_for
 
+from services.ai_service import AIServiceError, ItineraryRequest, generate_itinerary_text
+
 
 public_bp = Blueprint("public", __name__)
 
@@ -174,6 +176,50 @@ def site_search():
         results.append({"label": label, "url": page.get("url", "#"), "kind": kind})
 
     return jsonify(results)
+
+
+@public_bp.route("/api/itinerary", methods=["POST"])
+def api_itinerary():
+    data = request.get_json(silent=True) or {}
+
+    destination = (data.get("destination") or "").strip()
+    travel_style = (data.get("travelStyle") or data.get("travel_style") or "").strip() or "balanced"
+    requirements = (data.get("requirements") or "").strip()
+    interests = data.get("interests") or []
+
+    try:
+        duration_days = int(data.get("duration") or data.get("duration_days") or 0)
+    except Exception:
+        duration_days = 0
+
+    if not destination or len(destination) > 80:
+        return jsonify({"error": "Please enter a valid destination."}), 400
+    if duration_days < 1 or duration_days > 14:
+        return jsonify({"error": "Duration must be between 1 and 14 days."}), 400
+    if not isinstance(interests, list):
+        return jsonify({"error": "Interests must be a list."}), 400
+    if len(interests) > 10:
+        interests = interests[:10]
+    if len(requirements) > 500:
+        requirements = requirements[:500]
+
+    req = ItineraryRequest(
+        destination=destination,
+        duration_days=duration_days,
+        travel_style=travel_style[:40],
+        interests=[str(i)[:30] for i in interests if i],
+        requirements=requirements,
+    )
+
+    try:
+        itinerary_text = generate_itinerary_text(req)
+    except AIServiceError as exc:
+        # Service not configured or provider error.
+        return jsonify({"error": str(exc)}), 503
+    except Exception:
+        return jsonify({"error": "Failed to generate itinerary. Please try again."}), 500
+
+    return jsonify({"itinerary": itinerary_text})
 
 
 def _safe_send(directory: Path, filename: str):

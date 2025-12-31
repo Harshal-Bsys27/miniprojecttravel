@@ -9,6 +9,7 @@ xlsxwriter>=3.2,<4.0
 Flask-Login>=0.6,<0.7
 blinker>=1.9,<2.0
 python-dateutil>=2.8,<3.0
+requests>=2.31,<3.0
 gunicorn>=21.2,<23.0
 waitress>=3.0,<4.0
 # Server-side PDF invoice generation
