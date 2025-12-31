@@ -4,142 +4,310 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maharashtra Tour - Book Now</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/theme-toggler.css">
     <style>
+        :root {
+            --accent: #2f6b4f;
+            --accent-dark: #1f4d3a;
+            --accent-2: #f59e0b;
+            --accent-rgb: 47, 107, 79;
+            --accent2-rgb: 245, 158, 11;
+            --ink: #0f172a;
+            --nav-bg: rgba(17, 24, 39, 0.92);
+        }
+
         body {
-            background-color: #f0f4f8;
-            font-family: 'Poppins', sans-serif;
+            padding-top: 92px;
+            background: #f0f4f8;
+            color: var(--ink);
+            font-family: Arial, sans-serif;
         }
-        header {
-            background-color: #2c445d;
-            padding: 10px 0;
-        }
-        .navbar {
-            padding: 0.5rem 1rem;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
+
+        body.dark-theme {
+            background: #0b1220;
             color: #ffffff;
-            display: flex;
-            align-items: center;
         }
-        .nav-link {
-            font-size: 1rem;
-            color: white;
-            transition: color 0.3s;
-            margin: 0 15px;
-        }
-        .nav-link:hover {
-            color: #f7f1f1;
-        }
-        .tour-header {
-            background: url('../images.png/MHtourMahabaleshwar.jpg') no-repeat center;
-            background-size: cover;
-            height: 300px;
-            position: relative;
-            color: white;
-            text-align: center;
-            padding-top: 100px;
-        }
-        .tour-header::before {
-            content: '';
-            position: absolute;
+
+        /* Modern fixed navbar (match Seasonal/Domestic pages) */
+        #header {
+            background: var(--nav-bg);
+            color: #ffffff;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1;
+            z-index: 1000;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(10px);
+            transition: all 0.25s ease;
         }
-        .tour-header * {
+
+        #header.scrolled {
+            padding: 10px 0;
+            background: rgba(17, 24, 39, 0.97);
+            box-shadow: 0 12px 38px rgba(0, 0, 0, 0.22);
+        }
+
+        #header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            opacity: 0.9;
+        }
+
+        .site-brand {
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            font-size: 1.15rem;
+        }
+
+        .site-brand .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.25), rgba(217, 119, 6, 0.22));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        #header .navbar {
+            padding: 0;
+        }
+
+        #header .navbar-nav {
+            gap: 8px;
+        }
+
+        #header .nav-link {
+            color: rgba(255, 255, 255, 0.88) !important;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        #header .nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.10);
+            transform: translateY(-1px);
+        }
+
+        #header .nav-link.active {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.28), rgba(217, 119, 6, 0.26));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        #header .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+        }
+
+        /* Hero */
+        .tour-hero {
             position: relative;
-            z-index: 2;
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 320px;
+            background: url('/images.png/MHtourMahabaleshwar.jpg') no-repeat center;
+            background-size: cover;
+            box-shadow: 0 16px 42px rgba(2, 6, 23, 0.18);
         }
-        .package-card {
-            transition: transform 0.3s;
-            margin-bottom: 20px;
-            border: none;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+        .tour-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2, 6, 23, 0.55), rgba(2, 6, 23, 0.25));
         }
-        .package-card:hover {
-            transform: translateY(-5px);
-        }
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn-custom:hover {
-            background-color: #0056b3;
-            color: white;
-            text-decoration: none;
-        }
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
+
+        .tour-hero .hero-inner {
+            position: relative;
+            padding: 96px 18px 34px;
+            color: #ffffff;
             text-align: center;
         }
-        @media (max-width: 768px) {
-            .nav-link {
-                font-size: 1.2rem;
-            }
+
+        .tour-hero h1 {
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+            text-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
         }
-        .theme-toggle {
-            margin-left: 15px;
-            display: flex;
-            align-items: center;
+
+        .tour-hero p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.86);
+            font-weight: 600;
         }
-        .theme-btn {
-            background: none;
-            border: none;
-            padding: 8px;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            font-size: 1.8rem;
+
+        /* Section headings */
+        .section-title {
+            display: inline-block;
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            line-height: 1.15;
+            color: var(--ink);
+            position: relative;
+            padding-bottom: 10px;
+            text-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
         }
-        .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .theme-btn .fa-sun {
-            color: #ffd700;
-            display: none;
-        }
-        .theme-btn .fa-moon {
+
+        body.dark-theme .section-title {
             color: #ffffff;
         }
-        body.dark-mode .theme-btn .fa-sun {
-            display: inline-block;
+
+        .section-title span {
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        body.dark-mode .theme-btn .fa-moon {
-            display: none;
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 88px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+            opacity: 0.95;
+        }
+
+        .section-subtitle {
+            color: rgba(15, 23, 42, 0.65);
+        }
+
+        body.dark-theme .section-subtitle {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Surface sections like Domestic/International/Tours */
+        .tour-surface {
+            border-radius: 18px;
+            padding: 26px 18px;
+            background:
+                linear-gradient(135deg,
+                    rgba(var(--accent2-rgb), 0.10) 0%,
+                    rgba(var(--accent-rgb), 0.08) 55%,
+                    rgba(255, 255, 255, 0.0) 100%
+                ),
+                rgba(255, 255, 255, 0.80);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(6px);
+        }
+
+        body.dark-theme .tour-surface {
+            background:
+                linear-gradient(135deg,
+                    rgba(var(--accent2-rgb), 0.16) 0%,
+                    rgba(var(--accent-rgb), 0.12) 55%,
+                    rgba(0, 0, 0, 0.0) 100%
+                ),
+                rgba(0, 0, 0, 0.20);
+            border-color: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+        }
+
+        /* Cards */
+        .tour-card {
+            border: none;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.10);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+        }
+
+        body.dark-theme .tour-card {
+            background: rgba(17, 24, 39, 0.85);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.30);
+        }
+
+        .tour-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 46px rgba(2, 6, 23, 0.16);
+        }
+
+        .tour-card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .place-title {
+            font-weight: 900;
+            letter-spacing: 0.2px;
+            margin-bottom: 6px;
+        }
+
+        .place-desc {
+            color: rgba(15, 23, 42, 0.70);
+            font-size: 0.98rem;
+            margin-bottom: 14px;
+        }
+
+        body.dark-theme .place-desc {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            font-weight: 800;
+            border-radius: 999px;
+            padding: 10px 16px;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        .details-list li {
+            margin-bottom: 8px;
+        }
+
+        .details-list i {
+            color: var(--accent);
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    <i class="fas fa-map-marker-alt" style="color: rgba(198, 29, 29, 0.941);"></i>
-                    Maharashtra Tour
+                <a class="navbar-brand site-brand d-flex align-items-center gap-2" href="/templates/index.html">
+                    <span class="brand-mark"><i class="fas fa-map-marker-alt" style="color: rgba(198, 29, 29, 0.941);"></i></span>
+                    <span>Maharashtra Tour</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="/templates/index.html"><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link" href="/templates/index.html"><i class="fas fa-home me-1"></i> Home</a>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#details">Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                         <li class="nav-item">
                             <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                                 <i class="fas fa-sun"></i>
@@ -152,111 +320,186 @@
         </nav>
     </header>
 
-    <div class="tour-header">
-        <h1>Maharashtra Tour Packages</h1>
-        <p>Discover the Rich Heritage and Natural Beauty of Maharashtra</p>
-    </div>
+    <main class="container">
+        <section class="tour-hero mt-3">
+            <div class="hero-inner">
+                <h1>Maharashtra Tour Packages</h1>
+                <p>Discover forts, hill stations, beaches, and heritage.</p>
+            </div>
+        </section>
 
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card package-card">
-                    <img src="../images.png/MHtourMahabaleshwar.jpg" class="card-img-top" alt="Mahabaleshwar Package" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Mahabaleshwar Hill Station</h5>
-                        <p class="card-text">4 Days / 3 Nights</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success"></i> Strawberry Farms Visit</li>
-                            <li><i class="fas fa-check text-success"></i> Venna Lake</li>
-                            <li><i class="fas fa-check text-success"></i> Wilson Point</li>
-                        </ul>
-                        <a href="/templates/pakeges/pakeges.html" class="btn btn-custom">Book Now</a>
-                    </div>
+        <section id="packages" class="tour-surface my-4">
+            <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+                <div>
+                    <h2 class="section-title">Popular <span>Packages</span></h2>
+                    <p class="section-subtitle mb-0">Choose a trip style that matches your pace.</p>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card package-card">
-                    <img src="../images.png/MHtourLonavala.jpg" class="card-img-top" alt="Lonavala Package" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Lonavala Weekend Gateway</h5>
-                        <p class="card-text">3 Days / 2 Nights</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success"></i> Tiger Point</li>
-                            <li><i class="fas fa-check text-success"></i> Bhushi Dam</li>
-                            <li><i class="fas fa-check text-success"></i> Karla Caves</li>
-                        </ul>
-                        <a href="/templates/pakeges/pakeges.html" class="btn btn-custom">Book Now</a>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tour-card">
+                        <img src="/images.png/MHtourMahabaleshwar.jpg" alt="Mahabaleshwar Package">
+                        <div class="card-body">
+                            <div class="place-title">Mahabaleshwar Hill Station</div>
+                            <div class="place-desc">4 Days / 3 Nights • Scenic viewpoints + local farms</div>
+                            <ul class="list-unstyled details-list mb-3">
+                                <li><i class="fas fa-check"></i> Strawberry farms visit</li>
+                                <li><i class="fas fa-check"></i> Venna Lake boating</li>
+                                <li><i class="fas fa-check"></i> Wilson Point sunrise</li>
+                            </ul>
+                            <a href="/templates/pakeges/pakeges.html" class="btn btn-primary w-100">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tour-card">
+                        <img src="/images.png/MHtourLonavala.jpg" alt="Lonavala Package">
+                        <div class="card-body">
+                            <div class="place-title">Lonavala Weekend Gateway</div>
+                            <div class="place-desc">3 Days / 2 Nights • Quick break near Pune/Mumbai</div>
+                            <ul class="list-unstyled details-list mb-3">
+                                <li><i class="fas fa-check"></i> Tiger Point views</li>
+                                <li><i class="fas fa-check"></i> Bhushi Dam (seasonal)</li>
+                                <li><i class="fas fa-check"></i> Karla Caves visit</li>
+                            </ul>
+                            <a href="/templates/pakeges/pakeges.html" class="btn btn-primary w-100">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tour-card">
+                        <img src="/images.png/ajantaCaves.jpg" alt="Heritage Package">
+                        <div class="card-body">
+                            <div class="place-title">Ajanta–Ellora Heritage</div>
+                            <div class="place-desc">5 Days / 4 Nights • UNESCO caves + Aurangabad</div>
+                            <ul class="list-unstyled details-list mb-3">
+                                <li><i class="fas fa-check"></i> Ajanta caves (day trip)</li>
+                                <li><i class="fas fa-check"></i> Ellora caves + Kailasa</li>
+                                <li><i class="fas fa-check"></i> Bibi Ka Maqbara</li>
+                            </ul>
+                            <a href="/templates/pakeges/pakeges.html" class="btn btn-primary w-100">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tour-card">
+                        <img src="/images.png/MHtouralibaugh.webp" alt="Alibaug Package">
+                        <div class="card-body">
+                            <div class="place-title">Alibaug Beach Retreat</div>
+                            <div class="place-desc">3 Days / 2 Nights • Coastal vibe + water activities</div>
+                            <ul class="list-unstyled details-list mb-3">
+                                <li><i class="fas fa-check"></i> Beach time + sunset</li>
+                                <li><i class="fas fa-check"></i> Kolaba Fort visit</li>
+                                <li><i class="fas fa-check"></i> Water sports (optional)</li>
+                            </ul>
+                            <a href="/templates/pakeges/pakeges.html" class="btn btn-primary w-100">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tour-card">
+                        <img src="/images.png/MHFORTS.webp" alt="Forts Package">
+                        <div class="card-body">
+                            <div class="place-title">Maharashtra Fort Trail</div>
+                            <div class="place-desc">6 Days / 5 Nights • Forts + history + trekking</div>
+                            <ul class="list-unstyled details-list mb-3">
+                                <li><i class="fas fa-check"></i> Raigad Fort</li>
+                                <li><i class="fas fa-check"></i> Sinhagad Fort</li>
+                                <li><i class="fas fa-check"></i> Pratapgad Fort</li>
+                            </ul>
+                            <a href="/templates/pakeges/pakeges.html" class="btn btn-primary w-100">Book Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-4">
-                <div class="card package-card">
-                    <img src="../images.png/ajantaCaves.jpg" class="card-img-top" alt="Heritage Package" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Heritage Tour</h5>
-                        <p class="card-text">5 Days / 4 Nights</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success"></i> Ajanta Caves</li>
-                            <li><i class="fas fa-check text-success"></i> Ellora Caves</li>
-                            <li><i class="fas fa-check text-success"></i> Bibi Ka Maqbara</li>
-                        </ul>
-                        <a href="/templates/pakeges/pakeges.html" class="btn btn-custom">Book Now</a>
-                    </div>
+        <section id="details" class="tour-surface my-4">
+            <div class="mb-3">
+                <h2 class="section-title">Tour <span>Details</span></h2>
+                <p class="section-subtitle mb-0">Everything you need to know before booking.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <h5 class="fw-bold mb-2">Highlights</h5>
+                    <ul class="list-unstyled details-list mb-0">
+                        <li><i class="fas fa-star"></i> Hill stations, beaches, forts, and heritage in one state</li>
+                        <li><i class="fas fa-star"></i> Local food experience: vada pav, misal, coastal thali</li>
+                        <li><i class="fas fa-star"></i> Flexible itineraries for weekend or week-long trips</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <h5 class="fw-bold mb-2">Best Time to Visit</h5>
+                    <ul class="list-unstyled details-list mb-0">
+                        <li><i class="fas fa-calendar"></i> Oct–Mar: comfortable weather for most destinations</li>
+                        <li><i class="fas fa-umbrella-beach"></i> Coastal: Nov–Feb for pleasant beach days</li>
+                        <li><i class="fas fa-mountain"></i> Hill stations: monsoon is scenic (check conditions)</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <h5 class="fw-bold mb-2">Inclusions</h5>
+                    <ul class="list-unstyled details-list mb-0">
+                        <li><i class="fas fa-check-circle"></i> Stay (as per package) + daily breakfast</li>
+                        <li><i class="fas fa-check-circle"></i> Sightseeing transfers (shared/private as selected)</li>
+                        <li><i class="fas fa-check-circle"></i> Basic itinerary assistance</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <h5 class="fw-bold mb-2">Exclusions</h5>
+                    <ul class="list-unstyled details-list mb-0">
+                        <li><i class="fas fa-times-circle"></i> Entry tickets, activities, and personal expenses</li>
+                        <li><i class="fas fa-times-circle"></i> Lunch/dinner unless mentioned</li>
+                        <li><i class="fas fa-times-circle"></i> Travel insurance (optional)</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card package-card">
-                    <img src="../images.png/MHtouralibaugh.webp" class="card-img-top" alt="Alibaug Package" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Alibaug Beach Retreat</h5>
-                        <p class="card-text">3 Days / 2 Nights</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success"></i> Beach Activities</li>
-                            <li><i class="fas fa-check text-success"></i> Kolaba Fort</li>
-                            <li><i class="fas fa-check text-success"></i> Water Sports</li>
-                        </ul>
-                        <a href="/templates/pakeges/pakeges.html" class="btn btn-custom">Book Now</a>
-                    </div>
+            <hr class="my-4" style="opacity: 0.15;">
+
+            <div>
+                <h5 class="fw-bold mb-2">Itinerary Snapshot (example)</h5>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3"><div class="p-3 rounded-3" style="background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.08);">Day 1: Arrival + local market</div></div>
+                    <div class="col-md-6 col-lg-3"><div class="p-3 rounded-3" style="background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.08);">Day 2: Full-day sightseeing</div></div>
+                    <div class="col-md-6 col-lg-3"><div class="p-3 rounded-3" style="background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.08);">Day 3: Viewpoints + leisure</div></div>
+                    <div class="col-md-6 col-lg-3"><div class="p-3 rounded-3" style="background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.08);">Day 4: Checkout + departure</div></div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-4">
-                <div class="card package-card">
-                    <img src="../images.png/MHFORTS.webp" class="card-img-top" alt="Forts Package" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">Maharashtra Fort Trail</h5>
-                        <p class="card-text">6 Days / 5 Nights</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success"></i> Raigad Fort</li>
-                            <li><i class="fas fa-check text-success"></i> Sinhagad Fort</li>
-                            <li><i class="fas fa-check text-success"></i> Pratapgad Fort</li>
-                        </ul>
-                        <a href="/templates/pakeges/pakeges.html" class="btn btn-custom">Book Now</a>
-                    </div>
-                </div>
+        <section id="contact" class="tour-surface my-4 mb-5">
+            <div class="mb-3">
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <p class="section-subtitle mb-0">Have questions about Maharashtra tours? We’re here to help.</p>
             </div>
-
-        </div>
-    </div>
-
-    <section id="contact" class="container my-5">
-        <h2 class="text-center"><strong>Contact Us</strong></h2>
-        <p class="text-center">Have questions about Maharashtra tours? We're here to help!</p>
-        <div class="text-center btn-section">
-            <a href="mailto:info@letstravel.com" class="btn btn-custom btn-lg">Email Us</a>
-        </div>
-    </section>
+            <div class="d-flex flex-column flex-sm-row gap-2">
+                <a href="mailto:info@letstravel.com" class="btn btn-primary">Email Us</a>
+                <a href="/templates/pakeges/pakeges.html" class="btn btn-outline-secondary rounded-pill px-4" style="font-weight:800;">Browse Packages</a>
+            </div>
+        </section>
+    </main>
 
     <footer class="bg-dark text-white text-center py-3">
         <p class="mb-0">&copy; 2024 letstravel.com - Maharashtra Tours</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (!header) return;
+            header.classList.toggle('scrolled', window.scrollY > 10);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Theme.js"></script>
 </body>
 </html>

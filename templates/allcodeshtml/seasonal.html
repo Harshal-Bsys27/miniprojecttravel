@@ -10,9 +10,12 @@
     <link rel="stylesheet" href="/css/theme-toggler.css">
     <style>
         :root {
-            --accent: #16a34a;      /* green */
-            --accent-dark: #15803d; /* darker green */
-            --accent-2: #d97706;    /* amber */
+            /* Match Home page palette (index.html) */
+            --accent: #2f6b4f;      /* --brand */
+            --accent-dark: #1f4d3a; /* --brand-dark */
+            --accent-2: #f59e0b;    /* --brand-2 */
+            --accent-rgb: 47, 107, 79;
+            --accent2-rgb: 245, 158, 11;
             --ink: #0f172a;
             --nav-bg: rgba(17, 24, 39, 0.92);
         }
@@ -186,8 +189,8 @@
             padding: 26px 18px;
             background:
                 linear-gradient(135deg,
-                    rgba(217, 119, 6, 0.10) 0%,
-                    rgba(22, 163, 74, 0.08) 55%,
+                    rgba(var(--accent2-rgb), 0.10) 0%,
+                    rgba(var(--accent-rgb), 0.08) 55%,
                     rgba(255, 255, 255, 0.0) 100%
                 ),
                 rgba(255, 255, 255, 0.80);
@@ -200,8 +203,8 @@
         body.dark-theme .season-surface {
             background:
                 linear-gradient(135deg,
-                    rgba(217, 119, 6, 0.16) 0%,
-                    rgba(22, 163, 74, 0.12) 55%,
+                    rgba(var(--accent2-rgb), 0.16) 0%,
+                    rgba(var(--accent-rgb), 0.12) 55%,
                     rgba(0, 0, 0, 0.0) 100%
                 ),
                 rgba(0, 0, 0, 0.20);
