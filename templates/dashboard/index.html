@@ -71,6 +71,42 @@
             background-color: var(--nav-bg) !important;
         }
 
+        /* Modern dashboard navbar */
+        .navbar.dashboard-navbar {
+            background:
+                linear-gradient(135deg, rgba(28, 46, 38, 0.92), rgba(var(--brand-rgb), 0.60)) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            padding: 1.05rem 1.15rem;
+            box-shadow:
+                0 14px 34px rgba(0, 0, 0, 0.22),
+                0 10px 24px rgba(var(--brand-rgb), 0.18);
+        }
+        .navbar.dashboard-navbar .navbar-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar.dashboard-navbar .brand-icon {
+            color: rgba(var(--brand2-rgb), 0.95);
+            font-size: 1.55rem;
+        }
+        .navbar.dashboard-navbar .brand-text {
+            font-weight: 900;
+            font-size: 1.45rem;
+            font-style: italic;
+            color: #fff;
+            letter-spacing: 0.2px;
+            line-height: 1;
+        }
+        .navbar.dashboard-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.22);
+        }
+        .navbar.dashboard-navbar .navbar-collapse {
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         .card {
             background-color: var(--card-bg);
         }
@@ -478,11 +514,41 @@
             font-size: 0.9rem;
         }
         .nav-link {
-            transition: color 0.3s, transform 0.3s;
+            transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
         }
-        .nav-link:hover {
-            color: var(--brand-2);
-            transform: scale(1.1);
+        .navbar.dashboard-navbar .navbar-nav {
+            gap: 12px;
+        }
+        .navbar.dashboard-navbar .navbar-nav .nav-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            border-radius: 999px;
+            padding: 0.85rem 1.15rem;
+            margin: 0.15rem 0;
+            color: rgba(255, 255, 255, 0.88);
+            white-space: nowrap;
+            text-align: center;
+            min-width: 112px;
+            line-height: 1.05;
+        }
+        .navbar.dashboard-navbar .navbar-nav .nav-link span {
+            display: block;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+        .navbar.dashboard-navbar .navbar-nav .nav-link:hover,
+        .navbar.dashboard-navbar .navbar-nav .nav-link:focus {
+            color: #fff;
+            background: rgba(var(--brand2-rgb), 0.14);
+            transform: translateY(-1px);
+        }
+        .navbar.dashboard-navbar .nav-ico {
+            color: rgba(var(--brand2-rgb), 0.95);
+            font-size: 1.35rem;
         }
         .card {
             transition: transform 0.3s, box-shadow 0.3s;
@@ -491,46 +557,93 @@
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        /* Search Form */
+        /* Search Form (professional) */
         .search-form {
             display: flex;
             align-items: center;
+            width: 100%;
+            max-width: 440px;
             margin-left: auto;
         }
-        .input-group {
+        .search-form .input-group {
             display: flex;
             position: relative;
+            width: 100%;
+            align-items: stretch;
         }
-        .search-form input[type="text"] {
-            padding: 10px 40px;
-            border: none;
-            border-radius: 4px;
-            width: 250px;
-            background-color: #fff;
-            transition: box-shadow 0.2s;
+        .search-form .search-input {
+            padding: 0 14px 0 42px;
+            height: 44px;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            border-radius: 999px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.94);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            outline: none;
         }
-        .search-form input[type="text"]:focus {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        :root[data-theme="dark"] .search-form .search-input {
+            background: rgba(15, 15, 15, 0.72);
+            color: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+        .search-form .search-input:focus {
+            border-color: rgba(var(--brand2-rgb), 0.60);
+            box-shadow: 0 0 0 0.20rem rgba(var(--brand2-rgb), 0.22);
         }
         .search-icon {
             position: absolute;
-            left: 15px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--brand-2);
+            color: rgba(var(--brand2-rgb), 0.95);
             pointer-events: none;
+            font-size: 0.95rem;
         }
-        .search-form button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--brand);
-            color: #fff;
-            cursor: pointer;
+        .search-form .btn-search {
             margin-left: 10px;
+            border-radius: 999px;
+            height: 44px;
+            padding: 0 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+            color: #fff;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
         }
-        .search-form button:hover {
-            background-color: var(--brand-dark);
+        .search-form .btn-search:hover {
+            filter: brightness(1.04);
+        }
+
+        /* Suggestions dropdown */
+        .search-suggestions.dropdown-menu {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 6px);
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+        :root[data-theme="dark"] .search-suggestions.dropdown-menu {
+            background: rgba(20, 20, 20, 0.92);
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+        .search-suggestions .dropdown-item {
+            border-radius: 10px;
+            padding: 10px 12px;
+            white-space: normal;
+            cursor: pointer;
+        }
+        :root[data-theme="dark"] .search-suggestions .dropdown-item {
+            color: rgba(255, 255, 255, 0.92);
+        }
+        .search-suggestions .dropdown-item:hover {
+            background: rgba(var(--brand2-rgb), 0.14);
         }
         /* Hover effect for logo and text */
         .navbar-brand {
@@ -540,9 +653,10 @@
             transform: scale(1.1);
         }
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .search-form input[type="text"] {
-                width: 100%;
+        @media (max-width: 991.98px) {
+            .search-form {
+                max-width: 100%;
+                margin-top: 10px;
             }
         }
         /* Theme toggle button alignment fix */
@@ -554,6 +668,35 @@
             text-align: center;
             color: rgba(255,255,255,.5);
         }
+        .navbar.dashboard-navbar .theme-toggle.nav-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0.85rem 1.15rem;
+            border-radius: 999px;
+            min-width: 112px;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        /* Keep buttons readable on very small screens */
+        @media (max-width: 575.98px) {
+            .navbar.dashboard-navbar .navbar-nav {
+                gap: 8px;
+            }
+            .navbar.dashboard-navbar .navbar-nav .nav-link,
+            .navbar.dashboard-navbar .theme-toggle.nav-link {
+                min-width: 96px;
+                padding: 0.75rem 0.95rem;
+            }
+        }
+        .theme-toggle.nav-link:focus,
+        .theme-toggle.nav-link:active,
+        .theme-toggle.nav-link:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+        }
         .theme-toggle.nav-link:hover {
             color: var(--brand-2);
         }
@@ -561,38 +704,37 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark dashboard-navbar sticky-top">
         <a class="navbar-brand d-flex align-items-center" href="/dashboard">
-            <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>  
-            <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
+            <i class="fas fa-plane-departure brand-icon" aria-hidden="true"></i>
+            <span class="brand-text">letstravel.com</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto text-center">
-                <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#destinations"><i class="fas fa-map-marked-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Domestic</a></li>
-                <li class="nav-item"><a class="nav-link" href="#international"><i class="fas fa-globe-americas fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>International</a></li>
-                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/seasonal.html"><i class="fas fa-leaf fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Seasonal</a></li>
-                <li class="nav-item"><a class="nav-link" href="#trips"><i class="fas fa-route fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Tours</a></li>
-                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/Planyourtrip.html"><i class="fas fa-map fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Plan Your Trip</a></li>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home nav-ico" aria-hidden="true"></i><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#destinations"><i class="fas fa-map-marked-alt nav-ico" aria-hidden="true"></i><span>Domestic</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#international"><i class="fas fa-globe-americas nav-ico" aria-hidden="true"></i><span>International</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/seasonal.html"><i class="fas fa-leaf nav-ico" aria-hidden="true"></i><span>Seasonal</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#trips"><i class="fas fa-route nav-ico" aria-hidden="true"></i><span>Tours</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/allcodeshtml/Planyourtrip.html"><i class="fas fa-map nav-ico" aria-hidden="true"></i><span>Plan Your Trip</span></a></li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">
-                        <i class="fas fa-sign-out-alt fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i><br>Logout
+                        <i class="fas fa-sign-out-alt nav-ico" aria-hidden="true"></i><span>Logout</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <button class="theme-toggle nav-link" id="themeToggle">
-                        <i class="fas fa-moon fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i>
-                        <br>Theme
+                        <i class="fas fa-moon nav-ico" aria-hidden="true"></i><span>Theme</span>
                     </button>
                 </li>
             </ul>
             <form class="search-form" role="search" aria-label="Site Search">
                 <div class="input-group">
-                    <span class="search-icon" aria-hidden="true">🔍</span>
-                    <input type="text" id="searchInput" list="searchSuggestions" aria-label="Search" placeholder="Search Indian Destinations...">
+                    <span class="search-icon" aria-hidden="true"><i class="fas fa-search"></i></span>
+                    <input type="text" class="search-input" id="searchInput" list="searchSuggestions" aria-label="Search" placeholder="Search destinations, tours, pages...">
                     <datalist id="searchSuggestions">
                     </datalist>
                     <script>
@@ -602,15 +744,9 @@
 
                         // Create a dropdown list instead of datalist
                         const dropdown = document.createElement('ul');
-                        dropdown.className = 'dropdown-menu';
+                        dropdown.className = 'search-suggestions dropdown-menu';
                         dropdown.style.display = 'none';
-                        dropdown.style.position = 'absolute';
-                        dropdown.style.width = '100%';
-                        dropdown.style.maxHeight = '240px';
-                        dropdown.style.overflowY = 'auto';
-                        dropdown.style.zIndex = '1000';
-                        dropdown.style.backgroundColor = '#fff';
-                        dropdown.style.border = '1px solid #ddd';
+                        dropdown.setAttribute('role', 'listbox');
                         searchInput.parentNode.appendChild(dropdown);
 
                         let lastResults = [];
@@ -630,10 +766,6 @@
                             lastResults.forEach(item => {
                                 const li = document.createElement('li');
                                 li.className = 'dropdown-item';
-                                li.style.padding = '10px';
-                                li.style.cursor = 'pointer';
-                                li.style.listStyle = 'none';
-                                li.style.borderBottom = '1px solid #eee';
 
                                 const label = item.label || 'Result';
                                 const kind = item.kind ? ` (${item.kind})` : '';
@@ -641,12 +773,6 @@
 
                                 li.addEventListener('click', () => {
                                     if (item.url) window.location.href = item.url;
-                                });
-                                li.addEventListener('mouseover', () => {
-                                    li.style.backgroundColor = '#f8f9fa';
-                                });
-                                li.addEventListener('mouseout', () => {
-                                    li.style.backgroundColor = '#fff';
                                 });
                                 dropdown.appendChild(li);
                             });
@@ -707,8 +833,8 @@
                             }
                         });
                     </script>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-search"></i> Search
+                    <button type="submit" class="btn btn-search">
+                        <i class="fas fa-search" aria-hidden="true"></i><span class="ml-2">Search</span>
                     </button>
                 </div>
             </form>
