@@ -5,406 +5,460 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seasonal Travel in India</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="/css codes/trips.css">
+    <link rel="stylesheet" href="/css/theme-toggler.css">
     <style>
-        /* Theme variables */
-        :root[data-theme="light"] {
-            --bg-color: #fff;
-            --text-color: #333;
-            --card-bg: #fff;
-            --card-text: #333;
-            --header-bg: #95a842;
-            --header-text: #fff;
-            --nav-hover: #350fca;
-            --card-shadow: rgba(0, 0, 0, 0.2);
-        }
-        
-        :root[data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #fff;
-            --card-bg: #2d2d2d;
-            --card-text: #fff;
-            --header-bg: #2c3e50;  /* Darker blue-grey that matches the theme */
-            --header-text: #ecf0f1; /* Light grey for better contrast */
-            --nav-hover: #3498db;   /* Bright blue for hover state */
-            --card-shadow: rgba(255, 255, 255, 0.1);
+        :root {
+            --accent: #16a34a;      /* green */
+            --accent-dark: #15803d; /* darker green */
+            --accent-2: #d97706;    /* amber */
+            --ink: #0f172a;
+            --nav-bg: rgba(17, 24, 39, 0.92);
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            padding-top: 92px;
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            color: var(--ink);
         }
 
-        header {
-            background: var(--header-bg);
-            color: var(--header-text);
-            transition: background-color 0.3s ease;
+        body.dark-theme {
+            background: #0b1220;
+            color: #ffffff;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            color: var(--card-text);
+        /* Modern fixed navbar */
+        #header {
+            background: var(--nav-bg);
+            color: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(10px);
+            transition: all 0.25s ease;
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            background: transparent;
-            border: none;
-            color: var(--header-text) !important;
+        #header.scrolled {
+            padding: 10px 0;
+            background: rgba(17, 24, 39, 0.97);
+            box-shadow: 0 12px 38px rgba(0, 0, 0, 0.22);
+        }
+
+        #header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             opacity: 0.9;
-            padding: 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            transition: opacity 0.2s ease;
         }
 
-        .theme-toggle i {
-            margin-right: 8px;
-            font-size: 1.2rem;
+        .site-brand {
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            font-size: 1.15rem;
         }
 
-        .theme-toggle:hover {
-            opacity: 1;
-        }
-
-        /* Ensure text remains visible in dark theme */
-        [data-theme="dark"] .card {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        [data-theme="dark"] .btn-primary {
-            background-color: #4a90e2;
-            border-color: #4a90e2;
-        }
-
-        /* Custom styles */
-
-        header {
-            padding: 1.5rem 0; /* Increased padding for better spacing */
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-
-        /* Keep all nav items (including Theme) centered under the title */
-        .seasonal-nav {
-            justify-content: center;
-            width: 100%;
-        }
-
-        .seasonal-nav .theme-toggle {
-            justify-content: center;
-        }
-
-        .nav-link {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--header-text) !important;
-            transition: color 0.3s ease; /* Smooth color transition */
-        }
-
-        /* Navbar alignment polish (keeps Theme button inline, consistent spacing) */
-        .seasonal-nav {
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-            margin: 0;
-            padding-left: 0;
-        }
-
-        .seasonal-nav .nav-item {
-            display: flex;
-            align-items: center;
-        }
-
-        .seasonal-nav .nav-link {
+        .site-brand .brand-mark {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0.9rem;
-            line-height: 1.1;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.25), rgba(217, 119, 6, 0.22));
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        #header .navbar {
+            padding: 0;
+        }
+
+        #header .navbar-nav {
+            gap: 8px;
+        }
+
+        #header .nav-link {
+            color: rgba(255, 255, 255, 0.88) !important;
+            padding: 10px 14px;
             border-radius: 999px;
-            white-space: nowrap;
+            font-weight: 700;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
         }
 
-        /* Nav icons should not be huge; keep them aligned with text */
-        .seasonal-nav .season-icon {
-            font-size: 1.1rem;
-            opacity: 0.95;
+        #header .nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.10);
+            transform: translateY(-1px);
         }
 
-        .seasonal-nav .theme-toggle {
-            border-radius: 999px;
-            padding: 0.5rem 0.9rem;
-            line-height: 1.1;
+        #header .nav-link.active {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.28), rgba(217, 119, 6, 0.26));
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        .seasonal-nav .nav-link i {
-            margin-right: 0; /* avoid double spacing when using gap */
+        #header .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
         }
 
-        .nav-link:hover {
-            color: var(--nav-hover) !important;
+        /* Hero carousel */
+        .hero-wrap {
+            margin-top: 18px;
         }
 
-        .card {
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-radius: 10px; /* Rounded corners */
-            overflow: hidden; /* Hide overflow for rounded corners */
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 8px 20px var(--card-shadow);
-        }
-
-        footer {
-            padding: 1rem 0;
-            background: #333;
-            color: #fff;
-            text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        .carousel-inner {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 16px 42px rgba(2, 6, 23, 0.18);
         }
 
         .carousel-item img {
-            max-height: 500px;
+            height: 480px;
             object-fit: cover;
             width: 100%;
-            border-radius: 10px; /* Rounded corners for images */
         }
 
-        .season-icon {
-            font-size: 2rem;
-            color: var(--header-text);
-            opacity: 0.9;
-            transition: transform 0.3s;
-        }
-
-        [data-theme="dark"] .winter-icon { color: #89CFF0; }
-        [data-theme="dark"] .summer-icon { color: #FFD700; }
-        [data-theme="dark"] .monsoon-icon { color: #87CEEB; }
-
-        .season-icon:hover {
-            transform: scale(1.2);
-        }
-
-        main {
-            padding: 2rem;
-        }
-
-        section {
-            margin-bottom: 2rem;
-        }
-
-        section h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 0.5rem;
-            font-size: 2rem; /* Increased size for headers */
-            margin-bottom: 1rem; /* Space below headers */
-        }
-
-        /* Responsive design */
         @media (max-width: 768px) {
-            .nav-link {
-                margin: 0;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            main {
-                padding: 1.5rem; /* Adjusted padding for smaller screens */
-            }
-
-            /* Keep layout centered when wrapped */
-            .seasonal-nav {
-                justify-content: center;
+            .carousel-item img {
+                height: 300px;
             }
         }
 
-        @media (max-width: 576px) {
-            header {
-                padding: 1rem; /* Less padding for mobile */
-            }
+        /* Section headings consistent with packages pages */
+        .section-title {
+            display: inline-block;
+            margin: 0;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            line-height: 1.15;
+            color: var(--ink);
+            position: relative;
+            padding-bottom: 10px;
+            text-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+        }
 
-            main {
-                padding: 1rem; /* Less padding for mobile */
-            }
+        body.dark-theme .section-title {
+            color: #ffffff;
+        }
 
-            .seasonal-nav {
-                justify-content: center;
-            }
+        .section-title span {
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 88px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+            opacity: 0.95;
+        }
+
+        .section-subtitle {
+            color: rgba(15, 23, 42, 0.65);
+        }
+        body.dark-theme .section-subtitle {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Section surfaces like Domestic/International/Tours */
+        .season-surface {
+            position: relative;
+            border-radius: 18px;
+            padding: 26px 18px;
+            background:
+                linear-gradient(135deg,
+                    rgba(217, 119, 6, 0.10) 0%,
+                    rgba(22, 163, 74, 0.08) 55%,
+                    rgba(255, 255, 255, 0.0) 100%
+                ),
+                rgba(255, 255, 255, 0.80);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(6px);
+            overflow: hidden;
+        }
+
+        body.dark-theme .season-surface {
+            background:
+                linear-gradient(135deg,
+                    rgba(217, 119, 6, 0.16) 0%,
+                    rgba(22, 163, 74, 0.12) 55%,
+                    rgba(0, 0, 0, 0.0) 100%
+                ),
+                rgba(0, 0, 0, 0.20);
+            border-color: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+        }
+
+        /* Cards like domestic/international/tours */
+        .season-card {
+            border: none;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.10);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+        }
+
+        body.dark-theme .season-card {
+            background: rgba(17, 24, 39, 0.85);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.30);
+        }
+
+        .season-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 46px rgba(2, 6, 23, 0.16);
+        }
+
+        .season-card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .place-title {
+            font-weight: 900;
+            letter-spacing: 0.2px;
+            margin-bottom: 6px;
+        }
+
+        .place-desc {
+            color: rgba(15, 23, 42, 0.70);
+            font-size: 0.98rem;
+            margin-bottom: 14px;
+        }
+
+        body.dark-theme .place-desc {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            border-radius: 999px;
+            font-weight: 700;
+            padding: 10px 16px;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        footer {
+            padding: 1.25rem 0;
+            background: #111827;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: rgba(245, 158, 11, 0.95);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Seasonal Travel in India</h1>
-        <nav>
-            <ul class="nav justify-content-center seasonal-nav">
-                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home 🏠</a></li>
-                <li class="nav-item"><a class="nav-link" href="#winter"><i class="fas fa-snowflake season-icon winter-icon"></i> Winter Destinations ❄️</a></li>
-                <li class="nav-item"><a class="nav-link" href="#summer"><i class="fas fa-sun season-icon summer-icon"></i> Summer Escapes ☀️</a></li>
-                <li class="nav-item"><a class="nav-link" href="#monsoon"><i class="fas fa-cloud-rain season-icon monsoon-icon"></i> Monsoon Adventures 🌧️</a></li>
-                <li class="nav-item">
-                    <button class="theme-toggle nav-link" id="themeToggle">
-                        <i class="fas fa-moon"></i>
-                        Theme 🌓
-                    </button>
-                </li>
-            </ul>
-        </nav>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand d-flex align-items-center gap-2 site-brand" href="/">
+                    <span class="brand-mark">🍃</span>
+                    <span>Seasonal Travel</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#winter"><i class="fas fa-snowflake me-1"></i>Winter</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#summer"><i class="fas fa-sun me-1"></i>Summer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#monsoon"><i class="fas fa-cloud-rain me-1"></i>Monsoon</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center mt-3 mt-lg-0">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Carousel Section -->
-    <div id="travelCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <div class="container hero-wrap">
+        <div id="travelCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../images.png/seasonal.rain.jpg" class="d-block w-100" alt="Travel Image 1">
+                <img src="/images.png/seasonal.rain.jpg" class="d-block w-100" alt="Monsoon escapes">
             </div>
             <div class="carousel-item">
-                <img src="../images.png/season.winter.avif" class="d-block w-100" alt="Travel Image 2">
+                <img src="/images.png/season.winter.avif" class="d-block w-100" alt="Winter getaways">
             </div>
             <div class="carousel-item">
-                <img src="../images.png/season.summer.jpg" class="d-block w-100" alt="Travel Image 3">
+                <img src="/images.png/season.summer.jpg" class="d-block w-100" alt="Summer breaks">
             </div>
             <div class="carousel-item">
-                <img src="../images.png/seasonimage4.webp" class="d-block w-100" alt="Travel Image 4">
+                <img src="/images.png/seasonimage4.webp" class="d-block w-100" alt="Seasonal adventures">
             </div>
             <div class="carousel-item">
-                <img src="../images.png/seasonimage5.jpg" class="d-block w-100" alt="Travel Image 5">
+                <img src="/images.png/seasonimage5.jpg" class="d-block w-100" alt="Nature and culture">
             </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#travelCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <a class="carousel-control-prev" href="#travelCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#travelCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 
-    <main class="container">
-        <section id="winter">
-            <h2 class="text-center mb-4"><i class="fas fa-snowflake season-icon winter-icon"></i> Winter Destinations</h2>
+    <main class="container my-4">
+        <section id="winter" class="season-surface mb-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title"><span>Winter</span> Destinations ❄️</h2>
+                <div class="section-subtitle">Snow, hill-stations, cozy stays and scenic views</div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card season-card">
                         <img src="/images.png/shimla.jpg" class="card-img-top" alt="Shimla">
                         <div class="card-body">
-                            <h5 class="card-title">Shimla</h5>
-                            <p class="card-text">Experience the charm of snow-covered hills.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=shimla&season=winter" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Shimla</h5>
+                            <p class="place-desc">Experience the charm of snow-covered hills.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=shimla&season=winter" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/winter.manali.jpg" class="card-img-top" alt="Manali">
+                    <div class="card season-card">
+                        <img src="/images.png/winter.manali.jpg" class="card-img-top" alt="Manali">
                         <div class="card-body">
-                            <h5 class="card-title">Manali</h5>
-                            <p class="card-text">Adventure awaits in the picturesque valleys.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=manali&season=winter" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Manali</h5>
+                            <p class="place-desc">Adventure awaits in the picturesque valleys.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=manali&season=winter" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/winter.ladakh.jpg" class="card-img-top" alt="Ladakh">
+                    <div class="card season-card">
+                        <img src="/images.png/winter.ladakh.jpg" class="card-img-top" alt="Ladakh">
                         <div class="card-body">
-                            <h5 class="card-title">Ladakh</h5>
-                            <p class="card-text">Explore the breathtaking landscapes of the Himalayas.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=ladakh&season=winter" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="summer">
-            <h2 class="text-center mb-4"><i class="fas fa-sun season-icon summer-icon"></i> Summer Escapes</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/summer.goa.webp" class="card-img-top" alt="Goa">
-                        <div class="card-body">
-                            <h5 class="card-title">Goa</h5>
-                            <p class="card-text">Relax on beautiful beaches and enjoy the vibrant nightlife.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=goa&season=summer" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/summer.kerala.webp" class="card-img-top" alt="Kerala">
-                        <div class="card-body">
-                            <h5 class="card-title">Kerala</h5>
-                            <p class="card-text">Experience the serene backwaters and lush greenery.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=kerala&season=summer" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/vacation.Andaman & Nicobar.jpg" class="card-img-top" alt="Andaman">
-                        <div class="card-body">
-                            <h5 class="card-title">Andaman Islands</h5>
-                            <p class="card-text">Explore stunning beaches and crystal-clear waters.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=andaman&season=summer" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Ladakh</h5>
+                            <p class="place-desc">Explore the breathtaking landscapes of the Himalayas.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=ladakh&season=winter" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="monsoon">
-            <h2 class="text-center mb-4"><i class="fas fa-cloud-rain season-icon monsoon-icon"></i> Monsoon Adventures</h2>
+        <section id="summer" class="season-surface mb-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title"><span>Summer</span> Escapes ☀️</h2>
+                <div class="section-subtitle">Beaches, backwaters and cool island vibes</div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/rain.karnataka.jpg" class="card-img-top" alt="Karnataka">
+                    <div class="card season-card">
+                        <img src="/images.png/summer.goa.webp" class="card-img-top" alt="Goa">
                         <div class="card-body">
-                            <h5 class="card-title">Karnataka</h5>
-                            <p class="card-text">Experience Karnataka's lushiness.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=karnataka&season=monsoon" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Goa</h5>
+                            <p class="place-desc">Relax on beautiful beaches and enjoy the vibrant nightlife.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=goa&season=summer" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/rain.lonavala.jpg" class="card-img-top" alt="Lonavala">
+                    <div class="card season-card">
+                        <img src="/images.png/summer.kerala.webp" class="card-img-top" alt="Kerala">
                         <div class="card-body">
-                            <h5 class="card-title">Lonavala</h5>
-                            <p class="card-text">Enjoy the scenic beauty and waterfalls.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=lonavala&season=monsoon" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Kerala</h5>
+                            <p class="place-desc">Experience the serene backwaters and lush greenery.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=kerala&season=summer" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="../images.png/rain.mahabaleshwar.webp" class="card-img-top" alt="Mahabaleshwar">
+                    <div class="card season-card">
+                        <img src="/images.png/vacation.Andaman%20%26%20Nicobar.jpg" class="card-img-top" alt="Andaman">
                         <div class="card-body">
-                            <h5 class="card-title">Mahabaleshwar</h5>
-                            <p class="card-text">Experience the refreshing hill station vibes.</p>
-                            <a href="../templates/pakeges/pakeges.html?destination=mahabaleshwar&season=monsoon" class="btn btn-primary">Book Now</a>
+                            <h5 class="card-title place-title">Andaman Islands</h5>
+                            <p class="place-desc">Explore stunning beaches and crystal-clear waters.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=andaman&season=summer" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="monsoon" class="season-surface">
+            <div class="text-center mb-4">
+                <h2 class="section-title"><span>Monsoon</span> Adventures 🌧️</h2>
+                <div class="section-subtitle">Waterfalls, green valleys and foggy hill drives</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card season-card">
+                        <img src="/images.png/rain.karnataka.jpg" class="card-img-top" alt="Karnataka">
+                        <div class="card-body">
+                            <h5 class="card-title place-title">Karnataka</h5>
+                            <p class="place-desc">Experience Karnataka's lushiness.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=karnataka&season=monsoon" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card season-card">
+                        <img src="/images.png/rain.lonavala.jpg" class="card-img-top" alt="Lonavala">
+                        <div class="card-body">
+                            <h5 class="card-title place-title">Lonavala</h5>
+                            <p class="place-desc">Enjoy the scenic beauty and waterfalls.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=lonavala&season=monsoon" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card season-card">
+                        <img src="/images.png/rain.mahabaleshwar.webp" class="card-img-top" alt="Mahabaleshwar">
+                        <div class="card-body">
+                            <h5 class="card-title place-title">Mahabaleshwar</h5>
+                            <p class="place-desc">Experience the refreshing hill station vibes.</p>
+                            <a href="/templates/pakeges/pakeges.html?destination=mahabaleshwar&season=monsoon" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -413,33 +467,46 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 letstravel.com traveltrips | Visit us at <a href="https://letstravel.com" target="_blank" style="color: #FFD700;">letstravel.com</a></p>
+        <p class="mb-1">&copy; 2024 letstravel.com traveltrips</p>
+        <p class="mb-0">Visit us at <a href="https://letstravel.com" target="_blank" rel="noreferrer">letstravel.com</a></p>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Theme Toggle Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        // Header shrink on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (!header) return;
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
 
-        // Set initial theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
+        // Active nav link + close mobile menu after click
+        function setActiveNavLink() {
+            const links = document.querySelectorAll('#header .nav-link');
+            links.forEach(l => l.classList.remove('active'));
+            const hash = (window.location.hash || '').toLowerCase();
+            const active = hash ? document.querySelector(`#header .nav-link[href="${hash}"]`) : null;
+            (active || document.querySelector('#header .nav-link[href="#winter"]'))?.classList.add('active');
+        }
+
+        window.addEventListener('hashchange', setActiveNavLink);
+        window.addEventListener('DOMContentLoaded', () => {
+            setActiveNavLink();
+            const collapseEl = document.getElementById('mainNav');
+            if (collapseEl && window.bootstrap && window.bootstrap.Collapse) {
+                const collapse = window.bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+                document.querySelectorAll('#header a.nav-link').forEach(a => {
+                    a.addEventListener('click', () => {
+                        const toggler = document.querySelector('#header .navbar-toggler');
+                        if (toggler && window.getComputedStyle(toggler).display !== 'none') {
+                            collapse.hide();
+                        }
+                    });
+                });
+            }
+        });
     </script>
+    <script src="/Theme.js"></script>
 </body>
 </html>
