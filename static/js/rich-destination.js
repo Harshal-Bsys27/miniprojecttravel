@@ -111,11 +111,54 @@
 
   // Climate info (optional)
   async function loadClimate() {
-    if (!climateQuery) return;
     const maxEl = document.querySelector(".max");
     const minEl = document.querySelector(".min");
     const humEl = document.querySelector(".humidity");
     if (!maxEl || !minEl || !humEl) return;
+
+    // Ensure the UI never shows empty values.
+    maxEl.textContent = "—";
+    minEl.textContent = "—";
+    humEl.textContent = "—";
+
+    const fallbackByQuery = {
+      "delhi": { max: 35, min: 24, humidity: 55 },
+      "mumbai": { max: 31, min: 26, humidity: 75 },
+      "manali": { max: 18, min: 7, humidity: 55 },
+      "goa": { max: 32, min: 26, humidity: 75 },
+      "ladakh": { max: 17, min: 4, humidity: 40 },
+      "srinagar": { max: 23, min: 10, humidity: 55 },
+      "dubai": { max: 36, min: 27, humidity: 50 },
+      "new york": { max: 26, min: 18, humidity: 60 },
+      "bali": { max: 30, min: 25, humidity: 78 },
+      "brazil": { max: 28, min: 20, humidity: 70 },
+      "maldives": { max: 30, min: 26, humidity: 78 },
+      "paris": { max: 24, min: 16, humidity: 60 },
+    };
+
+    function setClimateValues(maxValue, minValue, humidityValue) {
+      if (typeof maxValue === "number" && Number.isFinite(maxValue)) {
+        maxEl.textContent = String(Math.round(maxValue));
+      }
+      if (typeof minValue === "number" && Number.isFinite(minValue)) {
+        minEl.textContent = String(Math.round(minValue));
+      }
+      if (typeof humidityValue === "number" && Number.isFinite(humidityValue)) {
+        humEl.textContent = String(Math.round(humidityValue));
+      }
+    }
+
+    const fallbackKey = (climateQuery || title)
+      .trim()
+      .toLowerCase()
+      .replace(/[-_]+/g, " ")
+      .replace(/\s+/g, " ");
+    const fallback = fallbackByQuery[fallbackKey];
+    if (fallback) {
+      setClimateValues(fallback.max, fallback.min, fallback.humidity);
+    }
+
+    if (!climateQuery) return;
 
     try {
       const url =
@@ -128,9 +171,10 @@
       const day0 = data && data.daily && data.daily[0] ? data.daily[0] : null;
       if (!day0 || !day0.temperature) return;
 
-      maxEl.textContent = String(Math.round(day0.temperature.maximum));
-      minEl.textContent = String(Math.round(day0.temperature.minimum));
-      humEl.textContent = String(Math.round(day0.temperature.humidity));
+      const maxT = day0.temperature.maximum;
+      const minT = day0.temperature.minimum;
+      const hum = day0.humidity ?? day0.temperature.humidity ?? data.humidity;
+      setClimateValues(maxT, minT, hum);
     } catch {
       // Ignore climate errors silently
     }

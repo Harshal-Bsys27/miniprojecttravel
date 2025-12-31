@@ -42,5 +42,16 @@ export const blogPosts = [
         description: 'Experience the spiritual heart of India and ancient traditions of Varanasi.',
         icon: 'fas fa-om',
         url: 'varanasi.html'
+    },
+    {
+        id: 'dumont',
+        title: 'Tour du Mont Blanc',
+        category: 'hiking',
+        location: 'Europe',
+        duration: '7 days',
+        budget: 'high',
+        description: 'A classic multi-country trek across the Alps with stunning views.',
+        icon: 'fas fa-hiking',
+        url: 'dumont.html'
     }
 ];

@@ -61,6 +61,13 @@
             transform: scale(1.1);
         }
 
+        .theme-toggle:focus,
+        .theme-toggle:active,
+        .theme-toggle:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -69,6 +76,46 @@
 
         .navbar {
             background-color: var(--nav-bg) !important;
+        }
+
+        /* Dashboard-aligned navbar theme */
+        .dashboard-navbar {
+            background: linear-gradient(135deg,
+                rgba(var(--brand-rgb), 0.95) 0%,
+                rgba(var(--brand2-rgb), 0.80) 55%,
+                rgba(0, 0, 0, 0.18) 100%) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        :root[data-theme="dark"] .dashboard-navbar {
+            background: linear-gradient(135deg,
+                rgba(0, 0, 0, 0.55) 0%,
+                rgba(var(--brand-rgb), 0.55) 35%,
+                rgba(var(--brand2-rgb), 0.25) 100%) !important;
+            border-bottom-color: rgba(255, 255, 255, 0.10);
+        }
+
+        .dashboard-navbar .navbar-brand i {
+            color: rgba(255, 255, 255, 0.92) !important;
+        }
+
+        .dashboard-navbar .navbar-nav .nav-link {
+            border-radius: 999px;
+            padding: 10px 16px;
+            transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+        }
+
+        .dashboard-navbar .navbar-nav .nav-link:hover {
+            background: rgba(255, 255, 255, 0.10);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .dashboard-navbar .navbar-nav .nav-link i {
+            color: var(--brand-2) !important;
         }
 
         .card {
@@ -561,7 +608,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark dashboard-navbar sticky-top">
         <a class="navbar-brand d-flex align-items-center" href="/index.html">
             <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>  
             <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>

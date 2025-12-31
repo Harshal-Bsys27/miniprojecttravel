@@ -4,19 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour du Mont Blanc Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="dumont.css">
+    <style>
+        :root {
+            --brand: #2f6b4f;
+            --brand-2: #f59e0b;
+            --brand-dark: #1f4d3a;
+            --brand-rgb: 47, 107, 79;
+            --brand2-rgb: 245, 158, 11;
+        }
+
+        .navbar.dashboard-navbar {
+            background: linear-gradient(135deg, rgba(28, 46, 38, 0.94), rgba(var(--brand-rgb), 0.62));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+        }
+
+        .navbar.dashboard-navbar .navbar-brand {
+            font-weight: 900;
+            letter-spacing: 0.2px;
+        }
+
+        .navbar.dashboard-navbar .navbar-brand i,
+        .navbar.dashboard-navbar .nav-link i {
+            color: rgba(var(--brand2-rgb), 0.95);
+        }
+
+        .navbar.dashboard-navbar .nav-link {
+            border-radius: 999px;
+            padding: 0.55rem 0.85rem;
+            margin: 0.15rem 0.2rem;
+        }
+
+        .navbar.dashboard-navbar .nav-link:hover,
+        .navbar.dashboard-navbar .nav-link:focus,
+        .navbar.dashboard-navbar .nav-link.active {
+            background: rgba(var(--brand2-rgb), 0.14);
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark dashboard-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard"><i class="fas fa-plane-departure me-2" aria-hidden="true"></i>letstravel.com</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBlogDumont" aria-controls="navbarBlogDumont" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarBlogDumont">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard"><i class="fas fa-home me-1" aria-hidden="true"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Blog/blogs.html"><i class="fas fa-blog me-1" aria-hidden="true"></i>All Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/allcodeshtml/Planyourtrip.html"><i class="fas fa-map me-1" aria-hidden="true"></i>Plan Trip</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Pack.html"><i class="fas fa-suitcase-rolling me-1" aria-hidden="true"></i>Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/allcodeshtml/aboutus.html"><i class="fas fa-info-circle me-1" aria-hidden="true"></i>About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <header>
         <h1>Tour du Mont Blanc Blog</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
     <main>
         <section id="home">
@@ -50,5 +99,6 @@
         <p>&copy; 2024 Tour du Mont Blanc Blog. All rights reserved.</p>
     </footer>
     <script src="dumont.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

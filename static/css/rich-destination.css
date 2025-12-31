@@ -2,7 +2,12 @@
    Served via /css/rich-destination.css */
 
 :root {
-  --nav-bg: #091020;
+  --brand: #2f6b4f;
+  --brand-2: #f59e0b;
+  --brand-dark: #1f4d3a;
+  --brand-rgb: 47, 107, 79;
+  --brand2-rgb: 245, 158, 11;
+  --nav-bg: linear-gradient(135deg, rgba(28, 46, 38, 0.94), rgba(var(--brand-rgb), 0.62));
   --primary: #7c3aed; /* violet */
   --accent: #f43f5e;  /* rose */
   --secondary: #14b8a6; /* teal */
@@ -31,17 +36,29 @@ body {
   left: 0;
   z-index: 9999;
   background: var(--nav-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
 }
 
 .newNav {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 1rem 1.25rem;
+  padding: 1.05rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.newNav .fa-plane-departure {
+  color: rgba(var(--brand2-rgb), 0.95) !important;
+}
+
+.newNav > span {
+  font-weight: 900 !important;
+  letter-spacing: 0.2px;
 }
 
 .navLinks {
@@ -65,7 +82,7 @@ body {
   content: "";
   height: 2px;
   width: 0;
-  background: #ff0000;
+  background: rgba(var(--brand2-rgb), 0.95);
   transition: width 0.2s ease-in-out;
 }
 
@@ -90,8 +107,8 @@ body {
 }
 
 #btn-style:hover {
-  background: #ff0000;
-  border-color: #ff0000;
+  background: rgba(var(--brand2-rgb), 0.95);
+  border-color: rgba(var(--brand2-rgb), 0.95);
   color: #fff;
 }
 
@@ -139,6 +156,31 @@ body {
 body.dark-theme {
   background: #0e1525;
   color: #ffffff;
+
+  /* Ensure cards and text stay readable in dark mode */
+  --card-bg: rgba(15, 23, 42, 0.78);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(226, 232, 240, 0.78);
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme .check-in-out input[type="datetime-local"] {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(148, 163, 184, 0.25);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+body.dark-theme .check-in-out input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.85;
+}
+
+/* These pages use old FA entities like &#xf072; with class="fa".
+   Make sure they still render correctly with Font Awesome 6. */
+.icon1 .fa,
+#weatherInfo .fa {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
 }
 
 /* Page layout */
