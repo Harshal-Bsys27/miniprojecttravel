@@ -144,24 +144,62 @@
     </section>
     
     <script>
-        // Get destination from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const destination = urlParams.get('destination');
-        const season = urlParams.get('season');
+        const normalizePlace = (value) => {
+            const v = (value || '').toString().trim();
+            return v;
+        };
 
-        // Update package titles and descriptions based on destination
+        const safeGet = (storage, key) => {
+            try {
+                return storage.getItem(key) || '';
+            } catch (e) {
+                return '';
+            }
+        };
+
+        const safeSet = (storage, key, value) => {
+            try {
+                storage.setItem(key, value);
+            } catch (e) {
+                // ignore
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const destinationParam = normalizePlace(urlParams.get('destination'));
+        const seasonParam = normalizePlace(urlParams.get('season'));
+
+        const storedDestination = normalizePlace(
+            safeGet(sessionStorage, 'selectedDestination') || safeGet(localStorage, 'selectedDestination')
+        );
+        const storedSeason = normalizePlace(safeGet(sessionStorage, 'selectedSeason'));
+
+        const destination = destinationParam || storedDestination;
+        const season = seasonParam || storedSeason;
+
         if (destination) {
-            document.querySelector('.package-title h2').textContent = `${destination.toUpperCase()} Packages`;
-            
-            // Update all book now links to include destination
-            document.querySelectorAll('.book-btn').forEach(btn => {
+            const titleEl = document.querySelector('.package-title h2');
+            if (titleEl) titleEl.textContent = `${destination.toUpperCase()} Packages`;
+            document.title = `${destination.toUpperCase()} Packages - letstravel.com`;
+
+            // Update all Book Now links to include destination/season
+            document.querySelectorAll('.book-btn').forEach((btn) => {
                 const href = btn.getAttribute('href');
-                btn.setAttribute('href', `${href}&destination=${destination}`);
+                if (!href) return;
+                try {
+                    const u = new URL(href, window.location.origin);
+                    u.searchParams.set('destination', destination);
+                    if (season) u.searchParams.set('season', season);
+                    btn.setAttribute('href', u.pathname + u.search);
+                } catch (e) {
+                    // ignore
+                }
             });
 
-            // Store destination in sessionStorage for payment page
-            sessionStorage.setItem('selectedDestination', destination);
-            sessionStorage.setItem('selectedSeason', season);
+            // Persist destination for checkout page and any later navigation
+            safeSet(sessionStorage, 'selectedDestination', destination);
+            safeSet(localStorage, 'selectedDestination', destination);
+            if (season) safeSet(sessionStorage, 'selectedSeason', season);
         }
     </script>
 </body>

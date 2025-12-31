@@ -19,8 +19,8 @@
             <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
 
             <ul class="navLinks">
-                <li class="link home" data-aos="fade-down"><a href="/#Home">Home</a></li>
-                <li class="link" data-aos="fade-down"><a href="/#Destinations">Destinations</a></li>
+                <li class="link home" data-aos="fade-down"><a href="/dashboard">Home</a></li>
+                <li class="link" data-aos="fade-down"><a href="/dashboard#destinations">Destinations</a></li>
                 <li class="link" data-aos="fade-down"><a href="/#trip">Pricing</a></li>
             </ul>
 
@@ -69,7 +69,7 @@
                     <p id="destination-subtitle">Beaches • Cafés • Water sports</p>
                     <p id="p-text"></p>
                     <div>
-                        <a href="/templates/pakeges/pakeges.html"><button class="bttn btn-style" id="btnss">Check-Out</button></a>
+                        <a href="/packages?destination=Goa" onclick="try{sessionStorage.setItem('selectedDestination','Goa');localStorage.setItem('selectedDestination','Goa');}catch(e){}"><button class="bttn btn-style" id="btnss">Check-Out</button></a>
                     </div>
                 </div>
             </div>
@@ -265,10 +265,10 @@
             "./gallery/Goa2.jpg",
             "./gallery/Goa3.jpg",
             "./gallery/Goa4.jpg",
-            "./gallery/Goa5.jpg"
+            "./gallery/Goa5.jpg",
             "./gallery/Goa6.jpg",
             "./gallery/Goa7.jpg",
-            "./gallery/Goa8.jpg"
+            "./gallery/Goa8.jpg",
         ];
     </script>
     <script src="/js/rich-destination.js"></script>

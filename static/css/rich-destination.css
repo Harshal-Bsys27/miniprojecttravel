@@ -47,9 +47,21 @@ body {
   padding: 1.05rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+/* Push the links group (and everything after it) to the right,
+   while keeping the brand (icon + text) tight on the left. */
+.newNav .navLinks {
+  margin-left: auto;
+}
+
+/* Many pages still include the legacy Bootstrap spacing helper.
+   Override it inside the destination nav to prevent double spacing. */
+.newNav .mr-2 {
+  margin-right: 0 !important;
 }
 
 .newNav .fa-plane-departure {

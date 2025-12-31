@@ -359,7 +359,7 @@
 
         // Default destination from packages page (if available)
         try {
-          const storedDestination = sessionStorage.getItem('selectedDestination');
+          const storedDestination = sessionStorage.getItem('selectedDestination') || localStorage.getItem('selectedDestination');
           if (destination && !destination.value && storedDestination) {
             destination.value = storedDestination;
           }
@@ -367,13 +367,42 @@
           // ignore
         }
 
+        // Persist destination and keep /packages links carrying destination (so title shows: DELHI PACKAGES)
+        const syncPackagesLinks = () => {
+          try {
+            const destValue = (destination && destination.value ? destination.value : '').trim();
+            if (!destValue) return;
+
+            sessionStorage.setItem('selectedDestination', destValue);
+            localStorage.setItem('selectedDestination', destValue);
+
+            document.querySelectorAll('a[href="/packages"]').forEach((a) => {
+              try {
+                const u = new URL(a.getAttribute('href'), window.location.origin);
+                u.searchParams.set('destination', destValue);
+                a.setAttribute('href', u.pathname + u.search);
+              } catch (e) {
+                // ignore
+              }
+            });
+          } catch (e) {
+            // ignore
+          }
+        };
+
         [travelDate, timeSlot, origin, destination, travellers].forEach((el) => {
           if (!el) return;
           el.addEventListener('input', syncSummary);
           el.addEventListener('change', syncSummary);
         });
 
+        if (destination) {
+          destination.addEventListener('input', syncPackagesLinks);
+          destination.addEventListener('change', syncPackagesLinks);
+        }
+
         syncSummary();
+        syncPackagesLinks();
       })();
     </script>
   </body>
