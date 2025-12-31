@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Services - LetsTravel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .search-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .hotel-card {
+            transition: transform 0.3s;
+        }
+        .hotel-card:hover {
+            transform: translateY(-5px);
+        }
+        .filter-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        .alert {
+            width: 100%;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .alert-danger {
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            color: #721c24;
+        }
+        .location-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .location-suggestions li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .location-suggestions li:hover {
+            background: #f5f5f5;
+        }
+
+        .suggestions-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .suggestions-list li {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .suggestions-list li:hover {
+            background-color: #f5f5f5;
+        }
+
+        .amenities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .modal-dialog {
+            max-width: 800px;
+        }
+        
+        .modal iframe {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Ultra Modern Invoice Styles */
+        .invoice-modern {
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .invoice-header {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            color: white;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .invoice-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: inherit;
+            filter: blur(30px);
+            opacity: 0.3;
+        }
+
+        .invoice-content {
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-brand {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .brand-logo i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-info h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .brand-info p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .booking-meta {
+            text-align: right;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-id {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-date {
+            opacity: 0.9;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                visibility: hidden;
+                background: white !important;
+            }
+
+            #invoiceContent {
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+
+            .invoice-modern {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .invoice-header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .modal-footer, .btn-close {
+                display: none !important;
+            }
+            
+            .booking-meta {
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .card-icon, .wave-separator, .status-badge {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .invoice-modern {
+                background: #fff;
+                width: 210mm;
+                min-height: 297mm;
+                padding: 20mm;
+                margin: 0 auto;
+                position: relative;
+            }
+
+            .invoice-header {
+                background: linear-gradient(135deg, #0d6efd, #0dcaf0) !important;
+                padding: 2rem;
+                border-radius: 10px;
+                color: white !important;
+                margin-bottom: 2rem;
+            }
+
+            .header-brand {
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 2rem;
+                align-items: start;
+            }
+
+            .brand-left {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .info-cards {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin: 2rem 0;
+            }
+
+            .guest-card, .hotel-card {
+                background: #f8f9fa;
+                padding: 1.5rem;
+                border-radius: 10px;
+                border: 1px solid #dee2e6;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(135deg, #0d6efd, #0dcaf0) !important;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-bottom: 1rem;
+            }
+
+            .payment-summary {
+                background: #fff;
+                padding: 1.5rem;
+                border: 2px solid #dee2e6;
+                border-radius: 10px;
+                margin: 2rem 0;
+            }
+
+            .summary-grid {
+                display: grid;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .summary-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .summary-row.total {
+                border-top: 2px solid #0d6efd;
+                border-bottom: none;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+
+            .verification-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 2rem 0;
+                padding: 1.5rem;
+                background: #f8f9fa;
+                border-radius: 10px;
+            }
+
+            .status-badge {
+                background: linear-gradient(135deg, #198754, #20c997) !important;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .invoice-footer {
+                text-align: center;
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid #dee2e6;
+            }
+
+            .support-info {
+                display: grid;
+                gap: 0.5rem;
+                color: #6c757d;
+            }
+
+            .disclaimer {
+                margin-top: 1rem;
+                font-size: 0.8rem;
+                color: #adb5bd;
+            }
+
+            .modal-header, .modal-footer, .btn-close {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>
+                <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/templates/index.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="flightamadeus.html"><i class="fas fa-plane"></i> Flights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="hotelservices.html"><i class="fas fa-hotel"></i> Hotels</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="search-container my-4">
+                    <h2 class="text-center mb-4">Find Your Perfect Stay</h2>
+                    <form id="hotelSearchForm">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Destination</label>
+                                <input type="text" class="form-control" placeholder="Where are you going?" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Check-in</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Check-out</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Guests</label>
+                                <select class="form-select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary px-5">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="filter-section mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Price Range</label>
+                            <select class="form-select" id="priceRange">
+                                <option value="all">All Prices</option>
+                                <option value="budget">Budget (Under ₹3000)</option>
+                                <option value="moderate">Moderate (₹3000-₹7000)</option>
+                                <option value="luxury">Luxury (₹7000+)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Star Rating</label>
+                            <select class="form-select" id="starRating">
+                                <option value="all">All Ratings</option>
+                                <option value="5">5 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="3">3 Star</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Sort By</label>
+                            <select class="form-select" id="sortBy">
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Rating</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hotelResults" class="row g-4">
+                    <!-- Hotels will be populated here by JavaScript -->
+                </div>
+
+                <!-- Add Booking Modal -->
+                <div class="modal fade" id="bookingModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title"><i class="fas fa-hotel me-2"></i>Hotel Booking</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="hotelSummary" class="mb-4"></div>
+                                <form id="hotelBookingForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" id="guestName" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="guestEmail" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone</label>
+                                            <input type="tel" class="form-control" id="guestPhone" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Number of Guests</label>
+                                            <input type="number" class="form-control" id="numberOfGuests" min="1" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Special Requests</label>
+                                            <textarea class="form-control" id="specialRequests" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-end mt-4">
+                                        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Payment Modal -->
+                <div class="modal fade" id="paymentModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title"><i class="fas fa-credit-card me-2"></i>Payment</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="paymentSummary" class="mb-4"></div>
+                                <form id="paymentForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" name="cardNumber" class="form-control" required pattern="[0-9]{16}" maxlength="16">
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label class="form-label">Expiry Date</label>
+                                            <input type="text" name="expiryDate" class="form-control" placeholder="MM/YY" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">CVV</label>
+                                            <input type="password" name="cvv" class="form-control" required maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Cardholder Name</label>
+                                        <input type="text" name="cardholderName" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-lock me-2"></i>Pay Securely
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Invoice Modal -->
+                <div class="modal fade" id="invoiceModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success text-white">
+                                <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Booking Confirmed</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body p-0" id="invoiceContent">
+                                <!-- Invoice will be generated here -->
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" onclick="window.printInvoice()">
+                                    <i class="fas fa-print me-2"></i>Print Invoice
+                                </button>
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/hotelservices.js"></script>
+</body>
+</html>

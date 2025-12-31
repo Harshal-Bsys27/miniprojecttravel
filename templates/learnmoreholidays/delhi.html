@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhi Holiday Packages - Explore the Heart of India</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/delhi-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Delhi</h1>
+        <p class="lead">Experience the perfect blend of history, culture, and modern life</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Left Column - Package Information -->
+        <div class="col-lg-8">
+            <!-- Package Overview -->
+            <section class="mb-5">
+                <h2>Delhi Holiday Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 4 Days / 3 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Families, Couples, Friends</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: October to March</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Attractions -->
+            <section class="mb-5">
+                <h2>Top Attractions</h2>
+                <div class="row">
+                    <!-- Red Fort -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/red-fort.jpg" class="card-img-top attraction-img" alt="Red Fort">
+                            <div class="card-body">
+                                <h5 class="card-title">Red Fort</h5>
+                                <p class="card-text">UNESCO World Heritage site and symbol of India's independence. Experience the Sound and Light show in the evening.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qutub Minar -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/qutub-minar.jpg" class="card-img-top attraction-img" alt="Qutub Minar">
+                            <div class="card-body">
+                                <h5 class="card-title">Qutub Minar</h5>
+                                <p class="card-text">The tallest brick minaret in the world, showcasing Indo-Islamic architecture at its finest.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- India Gate -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/india-gate.jpg" class="card-img-top attraction-img" alt="India Gate">
+                            <div class="card-body">
+                                <h5 class="card-title">India Gate</h5>
+                                <p class="card-text">War memorial dedicated to Indian soldiers, beautiful at night with surrounding gardens.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Humayun's Tomb -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/humayun-tomb.jpg" class="card-img-top attraction-img" alt="Humayun's Tomb">
+                            <div class="card-body">
+                                <h5 class="card-title">Humayun's Tomb</h5>
+                                <p class="card-text">UNESCO site that inspired the Taj Mahal's architecture, surrounded by beautiful gardens.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Itinerary -->
+            <section class="mb-5">
+                <h2>Detailed Itinerary</h2>
+                <div class="accordion" id="itineraryAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
+                                Day 1: Arrival & Old Delhi
+                            </button>
+                        </h2>
+                        <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Airport pickup and hotel check-in</li>
+                                    <li>Visit Jama Masjid</li>
+                                    <li>Rickshaw ride in Chandni Chowk</li>
+                                    <li>Evening at Red Fort</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more days similarly -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column - Booking Card -->
+        <div class="col-lg-4">
+            <div class="card sticky-booking">
+                <div class="card-body">
+                    <h3 class="card-title">Book Your Delhi Adventure</h3>
+                    <div class="mb-3">
+                        <h4 class="text-primary">₹24,999</h4>
+                        <small class="text-muted">per person</small>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Package Type</label>
+                            <select class="form-select">
+                                <option>Standard Package</option>
+                                <option>Premium Package</option>
+                                <option>Luxury Package</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="proceedToPayment()">
+                            Book Now
+                        </button>
+                        <small class="text-muted d-block text-center">Secure payment powered by Razorpay</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone me-2"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@letstravel.com</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function proceedToPayment() {
+    // This function will be used to integrate payment gateway
+    alert('Payment integration will be added here');
+    // You can integrate Razorpay or any other payment gateway here
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { font-size: 24px; color: #4facfe; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #4facfe; color: white; }
+        .footer { margin-top: 30px; text-align: center; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">letstravel.com</div>
+        <h2>{{ title }}</h2>
+        <p>Generated on: {{ generated_at.strftime('%Y-%m-%d %H:%M:%S UTC') }}</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                {% if data_type == 'users' %}
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Login Count</th>
+                {% elif data_type == 'tours' %}
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                {% elif data_type == 'bookings' %}
+                    <th>User</th>
+                    <th>Tour</th>
+                    <th>Travel Date</th>
+                    <th>Amount</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    {% if data_type == 'users' %}
+                        <td>{{ item.username }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.mobile }}</td>
+                        <td>{{ item.login_count }}</td>
+                    {% elif data_type == 'tours' %}
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.duration }} days</td>
+                    {% elif data_type == 'bookings' %}
+                        <td>{{ item.user.username }}</td>
+                        <td>{{ item.tour.name }}</td>
+                        <td>{{ item.travel_date.strftime('%Y-%m-%d') }}</td>
+                        <td>${{ item.amount }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>© {{ generated_at.year }} letstravel.com - All rights reserved</p>
+    </div>
+</body>
+</html>

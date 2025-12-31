@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Explorer - LetsTravel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Add in head section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <!-- Add these lines instead -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+      <!-- ...rest of head content... -->
+       <!-- Add before closing body tag -->
+<script src="../js code/cityexplorer.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .hero-section {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://source.unsplash.com/1600x900/?cityscape') center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .city-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .city-image {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .city-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+
+        .features-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: -30px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .floating-card {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+    /* ...existing styles... */
+    
+    .filters-section {
+        padding: 20px 0;
+        background: white;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    .pagination {
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .map-container {
+        height: 400px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin: 30px 0;
+    }
+
+    .review-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .rating {
+        color: #ffd700;
+        margin-bottom: 10px;
+    }
+/* Add to the existing style section */
+.attraction-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.weather-info {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.map-container {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+.filter-badges .badge {
+    font-size: 0.9em;
+    padding: 8px 15px;
+}
+/* Add to your existing styles */
+.text-glow {
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.btn-glow {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78,205,196,0.4);
+}
+
+.search-box {
+    position: relative;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.city-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.city-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.city-card:hover::before {
+    left: 100%;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #4ECDC4;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #4ECDC4;
+    }
+}
+
+.weather-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.weather-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+    /* Modern and elegant styles - removed shiny/glossy effects */
+    .text-glow {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .btn-glow {
+        background: var(--accent-color);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-glow:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .city-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .city-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .weather-card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        color: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .weather-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: white;
+    }
+    /* Add to your existing styles in cityexplorer.html */
+.place-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.place-card:hover {
+    transform: translateY(-5px);
+}
+
+.price-range {
+    color: #28a745;
+    margin-top: 10px;
+}
+
+.badge {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+/* Add inside your existing <style> tag */
+    .fullscreen-map {
+    width: 100%;
+    height: 100vh;
+}
+
+.map-container {
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.map-container:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.modal-fullscreen {
+    padding: 0;
+}
+
+.modal-fullscreen .modal-content {
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+}
+
+    </style>
+</head>
+<body>
+   <!-- Replace the duplicate search section with a single one in hero-section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="display-3 mb-4 text-glow" data-aos="zoom-in">Explore Amazing Cities</h1>
+        <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Your Gateway to know about  Destinations</p>
+        <div class="search-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="search-box">
+                <div class="input-group">
+                    <input type="text" id="citySearch" class="form-control form-control-lg" placeholder="Where would you like to explore?">
+                    <button onclick="searchCity()" class="btn btn-glow btn-lg">Discover</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+
+<!-- Add this section after the search bar -->
+<div class="container mt-4">
+    <div id="cityResults"></div>
+</div>
+    <!-- After the search section -->
+<section class="container filters-section">
+    <div class="row">
+        <div class="col-md-3">
+            <select class="form-select" id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="historical">Historical</option>
+                <option value="cultural">C</li>ultural</option>
+                <option value="modern">Modern</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" id="ratingFilt</li>er">
+                <option value="">All Ratings</option>
+                <option value="4">4+ Stars</option>
+                <option value="3">3+ Stars</option>
+                <option value="2">2+ Stars</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" id="priceFilter">
+                <option value="">All Price Ranges</option>
+                <option value="budget">Budget</option>
+                <option value="mid">Mid-Range</option>
+                <option value="luxury">Luxury</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </div>
+</section>
+
+  <!-- Update the map section -->
+<section class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Explore on Map</div></h2>
+        <button class="btn btn-primary" onclick="openFullscreenMap()">
+            <i class="fas fa-expand"></i> View Full Map
+        </button>
+    </div>
+    <div id="map" class="map-container"></div>
+</section>
+
+<!-- Add this modal for fullscreen map -->
+<div class="modal fade" id="fullscreenMapModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">City Explorer Map</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="fullscreenMap" class="fullscreen-map"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container my-5">
+    <h2 class="text-center mb-4">Traveler Reviews</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="review-card">
+                <div class="rating">★★★★★</div>
+                <h5>Amazing Experience</h5>
+                <p class="text-muted">By John D.</p>
+                <p>"Mumbai was incredible! The food, culture, and people were amazing."</p>
+            </div>
+        </div>
+        <!-- Add more review cards as needed -->
+    </div>
+</section>
+
+<!-- Replace the broken pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-icon">🏛️</div>
+                    <h4>Historical Sites</h4>
+                    <p>Explore ancient monuments and heritage sites</p>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">🍽️</div>
+                    <h4>Local Cuisine</h4>
+                    <p>Taste authentic local delicacies</p>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">🎭</div>
+                    <h4>Cultural Events</h4>
+                    <p>Experience traditional festivals and events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script src="../js code/cityexplorer.js"></script>
+    <!-- Add this before closing body tag -->
+<div class="modal fade" id="fullscreenMapModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Explore City Map</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="fullscreenMap" class="fullscreen-map"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

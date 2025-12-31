@@ -1,0 +1,46 @@
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.theme-toggle .fa-sun {
+    display: none;
+}
+
+.theme-toggle .fa-moon {
+    display: block;
+}
+
+body.dark-theme .theme-toggle .fa-sun {
+    display: block;
+}
+
+body.dark-theme .theme-toggle .fa-moon {
+    display: none;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+body.dark-theme .navbar {
+    background-color: #2d2d2d !important;
+}
+
+body.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+}

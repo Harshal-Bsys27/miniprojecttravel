@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout - letstravel.com</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/image.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="/static/css/checkout.css" />
+  </head>
+
+  <body class="checkout-page">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/dashboard">
+          <i class="fa-solid fa-plane-departure"></i>
+          <span>letstravel.com</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCheckout"
+          aria-controls="navbarCheckout"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCheckout">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/dashboard"><i class="fa-solid fa-house me-1"></i>Home 🏠</a></li>
+            <li class="nav-item"><a class="nav-link" href="/packages"><i class="fa-solid fa-suitcase-rolling me-1"></i>Packages 🎒</a></li>
+            <li class="nav-item"><a class="nav-link" href="/my-activity"><i class="fa-solid fa-clock-rotate-left me-1"></i>My Activity 📌</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container" style="padding-top: 86px">
+      {% if not booking %}
+        <div class="alert alert-warning checkout-card" role="alert">
+          <div class="d-flex align-items-start gap-2">
+            <i class="fa-solid fa-circle-exclamation mt-1"></i>
+            <div>
+              <div class="fw-semibold">No booking selected</div>
+              <div class="text-muted">Please pick a tour/package first, then come back to checkout.</div>
+              <div class="mt-3 d-flex gap-2 flex-wrap">
+                <a class="btn btn-primary" href="/packages">Go to Packages</a>
+                <a class="btn btn-outline-secondary" href="/dashboard">Back to Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        {% set base_amount = (booking.amount or 0) %}
+        {% set gst_amount = (base_amount * 0.18) %}
+        {% set total_amount = (base_amount + gst_amount) %}
+
+        <div class="row g-4">
+          <div class="col-lg-5 order-lg-2">
+            <div class="card checkout-card checkout-summary">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Order summary</h5>
+
+                {% if tour and tour.image_url %}
+                  <img
+                    class="img-fluid rounded-3 mb-3"
+                    src="{{ tour.image_url }}"
+                    alt="{{ tour.name }}"
+                    onerror="this.style.display='none'"
+                  />
+                {% endif %}
+
+                <div class="checkout-kv">
+                  <span>Tour</span>
+                  <strong>{{ tour.name if tour else 'Tour Package' }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>Travel date</span>
+                  <strong id="summaryTravelDate">{{ booking.travel_date.strftime('%d %b %Y') if booking.travel_date else '—' }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>Time slot</span>
+                  <strong id="summaryTimeSlot">{{ booking.journey_time_slot if booking and booking.journey_time_slot else '—' }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>From</span>
+                  <strong id="summaryFrom">{{ booking.journey_origin if booking and booking.journey_origin else '—' }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>To</span>
+                  <strong id="summaryTo">{{ (booking.journey_destination if booking and booking.journey_destination else (tour.location if tour and tour.location else '—')) }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>Travellers</span>
+                  <strong id="summaryTravellers">{{ booking.travellers if booking and booking.travellers else '—' }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>Status</span>
+                  <strong class="text-capitalize">{{ booking.status or 'pending' }}</strong>
+                </div>
+
+                <hr class="my-3" />
+
+                <div class="checkout-kv">
+                  <span>Subtotal</span>
+                  <strong>₹{{ '%.2f' % base_amount }}</strong>
+                </div>
+                <div class="checkout-kv mt-2">
+                  <span>GST (18%)</span>
+                  <strong>₹{{ '%.2f' % gst_amount }}</strong>
+                </div>
+                <div class="checkout-kv mt-3">
+                  <span class="checkout-total">Total</span>
+                  <strong class="checkout-total">₹{{ '%.2f' % total_amount }}</strong>
+                </div>
+
+                <div class="text-muted small mt-3">
+                  This is a demo checkout. Payment confirmation will mark your booking as paid and generate the invoice.
+                </div>
+
+                <a class="btn btn-outline-secondary w-100 mt-3" href="/packages">Change selection</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 order-lg-1">
+            <div class="card checkout-card">
+              <div class="card-body">
+                <h4 class="mb-1">Checkout</h4>
+                <div class="text-muted mb-4">Complete payment to confirm your booking.</div>
+
+                <form method="post" action="{{ url_for('main.payment_confirm') }}" class="needs-validation" novalidate>
+                  <input type="hidden" name="booking_id" value="{{ booking.id }}" />
+
+                  <h6 class="mb-3">Contact</h6>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="fullName">Full name</label>
+                      <input
+                        class="form-control"
+                        id="fullName"
+                        name="full_name"
+                        value="{{ (user.username if user else '') }}"
+                        placeholder="Your name"
+                        required
+                      />
+                      <div class="invalid-feedback">Please enter your name.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="email">Email</label>
+                      <input
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        type="email"
+                        value="{{ (user.email if user else '') }}"
+                        placeholder="you@example.com"
+                        required
+                      />
+                      <div class="invalid-feedback">Please enter a valid email.</div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="address">Billing address</label>
+                      <input class="form-control" id="address" name="address" placeholder="Street, city" required />
+                      <div class="invalid-feedback">Please enter your billing address.</div>
+                    </div>
+                  </div>
+
+                  <hr class="my-4" />
+
+                  <h6 class="mb-3">Journey details</h6>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="travelDate">Travel date</label>
+                      <input
+                        class="form-control"
+                        id="travelDate"
+                        name="travel_date"
+                        type="date"
+                        value="{{ booking.travel_date.strftime('%Y-%m-%d') if booking.travel_date else '' }}"
+                        required
+                      />
+                      <div class="invalid-feedback">Please choose a travel date.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="timeSlot">Preferred time slot</label>
+                      <select class="form-select" id="timeSlot" name="journey_time_slot" required>
+                        {% set slot = (booking.journey_time_slot if booking and booking.journey_time_slot else '') %}
+                        <option value="" {% if not slot %}selected{% endif %}>Choose...</option>
+                        <option value="Morning (8 AM - 12 PM)" {% if slot == 'Morning (8 AM - 12 PM)' %}selected{% endif %}>Morning (8 AM - 12 PM)</option>
+                        <option value="Afternoon (12 PM - 4 PM)" {% if slot == 'Afternoon (12 PM - 4 PM)' %}selected{% endif %}>Afternoon (12 PM - 4 PM)</option>
+                        <option value="Evening (4 PM - 8 PM)" {% if slot == 'Evening (4 PM - 8 PM)' %}selected{% endif %}>Evening (4 PM - 8 PM)</option>
+                      </select>
+                      <div class="invalid-feedback">Please select a time slot.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label" for="origin">Origin (From)</label>
+                      <input
+                        class="form-control"
+                        id="origin"
+                        name="journey_origin"
+                        placeholder="City / Airport"
+                        value="{{ booking.journey_origin if booking and booking.journey_origin else '' }}"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="destination">Destination (To)</label>
+                      <input
+                        class="form-control"
+                        id="destination"
+                        name="journey_destination"
+                        placeholder="City / Destination"
+                        value="{{ (booking.journey_destination if booking and booking.journey_destination else (tour.location if tour and tour.location else '')) }}"
+                        required
+                      />
+                      <div class="invalid-feedback">Please enter your destination.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label" for="travellers">Travellers</label>
+                      <input
+                        class="form-control"
+                        id="travellers"
+                        name="travellers"
+                        type="number"
+                        min="1"
+                        value="{{ booking.travellers if booking and booking.travellers else 1 }}"
+                        required
+                      />
+                      <div class="invalid-feedback">Please enter number of travellers.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="journeyNotes">Journey notes (optional)</label>
+                      <input
+                        class="form-control"
+                        id="journeyNotes"
+                        name="journey_notes"
+                        placeholder="Pickup point, preferences, etc."
+                        value="{{ booking.journey_notes if booking and booking.journey_notes else '' }}"
+                      />
+                    </div>
+                  </div>
+
+                  <hr class="my-4" />
+
+                  <h6 class="mb-3">Payment method</h6>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pay_method" id="pmCard" value="card" checked />
+                        <label class="form-check-label" for="pmCard">Card (Visa/Mastercard)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pay_method" id="pmUpi" value="upi" />
+                        <label class="form-check-label" for="pmUpi">UPI</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pay_method" id="pmNet" value="netbanking" />
+                        <label class="form-check-label" for="pmNet">Netbanking</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <label class="form-label" for="cardNumber">Card number</label>
+                      <input class="form-control" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" />
+                    </div>
+                    <div class="col-md-2">
+                      <label class="form-label" for="cardExp">Exp</label>
+                      <input class="form-control" id="cardExp" placeholder="MM/YY" />
+                    </div>
+                    <div class="col-md-2">
+                      <label class="form-label" for="cardCvv">CVV</label>
+                      <input class="form-control" id="cardCvv" placeholder="123" inputmode="numeric" />
+                    </div>
+                  </div>
+
+                  <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="confirm" required />
+                    <label class="form-check-label" for="confirm">
+                      I confirm the booking details and authorize payment.
+                    </label>
+                    <div class="invalid-feedback">You must confirm before paying.</div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                    Pay ₹{{ '%.2f' % total_amount }}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+          form.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+    </script>
+
+    <script>
+      (() => {
+        const travelDate = document.getElementById('travelDate');
+        const timeSlot = document.getElementById('timeSlot');
+        const origin = document.getElementById('origin');
+        const destination = document.getElementById('destination');
+        const travellers = document.getElementById('travellers');
+
+        const summaryTravelDate = document.getElementById('summaryTravelDate');
+        const summaryTimeSlot = document.getElementById('summaryTimeSlot');
+        const summaryFrom = document.getElementById('summaryFrom');
+        const summaryTo = document.getElementById('summaryTo');
+        const summaryTravellers = document.getElementById('summaryTravellers');
+
+        const formatDate = (iso) => {
+          if (!iso) return '—';
+          const d = new Date(iso + 'T00:00:00');
+          if (Number.isNaN(d.getTime())) return '—';
+          return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        };
+
+        const pick = (value) => {
+          const v = (value || '').trim();
+          return v ? v : '—';
+        };
+
+        const syncSummary = () => {
+          if (summaryTravelDate && travelDate) summaryTravelDate.textContent = formatDate(travelDate.value);
+          if (summaryTimeSlot && timeSlot) summaryTimeSlot.textContent = pick(timeSlot.value);
+          if (summaryFrom && origin) summaryFrom.textContent = pick(origin.value);
+          if (summaryTo && destination) summaryTo.textContent = pick(destination.value);
+          if (summaryTravellers && travellers) summaryTravellers.textContent = pick(travellers.value);
+        };
+
+        // Default destination from packages page (if available)
+        try {
+          const storedDestination = sessionStorage.getItem('selectedDestination');
+          if (destination && !destination.value && storedDestination) {
+            destination.value = storedDestination;
+          }
+        } catch (e) {
+          // ignore
+        }
+
+        [travelDate, timeSlot, origin, destination, travellers].forEach((el) => {
+          if (!el) return;
+          el.addEventListener('input', syncSummary);
+          el.addEventListener('change', syncSummary);
+        });
+
+        syncSummary();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+.itinerary-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.day-section {
+    border-left: 3px solid #007bff;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.activity-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.cost-badge {
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.tips-section {
+    background: #f0f7ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.weather-section {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.hidden-gems {
+    background: #fff3e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}

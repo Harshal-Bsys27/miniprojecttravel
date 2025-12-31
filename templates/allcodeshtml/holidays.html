@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Packages</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css codes/holidays.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header, footer {
+            background-color: #883776;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .package-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .package {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+        }
+        .package:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .package img {
+            width: 100%;
+            height: auto;
+        }
+        .btn-small {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-sun" style="margin-right: 10px; color: #ffcc00;"></i>Holiday Packages</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="../Blog/blogs.html"><i class="fas fa-blog"></i> Blogs</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/templates/index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#domestic"><i class="fas fa-map-marker-alt"></i> Domestic Packages</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#international"><i class="fas fa-plane"></i> International Packages</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="mailto:letstravel0899@gmail.com"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <section id="domestic">
+            <h2>Domestic Packages</h2>
+            <div class="package-container">
+                <article class="package card shadow">
+                    <img src="../images.png/delhi.png" alt="Delhi" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Delhi</h3>
+                        <p class="card-text">Explore the vibrant city of Delhi with guided tours and cultural experiences.</p>
+                        <a href="/dedicated destinations/Red_Fort/red.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/mumbai.png" alt="Mumbai" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Mumbai</h3>
+                        <p class="card-text">Experience the bustling life of Mumbai, including beach visits and local markets.</p>
+                        <a href="/dedicated destinations/elephanta/ele.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="/images.png/hampta-pass-trek-scaled.jpg" alt="Manali" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Manali</h3>
+                        <p class="card-text">Manali, where the past meets the present, explore this beautiful city.</p>
+                        <a href="/dedicated destinations/Manali/m.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/kerala.jpg" alt="Kerala" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Goa</h3>
+                        <p class="card-text">"God's Own Country" awaits, with its lush landscapes and warm hospitality.</p>
+                        <a href="/dedicated-destinations/Goa/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/ladakh.jpg" alt="Ladakh" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Ladakh</h3>
+                        <p class="card-text">Ladakha celestial wonderland that will leave you speechless.</p>
+                        <a href="/dedicated destinations/Ladakh/ladakh.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/dehradun.webp" alt="Dehradun" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Kashmir</h3>
+                        <p class="card-text">Discover the charm of Kashmir, where nature’s beauty meets rich cultural heritage.</p>
+                        <a href="/dedicated-destinations/kashmir/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/tajmahel.jpeg" alt="Tagmahel" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Agra</h3>
+                        <p class="card-text">In Agra, every sunrise paints a masterpiece on the canvas of the Himalayan sky.</p>
+                        <a href="/dedicated destinations/Taj_Mahal/Taj.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/andaman.jpg" alt="Andaman" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Andaman</h3>
+                        <p class="card-text">Andaman is not just a destination; it is a pilgrimage, a journey within.</p>
+                        <a href="/dedicated destinations/Andaman/a.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/The-Golden-Temple.jpg" alt="Amritsar" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Amritsar</h3>
+                        <p class="card-text">A journey to Amritsar is a journey of self-discovery.</p>
+                        <a href="/dedicated destinations/Golden_Temple/Gold.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="international" class="mt-5">
+            <h2>International Packages</h2>
+            <div class="package-container">
+                <article class="package card shadow">
+                    <img src="../images.png/dubai.png" alt="Dubai" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Dubai Experience</h3>
+                        <p class="card-text">Discover the royalty of Dubai, fall in love with this vibrant city.</p>
+                        <a href="/dedicated-destinations/Dubai/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/newyork.png" alt="Australia" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Newyork</h3>
+                        <p class="card-text">Explore the vibrant streets of Newyork, from iconic landmarks to natural wonders.</p>
+                        <a href="/dedicated-destinations/new-york/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/Bali.jpg" alt="Bali" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Bali</h3>
+                        <p class="card-text">"Bali is more than a place. It’s a mood, it’s magical."</p>
+                        <a href="/dedicated-destinations/bali/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/brazil.avif" alt="Singapore" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Brazil</h3>
+                        <p class="card-text">Brazil, where every corner has a story to tell.</p>
+                        <a href="/dedicated-destinations/brazil/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/maldives.jpg" alt="Maldives" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Maldives</h3>
+                        <p class="card-text">"Travel far, travel wide, but don't forget the Maldives."</p>
+                        <a href="/dedicated-destinations/Maldives/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+                <article class="package card shadow">
+                    <img src="../images.png/paris.jpg" alt="Taiwan" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Paris</h3>
+                        <p class="card-text">"Embracing the beauty of paris, one breathtaking landscape at a time."</p>
+                        <a href="/dedicated-destinations/Paris/start.html" class="btn btn-primary btn-small">Learn More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><i class="fas fa-envelope"></i> letstravel0899@gmail.com</p>
+        <p>&copy; letstravel.com Holiday Packages. </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

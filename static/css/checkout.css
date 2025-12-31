@@ -1,0 +1,43 @@
+/* Dedicated styles for the modern checkout page.
+   Keep it minimal to avoid conflicts with legacy CSS. */
+
+.checkout-page {
+  background: #f6f7fb;
+  min-height: 100vh;
+}
+
+.checkout-page main {
+  padding-top: 1.25rem;
+  padding-bottom: 2.5rem;
+}
+
+.checkout-card {
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  border-radius: 14px;
+}
+
+.checkout-summary {
+  position: sticky;
+  top: 90px;
+}
+
+@media (max-width: 991.98px) {
+  .checkout-summary {
+    position: static;
+  }
+}
+
+.checkout-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout-kv span {
+  color: #6c757d;
+}
+
+.checkout-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+}

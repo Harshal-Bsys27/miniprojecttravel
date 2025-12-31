@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>letstravel.com</title>
+        <link rel="stylesheet" href="/css/rich-destination.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="/js/Theme.js" defer></script>
+    </head>
+
+
+    <body>
+        <div class="nav-container">
+            <nav class="newNav">
+                <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(255, 255, 255, 0.92);"></i>
+                <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
+
+                <ul class="navLinks">
+                    <li class="link home" data-aos="fade-down"><a href="/#Home">Home</a></li>
+                    <li class="link" data-aos="fade-down"><a href="/#Destinations">Destinations</a></li>
+                    <li class="link" data-aos="fade-down"><a href="/#trip">Pricing</a></li>
+                </ul>
+
+                <a href="/#cnt-form" class="contact-btn">
+                    <button class="btn aos-init aos-animate" id="btn-style" style="margin: 0;" data-aos="fade-down">Contact Us</button>
+                </a>
+                <div class="toggle-container" data-aos="fade-down">
+                    <input id="themeToggle" class="toggle" type="checkbox">
+                </div>
+                <div class="hamburger" data-aos="fade-down">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+
+        <section class="middle">
+            <div class="image-container">
+                <div class="img-box">
+                    <img src="./gallery/NewYork1.jpg" alt="New York">
+                </div>
+
+                <div class="abcd">
+                    <div class="relative_image">
+                        <div class="slider-container">
+                            <img id="slider-image" class="slider-image" src="./gallery/NewYork1.jpg" alt="New York">
+                            <div class="thumb">
+                                <button class="arrow left" onclick="moveSlide(-1)">&#8249;</button>
+                                <div class="thumbnails" id="thumbnails-container"></div>
+                                <button class="arrow right" onclick="moveSlide(1)">&#8250;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="HeadingText">
+                        <h1 id="destination-title">New York</h1>
+                        <p id="destination-subtitle">Skyline • Broadway • Iconic city life</p>
+                        <p id="p-text"></p>
+                        <div>
+                            <a href="/templates/pakeges/pakeges.html"><button class="bttn btn-style" id="btnss">Check-Out</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-container">
+                <div class="slider">
+                    <div class="features">
+                        <h3><i class="fa-solid fa-utensils"></i> Food to try</h3>
+                        <p>NY-style pizza, bagels, street pretzels, and classic deli sandwiches.</p>
+                    </div>
+
+                    <div class="features">
+                        <h3><i class="fa-solid fa-landmark"></i> Must-see landmarks</h3>
+                        <p>Statue of Liberty, Times Square, Central Park, and the Brooklyn Bridge.</p>
+                    </div>
+
+                    <div class="features">
+                        <h3><i class="fa-solid fa-masks-theater"></i> Culture & museums</h3>
+                        <p>Broadway shows, MoMA, The Met, and neighborhood walks across Manhattan & Brooklyn.</p>
+                    </div>
+
+                    <div class="Info-container">
+                        <div class="check-in-out">
+                            <h3>Book Your Stay</h3>
+
+                            <div class="check-in">
+                                <label for="check-in">Check In:</label>
+                                <input type="datetime-local" id="check-in">
+                            </div>
+
+                            <div class="check-out">
+                                <label for="check-out">Check Out:</label>
+                                <input type="datetime-local" id="check-out">
+                            </div>
+
+                            <div class="btn-container">
+                                <button class="btn">Submit</button>
+                                <button class="btn">Cancel</button>
+                            </div>
+                        </div>
+
+                        <div id="weatherInfo">
+                            <h3>Climate Info</h3>
+                            <div>Max Temp: <span class="max"></span>°C <span><i style="font-size:1.5rem;color: red;" class="fa">&#xf2c7;</i></span></div>
+                            <div>Min Temp: <span class="min"></span>°C <span><i style="font-size:1.5rem;color: blue;" class="fa">&#xf76b;</i></span></div>
+                            <div>Humidity: <span class="humidity"></span>%</div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="transport-container">
+                        <div class="single-list-topics-content">
+                            <div class="icon1"><i style="font-size:2rem" class="fa">&#xf072;</i></div>
+                            <a href="/firstflight-travels-main/flightamadeus.html"><button class="btn-style">✈️ Flight</button></a>
+                        </div>
+                        <div class="single-list-topics-content">
+                            <div class="icon1"><i style="font-size:2rem" class="fa">&#xf594;</i></div>
+                            <a href="/firstflight-travels-main/hotelservices.html"><button class="btn-style">🏨 Hotels</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-section">
+                    <div class="w3-container" id="menu">
+                        <div class="w3-content" style="max-width:700px">
+                            <br>
+                            <div class="w3-row w3-center w3-card w3-padding descriptionContainer">
+                                <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+                                    <div class="w3-col s6 tablink Description">Description</div>
+                                </a>
+                                <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+                                    <div class="w3-col s6 tablink Description">Things To Do</div>
+                                </a>
+                            </div>
+
+                            <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+                                <p id="description-text">
+                                    New York City is a global hub for culture, finance, and entertainment. From Central Park and museums to skyline viewpoints and Broadway nights, the city is packed with iconic experiences.
+                                    <br><br>
+                                    <b>Best time to visit:</b> April–June and September–November for comfortable weather.
+                                    <br><br>
+                                    <b>Quick tip:</b> Use subway + walking for the fastest city travel.
+                                </p>
+                            </div>
+
+                            <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+                                <h3>Central Park</h3>
+                                <p>Stroll, bike, or relax in the city’s most famous green escape.</p><br>
+
+                                <h3>Times Square & Broadway</h3>
+                                <p>Bright lights, shows, and classic NYC energy.</p><br>
+
+                                <h3>Statue of Liberty</h3>
+                                <p>Take a ferry and enjoy skyline views from the harbor.</p><br>
+
+                                <h3>Museums</h3>
+                                <p>Visit The Met, MoMA, and other world-class galleries.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387194.0732758841!2d-74.30934073747168!3d40.69753993987905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0x1ad274e2c7cd5ec7!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sin!4v1708027608538!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="footer" data-aos="fade-up">
+            <div class="section__container footer__container">
+                <div class="footer__col">
+                    <h3>letstravel.com<span>.</span></h3>
+                    <p>Explore your suitable and dream places around the world. Here you can find your right destination.</p>
+                </div>
+                <div class="footer__col">
+                    <h4>Support</h4>
+                    <a href="../../faq.html" style="color: inherit; text-decoration: none;"><p style="color: inherit;">FAQs</p></a>
+                    <a href="../../tnc.html" style="color: inherit; text-decoration: none;"><p>Terms & Conditions</p></a>
+                    <a href="../../privacy.html" style="color: inherit; text-decoration: none;"><p>Privacy Policy</p></a>
+                    <a href="/#cnt-form" style="color: inherit; text-decoration: none;"><p>Contact us</p></a>
+                </div>
+                <div class="footer__col">
+                    <h4>Address</h4>
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe width="200" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=new%20york&t=k&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4>Reach Out To Us</h4>
+                    <p><span>Email:</span> tour@letstravel.com</p>
+                    <p><span>Phone:</span> +91 8562145852</p>
+                </div>
+            </div>
+            <div class="footer__bar">Copyright © 2025 All rights reserved.</div>
+        </footer>
+
+        <script>
+            function openMenu(evt, menuName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("menu");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+                }
+                document.getElementById(menuName).style.display = "block";
+                evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+            }
+            document.getElementById("myLink").click();
+
+            window.DESTINATION_TITLE = "New York";
+            window.DESTINATION_SUBTITLE = "Skyline • Broadway • Iconic city life";
+            window.DESTINATION_CLIMATE_QUERY = "New York";
+            window.DESTINATION_IMAGES = [
+                "./gallery/NewYork1.jpg",
+                "./gallery/NewYork2.jpg",
+                "./gallery/NewYork3.jpg",
+                "./gallery/NewYork4.jpg",
+                "./gallery/NewYork5.jpg",
+                "./gallery/NewYork6.jpg",
+                "./gallery/NewYork7.jpg",
+                "./gallery/NewYork8.jpg"
+            ];
+        </script>
+        <script src="/js/rich-destination.js"></script>
+
+    </html>

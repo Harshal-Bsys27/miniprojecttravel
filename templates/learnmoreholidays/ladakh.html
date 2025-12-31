@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladakh Holiday Packages - Land of High Passes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/ladakh-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+        .adventure-tag {
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Ladakh</h1>
+        <p class="lead">Experience the Magic of the Himalayas - Where Adventure Meets Spirituality</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2>Ladakh Adventure Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 7 Days / 6 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Adventure Enthusiasts, Nature Lovers, Photography Buffs</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: June to September</li>
+                        <li><i class="fas fa-mountain me-2"></i> Altitude: 3,500m - 5,000m above sea level</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Must-Visit Destinations</h2>
+                <div class="row">
+                    <!-- Pangong Lake -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/pangong-lake.jpg" class="card-img-top attraction-img" alt="Pangong Lake">
+                            <div class="card-body">
+                                <span class="adventure-tag">Popular</span>
+                                <h5 class="card-title">Pangong Lake</h5>
+                                <p class="card-text">Crystal clear blue waters surrounded by majestic mountains at 14,270 ft.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nubra Valley -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/nubra-valley.jpg" class="card-img-top attraction-img" alt="Nubra Valley">
+                            <div class="card-body">
+                                <span class="adventure-tag">Desert Safari</span>
+                                <h5 class="card-title">Nubra Valley</h5>
+                                <p class="card-text">Experience the unique cold desert and double-humped camels.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leh Palace -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/leh-palace.jpg" class="card-img-top attraction-img" alt="Leh Palace">
+                            <div class="card-body">
+                                <span class="adventure-tag">Heritage</span>
+                                <h5 class="card-title">Leh Palace</h5>
+                                <p class="card-text">Nine-storey palace offering panoramic views of surrounding mountains.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Magnetic Hill -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/magnetic-hill.jpg" class="card-img-top attraction-img" alt="Magnetic Hill">
+                            <div class="card-body">
+                                <span class="adventure-tag">Mystery Spot</span>
+                                <h5 class="card-title">Magnetic Hill</h5>
+                                <p class="card-text">Experience the optical illusion where vehicles appear to roll uphill.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Adventure Activities</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-hiking fa-2x mb-2 text-primary"></i>
+                            <h5>Mountain Trekking</h5>
+                            <p>Various difficulty levels available</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-motorcycle fa-2x mb-2 text-primary"></i>
+                            <h5>Bike Expeditions</h5>
+                            <p>Royal Enfield tours available</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-campground fa-2x mb-2 text-primary"></i>
+                            <h5>Camping</h5>
+                            <p>Luxury camps at scenic locations</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card sticky-booking">
+                <div class="card-body">
+                    <h3 class="card-title">Book Your Ladakh Adventure</h3>
+                    <div class="mb-3">
+                        <h4 class="text-primary">₹45,999</h4>
+                        <small class="text-muted">per person</small>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Adventure Package</label>
+                            <select class="form-select">
+                                <option>Standard Tour Package</option>
+                                <option>Bike Expedition Package</option>
+                                <option>Luxury Camping Package</option>
+                                <option>Photography Special Package</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="proceedToPayment()">
+                            Book Now
+                        </button>
+                        <small class="text-muted d-block text-center">Secure payment powered by Razorpay</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone me-2"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@letstravel.com</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function proceedToPayment() {
+    alert('Payment integration will be added here');
+}
+</script>
+
+</body>
+</html>

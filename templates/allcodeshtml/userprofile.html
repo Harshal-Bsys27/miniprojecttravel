@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... existing head content ... -->
+    <style>
+        /* ... existing styles ... */
+        
+        .activity-timeline {
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .activity-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e9ecef;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #007bff;
+            transform: translateY(-50%);
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #2937f0 0%, #9f1ae2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-card {
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-content {
+            padding: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include your navbar here -->
+    
+    <div class="container my-5">
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>{{ user.userName }}</h2>
+                <p class="text-muted">Member since {{ user.created_at }}</p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <h3>{{ total_trips }}</h3>
+                        <p class="mb-0">Total Trips</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <h3>{{ places_visited }}</h3>
+                        <p class="mb-0">Places Visited</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <h3>{{ upcoming_trips }}</h3>
+                        <p class="mb-0">Upcoming Trips</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#personal">
+                        <i class="fas fa-user-circle mr-2"></i>Personal Info
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#activities">
+                        <i class="fas fa-history mr-2"></i>Travel History
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#upcoming">
+                        <i class="fas fa-plane-departure mr-2"></i>Upcoming Trips
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tabs Content -->
+            <div class="tab-content">
+                <!-- Personal Info Tab -->
+                <div class="tab-pane fade show active" id="personal">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Personal Information</h4>
+                            <hr>
+                            <p><strong><i class="fas fa-envelope mr-2"></i>Email:</strong> {{ user.userEmail }}</p>
+                            <p><strong><i class="fas fa-phone mr-2"></i>Phone:</strong> {{ user.phone }}</p>
+                            <button class="btn btn-primary mt-3">
+                                <i class="fas fa-edit mr-2"></i>Edit Profile
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Preferences</h4>
+                            <hr>
+                            <p><strong>Preferred Destinations:</strong> {{ user.preferences.destinations }}</p>
+                            <p><strong>Travel Style:</strong> {{ user.preferences.style }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel History Tab -->
+                <div class="tab-pane fade" id="activities">
+                    <div class="activity-timeline">
+                        {% for activity in user_activities %}
+                        <div class="timeline-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-1">{{ activity.destination }}</h5>
+                                <span class="badge badge-primary">{{ activity.status }}</span>
+                            </div>
+                            <p class="text-muted mb-1">
+                                <i class="fas fa-calendar mr-2"></i>{{ activity.travel_date }}
+                            </p>
+                            <p class="mb-0">{{ activity.details }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Upcoming Trips Tab -->
+                <div class="tab-pane fade" id="upcoming">
+                    <div class="row">
+                        {% for trip in upcoming_trips %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card booking-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ trip.destination }}</h5>
+                                    <p class="card-text">
+                                        <i class="fas fa-calendar-alt mr-2"></i>{{ trip.travel_date }}
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="fas fa-clock mr-2"></i>{{ trip.duration }} days
+                                    </p>
+                                    <a href="#" class="btn btn-outline-primary">
+                                        <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+                                            <div class="container">
+                                                <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                                                    <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>  
+                                                    <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
+                                                </a>
+                                                <ul class="navbar-nav ml-auto">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="/index.html">
+                                                            <i class="fas fa-home fa-lg mb-1" style="color: rgba(248, 231, 42, 0.884);"></i>
+                                                            <br>Home
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </header>
+
+                                        <div class="container my-5">
+                                            <div class="row">
+                                                <!-- Profile Sidebar -->
+                                                <div class="col-md-3">
+                                                    <div class="card">
+                                                        <div class="card-body text-center">
+                                                            <div class="profile-image mb-3">
+                                                                <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Profile Picture">
+                                                            </div>
+                                                            <h4 class="card-title">John Doe</h4>
+                                                            <p class="card-text text-muted">Adventure Enthusiast</p>
+                                                            <div class="profile-stats">
+                                                                <div class="row">
+                                                                    <div class="col-4">
+                                                                        <h6>12</h6>
+                                                                        <small>Trips</small>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h6>8</h6>
+                                                                        <small>Reviews</small>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h6>4</h6>
+                                                                        <small>Planned</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Profile Content -->
+                                                <div class="col-md-9">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Personal Information</h5>
+                                                            <div class="row mb-3">
+                                                                <div class="col-sm-3">
+                                                                    <h6>Email</h6>
+                                                                </div>
+                                                                <div class="col-sm-9 text-secondary">
+                                                                    john.doe@example.com
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-sm-3">
+                                                                    <h6>Phone</h6>
+                                                                </div>
+                                                                <div class="col-sm-9 text-secondary">
+                                                                    +91 98765 43210
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-sm-3">
+                                                                    <h6>Address</h6>
+                                                                </div>
+                                                                <div class="col-sm-9 text-secondary">
+                                                                    Mumbai, Maharashtra, India
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-sm-3">
+                                                                    <h6>Member Since</h6>
+                                                                </div>
+                                                                <div class="col-sm-9 text-secondary">
+                                                                    January 2024
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <a class="btn btn-primary" href="#">Edit Profile</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Upcoming Trips Section -->
+                                                    <div class="card mt-3">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Upcoming Trip</h5>
+                                                            <div class="upcoming-trip">
+                                                                <h6>Mysore Heritage Tour</h6>
+                                                                <p class="text-muted">
+                                                                    <i class="fas fa-calendar-alt mr-2"></i>March 15, 2024
+                                                                    <br>
+                                                                    <i class="fas fa-clock mr-2"></i>5 days
+                                                                    <br>
+                                                                    <i class="fas fa-map-marker-alt mr-2"></i>Mysore, Karnataka
+                                                                </p>
+                                                                <a href="#" class="btn btn-outline-primary">
+                                                                    <i class="fas fa-info-circle mr-2"></i>View Details
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

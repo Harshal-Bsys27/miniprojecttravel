@@ -1,0 +1,17 @@
+Flask>=3.0,<4.0
+pymongo>=4.6,<5.0
+mongoengine>=0.29,<0.30
+python-dotenv>=1.0,<2.0
+dnspython>=2.6,<3.0
+email-validator>=2.0,<3.0
+pandas>=2.2,<2.3
+xlsxwriter>=3.2,<4.0
+Flask-Login>=0.6,<0.7
+blinker>=1.9,<2.0
+python-dateutil>=2.8,<3.0
+gunicorn>=21.2,<23.0
+waitress>=3.0,<4.0
+# Server-side PDF invoice generation
+reportlab>=4.2,<5.0
+# Remove WeasyPrint
+# WeasyPrint==59.0

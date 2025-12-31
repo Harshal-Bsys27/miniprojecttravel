@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>letstravel.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      :root {
+        --background-light: #ffffff;
+        --background-dark: #1a1a1a;
+        --text-light: #333333;
+        --text-dark: #ffffff;
+        --container-light: #ffffff;
+        --container-dark: #2d2d2d;
+        --form-light: #ffffff;
+        --form-dark: #3d3d3d;
+        --item-light: #f4f4f4;
+        --item-dark: #4d4d4d;
+        --nav-light: #2c3e50;
+        --nav-dark: #34495e;
+        --nav-text-light: #ecf0f1;
+        --nav-text-dark: #ffffff;
+        --nav-hover-light: rgba(236, 240, 241, 0.2);
+        --nav-hover-dark: rgba(255, 255, 255, 0.2);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      body.light-theme {
+        background: var(--background-light);
+        color: var(--text-light);
+      }
+
+      body.dark-theme {
+        background: var(--background-dark);
+        color: var(--text-dark);
+      }
+
+      body.light-theme .container {
+        background: var(--container-light);
+        color: var(--text-light);
+      }
+
+      body.dark-theme .container {
+        background: var(--container-dark);
+        color: var(--text-dark);
+      }
+
+      body.dark-theme form {
+        background: var(--form-dark);
+        color: var(--text-dark);
+      }
+
+      body.dark-theme input,
+      body.dark-theme select {
+        background: var(--item-dark);
+        color: var(--text-dark);
+        border-color: #555;
+      }
+
+      body.dark-theme .packing-list {
+        background: var(--form-dark);
+        color: var(--text-dark);
+      }
+
+      body.dark-theme .packing-list ul li {
+        background: var(--item-dark);
+        color: var(--text-dark);
+      }
+
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+      }
+
+      .toggle-label {
+        width: 50px;
+        height: 25px;
+        position: relative;
+        display: inline-block;
+        background: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .toggle-label::after {
+        content: '🌙';
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        border-radius: 50%;
+        background: #000;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      #themeToggle {
+        display: none;
+      }
+
+      #themeToggle:checked + .toggle-label::after {
+        content: '☀️';
+        transform: translateX(25px);
+      }
+
+      .newNav {
+        background-color: var(--nav-light);
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+      }
+
+      body.dark-theme .newNav {
+        background-color: var(--nav-dark);
+      }
+
+      .newNav .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: var(--nav-text-light);
+        text-decoration: none;
+        font-size: 16px;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: all 0.3s;
+      }
+
+      .nav-links a:hover {
+        background-color: var(--nav-hover-light);
+        transform: translateY(-2px);
+      }
+
+      body.dark-theme .nav-links a {
+        color: var(--nav-text-dark);
+      }
+
+      body.dark-theme .nav-links a:hover {
+        background-color: var(--nav-hover-dark);
+      }
+
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        margin-top: 100px; /* Add space for fixed header */
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      h1, h2 {
+        text-align: center;
+      }
+
+      form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+
+      input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .packing-list {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      .packing-list ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .packing-list ul li {
+        background: #f4f4f4;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .flex-item {
+          flex: 1 1 100%;
+          margin-right: 0;
+        }
+
+        input[type="submit"],
+        .btn-book {
+          margin-left: 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
+  <body>
+    <nav class="newNav">
+      <div class="logo">
+        <i class="fas fa-plane-departure fa-2x mr-2" style="color: rgba(72, 190, 225, 0.941);"></i>
+        <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: white;">letstravel.com</span>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <div class="theme-toggle">
+          <input type="checkbox" id="themeToggle">
+          <label for="themeToggle" class="toggle-label"></label>
+        </div>
+        <div class="nav-links">
+          <a href="/templates/index.html">Home</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1>Customizable Packing List</h1>
+        <form id="packing-form">
+            <label for="trip-type">Type of Trip:</label>
+            <select id="trip-type" name="trip-type">
+                <option value="beach">Beach</option>
+                <option value="mountains">Mountains</option>
+                <option value="city">City</option>
+                <option value="international">International</option>
+            </select>
+
+            <label for="duration">Duration (days):</label>
+            <input type="number" id="duration" name="duration" min="1" max="30">
+
+            <label for="weather">Expected Weather:</label>
+            <select id="weather" name="weather">
+                <option value="hot">Hot</option>
+                <option value="cold">Cold</option>
+                <option value="moderate">Moderate</option>
+            </select>
+
+            <button type="submit">Generate Packing List</button>
+        </form>
+
+        <div id="packing-list" class="packing-list">
+            <h2>Your Packing List</h2>
+            <ul id="list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('packing-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const tripType = document.getElementById('trip-type').value;
+            const duration = parseInt(document.getElementById('duration').value, 10);
+            const weather = document.getElementById('weather').value;
+
+            const packingList = generatePackingList(tripType, duration, weather);
+            displayPackingList(packingList);
+        });
+
+        function generatePackingList(tripType, duration, weather) {
+            const commonItems = ['Toothbrush', 'Toothpaste', 'Shampoo', 'Conditioner', 'Body Wash', 'Deodorant', 'Underwear', 'Socks'];
+            const packingList = [...commonItems];
+
+            if (tripType === 'beach') {
+                packingList.push('Swimsuit', 'Sunscreen', 'Beach Towel', 'Flip Flops');
+            } else if (tripType === 'mountains') {
+                packingList.push('Hiking Boots', 'Jacket', 'Backpack', 'Map');
+            } else if (tripType === 'city') {
+                packingList.push('Comfortable Shoes', 'Guidebook', 'Camera', 'City Map');
+            } else if (tripType === 'international') {
+                packingList.push('Passport', 'Travel Adapter', 'Language Guide', 'Currency');
+            }
+
+            if (weather === 'hot') {
+                packingList.push('Sunglasses', 'Hat', 'Light Clothing');
+            } else if (weather === 'cold') {
+                packingList.push('Gloves', 'Scarf', 'Warm Clothing');
+            } else if (weather === 'moderate') {
+                packingList.push('Light Jacket', 'Comfortable Clothing');
+            }
+
+            for (let i = 0; i < duration; i++) {
+                packingList.push('Day ' + (i + 1) + ' Outfit');
+            }
+
+            return packingList;
+        }
+
+        function displayPackingList(packingList) {
+            const listElement = document.getElementById('list');
+            listElement.innerHTML = '';
+
+            packingList.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item;
+                listElement.appendChild(listItem);
+            });
+        }
+    </script>
+    <script src="Theme.js"></script>
+  </body>
+</html>

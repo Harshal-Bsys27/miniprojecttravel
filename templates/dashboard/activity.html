@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Activity - LetsTravel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f6f8fb;
+        }
+
+        .page-header {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,.06);
+            border-radius: 14px;
+        }
+
+        .section-card {
+            border: 1px solid rgba(0,0,0,.06);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .section-card .card-header {
+            background: #fff;
+            border-bottom: 1px solid rgba(0,0,0,.06);
+        }
+
+        .muted {
+            color: #6c757d;
+        }
+
+        .pill-path {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4 py-md-5">
+        <div class="page-header p-4 mb-4 shadow-sm">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                <div>
+                    <h2 class="mb-1">My Activity</h2>
+                    <div class="muted">A quick view of your recent searches, bookings, and pages.</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge text-bg-light border">Signed in as: <strong>{{ username }}</strong></span>
+                    <a class="btn btn-primary" href="/dashboard">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-3">
+                <div class="col-12 col-md-4">
+                    <div class="border rounded-3 p-3 bg-white h-100">
+                        <div class="muted small">Searches</div>
+                        <div class="fs-4 fw-semibold">{{ (activity.search_history|length) if activity and activity.search_history else 0 }}</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="border rounded-3 p-3 bg-white h-100">
+                        <div class="muted small">Bookings</div>
+                        <div class="fs-4 fw-semibold">{{ (activity.bookings|length) if activity and activity.bookings else 0 }}</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="border rounded-3 p-3 bg-white h-100">
+                        <div class="muted small">Pages Viewed</div>
+                        <div class="fs-4 fw-semibold">{{ (activity.page_views|length) if activity and activity.page_views else 0 }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-4">
+                <div class="card section-card shadow-sm">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="fw-semibold"><i class="fas fa-magnifying-glass me-2"></i>Recent Searches</div>
+                        <span class="badge text-bg-secondary">Last 5</span>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% if activity and activity.search_history and (activity.search_history|length) > 0 %}
+                            {% for search in activity.search_history[-5:] %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                    <div>
+                                        <div class="fw-semibold">{{ search.query }}</div>
+                                        <div class="muted small">{{ search.timestamp.strftime('%Y-%m-%d %H:%M') if search.timestamp else '' }}</div>
+                                    </div>
+                                    {% if search.results_count is not none %}
+                                        <span class="badge text-bg-light border">{{ search.results_count }} results</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group-item py-4 text-center muted">
+                                No searches yet.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card section-card shadow-sm">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="fw-semibold"><i class="fas fa-ticket me-2"></i>Recent Bookings</div>
+                        <span class="badge text-bg-secondary">Last 5</span>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% if activity and activity.bookings and (activity.bookings|length) > 0 %}
+                            {% for booking in activity.bookings[-5:] %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                    <div>
+                                        <div class="fw-semibold">Booking #{{ booking.booking_id }}</div>
+                                        <div class="muted small">
+                                            Travel: {{ booking.travel_date.strftime('%Y-%m-%d') if booking.travel_date else '—' }}
+                                            {% if booking.timestamp %} • Booked: {{ booking.timestamp.strftime('%Y-%m-%d %H:%M') }}{% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="fw-semibold">₹{{ booking.amount if booking.amount is not none else 0 }}</div>
+                                        <span class="badge {% if (booking.status or '')|lower == 'paid' %}text-bg-success{% else %}text-bg-warning{% endif %}">
+                                            {{ booking.status or 'pending' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group-item py-4 text-center muted">
+                                No bookings yet.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card section-card shadow-sm">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="fw-semibold"><i class="fas fa-clock-rotate-left me-2"></i>Recently Viewed</div>
+                        <span class="badge text-bg-secondary">Last 10</span>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% if activity and activity.page_views and (activity.page_views|length) > 0 %}
+                            {% for view in activity.page_views[-10:] %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                    <div class="flex-grow-1">
+                                        {% set clean_path = (view.page or '').split('?')[0] %}
+                                        <div class="pill-path">{{ clean_path }}</div>
+                                        <div class="muted small">{{ view.timestamp.strftime('%Y-%m-%d %H:%M') if view.timestamp else '' }}</div>
+                                    </div>
+                                    <span class="badge text-bg-light border">View</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group-item py-4 text-center muted">
+                                No page views yet.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

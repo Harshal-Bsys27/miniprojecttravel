@@ -1,0 +1,34 @@
+node_modules
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+venv/
+.venv/
+ENV/
+env/
+.pytest_cache/
+
+# Local secrets
+.env
+
+# Editor
+.vscode/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Local DB artifacts
+database.db
+
+# VS Code scratch files
+tempCodeRunnerFile.py
+
+# Archived unused assets (kept for reference, not for deployment)
+tools/_archive/
+
+# API Keys
+js/config.js

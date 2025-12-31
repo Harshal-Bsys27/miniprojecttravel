@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Adventure Awaits</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ4QJk8Dgi6s+3tyXgWh5q5GyugzT2QZG1iO3fXwRcl46p5MxFZqvlheXKbf" crossorigin="anonymous">
+    <!-- Add Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            backdrop-filter: blur(8px);
+            transition: opacity 0.5s, transform 0.5s;
+            animation: slideIn 0.8s ease-out;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header i {
+            font-size: 48px;
+            color: #FF6B6B;
+            margin-bottom: 15px;
+        }
+        .login-header h2 {
+            color: #2D4059;
+            font-size: 28px;
+            margin: 0;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            animation: slideIn 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        .form-group:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .form-group:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .form-group label {
+            color: #2D4059;
+            font-weight: 500;
+        }
+        .input-group {
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+            transform: scale(1);
+        }
+        .input-group:focus-within {
+            border-color: #FF6B6B;
+        }
+        .input-group:hover {
+            transform: scale(1.02);
+            border-color: #FF6B6B;
+        }
+        .input-group-text {
+            background-color: transparent;
+            border: none;
+            color: #FF6B6B;
+            padding: 12px;
+            margin: 0;
+            min-width: 46px;
+            display: flex;
+            justify-content: center;
+        }
+        .form-control {
+            border: none;
+            padding: 12px;
+            font-size: 1.1em;
+            background-color: transparent;
+            flex: 1;
+            margin: 0;
+            width: 100%;
+        }
+        .form-control::placeholder {
+            color: #999;
+            font-size: 0.95em;
+        }
+        .form-control:focus {
+            box-shadow: none;
+        }
+        button {
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover {
+            background-color: #FF5252;
+            transform: translateY(-2px);
+        }
+        button:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            padding-bottom: 120%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.3s;
+        }
+        button:active:after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            transition: 0s;
+        }
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+            animation: slideIn 0.8s ease-out;
+            animation-delay: 0.6s;
+            animation-fill-mode: both;
+        }
+        .register-link a {
+            color: #FF6B6B;
+            font-weight: 500;
+        }
+        .alert {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-left: 4px solid #FF6B6B;
+            color: #2D4059;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.3s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-100px); }
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #2D4059, #FF6B6B);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .preloader i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-text {
+            font-size: 1.5em;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-content">
+            <i class="fas fa-plane-departure" style="color: white;"></i>
+            <div class="preloader-text">LETSTRAVEL</div>
+            <div style="font-size: 0.9em; margin-top: 10px;">Preparing your journey...</div>
+        </div>
+    </div>
+    <div class="login-box">
+        <div class="login-header">
+            <i class="fas fa-plane-departure" style="color: rgba(72, 190, 225, 0.941); font-size: 2em;"></i>
+            <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: #2D4059;">letstravel.com</span>
+            <p style="color: #666; margin-top: 10px;">Your journey begins here</p>
+        </div>
+        {% if error %}
+            <div class="alert">{{ error }}</div>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+        <form onsubmit="return validateForm()" method="POST" autocomplete="off">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required autocomplete="new-email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="new-password">
+                </div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <a href="{{ url_for('auth.register') }}" onclick="handleRegisterClick(event)">Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.remove(), 500);
+            }
+        });
+
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return false;
+            }
+
+            return true;
+        }
+
+        function handleRegisterClick(event) {
+            event.preventDefault();
+            const loginBox = document.querySelector('.login-box');
+            const preloader = document.querySelector('.preloader') || createPreloader();
+            
+            loginBox.classList.add('fade-out');
+            document.body.appendChild(preloader);
+            
+            setTimeout(() => {
+                preloader.style.opacity = '1';
+                window.location.href = event.target.href;
+            }, 300);
+        }
+
+        function createPreloader() {
+            const preloader = document.createElement('div');
+            preloader.className = 'preloader';
+            preloader.innerHTML = `
+                <div class="preloader-content">
+                    <i class="fas fa-plane-departure" style="color: white;"></i>
+                    <div class="preloader-text">LETSTRAVEL</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Preparing registration...</div>
+                </div>
+            `;
+            return preloader;
+        }
+    </script>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybS8kPEmz5bmU1B2Q8lT0i6XYfaQ8Vb6k9QfY1J5F1nI7iG3K" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0pF8k4lnR+6r7lfo3WrwUqX2Xjrl9hfu4zwFv48b3mFhTQHc" crossorigin="anonymous"></script>
+</body>
+</html>

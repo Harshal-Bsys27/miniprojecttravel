@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darjeeling Holiday Packages - Queen of Hills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/darjeeling-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+        .experience-tag {
+            background: #795548;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Darjeeling</h1>
+        <p class="lead">Where Tea Gardens Meet the Himalayas</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2>Darjeeling Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 5 Days / 4 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Couples, Families, Nature Lovers</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: March to May, October to December</li>
+                        <li><i class="fas fa-mountain me-2"></i> Altitude: 2,042m above sea level</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Iconic Attractions</h2>
+                <div class="row">
+                    <!-- Tiger Hill -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/tiger-hill.jpg" class="card-img-top attraction-img" alt="Tiger Hill Sunrise">
+                            <div class="card-body">
+                                <span class="experience-tag">Sunrise View</span>
+                                <h5 class="card-title">Tiger Hill</h5>
+                                <p class="card-text">Famous for spectacular sunrise views over Kanchenjunga.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toy Train -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/darjeeling-toy-train.jpg" class="card-img-top attraction-img" alt="Darjeeling Toy Train">
+                            <div class="card-body">
+                                <span class="experience-tag">Heritage</span>
+                                <h5 class="card-title">Darjeeling Himalayan Railway</h5>
+                                <p class="card-text">UNESCO World Heritage toy train journey through the hills.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tea Gardens -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/tea-gardens.jpg" class="card-img-top attraction-img" alt="Tea Gardens">
+                            <div class="card-body">
+                                <span class="experience-tag">Tea Tourism</span>
+                                <h5 class="card-title">Tea Gardens</h5>
+                                <p class="card-text">Visit famous tea estates and learn about tea processing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Padmaja Naidu Zoo -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/darjeeling-zoo.jpg" class="card-img-top attraction-img" alt="Padmaja Naidu Zoo">
+                            <div class="card-body">
+                                <span class="experience-tag">Wildlife</span>
+                                <h5 class="card-title">Padmaja Naidu Zoo</h5>
+                                <p class="card-text">Home to Red Pandas and Snow Leopards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Special Experiences</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-mug-hot fa-2x mb-2 text-brown"></i>
+                            <h5>Tea Tasting</h5>
+                            <p>Experience world-famous Darjeeling tea</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-train fa-2x mb-2 text-brown"></i>
+                            <h5>Joy Rides</h5>
+                            <p>Toy train journey to Ghum</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-hiking fa-2x mb-2 text-brown"></i>
+                            <h5>Nature Walks</h5>
+                            <p>Guided walks through tea estates</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card sticky-booking">
+                <div class="card-body">
+                    <h3 class="card-title">Book Your Darjeeling Escape</h3>
+                    <div class="mb-3">
+                        <h4 class="text-primary">₹25,999</h4>
+                        <small class="text-muted">per person</small>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Package Type</label>
+                            <select class="form-select">
+                                <option>Tea Tourism Package</option>
+                                <option>Heritage Tour Package</option>
+                                <option>Honeymoon Package</option>
+                                <option>Adventure Package</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="proceedToPayment()">
+                            Book Now
+                        </button>
+                        <small class="text-muted d-block text-center">Secure payment powered by Razorpay</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone me-2"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@letstravel.com</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function proceedToPayment() {
+    alert('Payment integration will be added here');
+}
+</script>
+
+</body>
+</html>

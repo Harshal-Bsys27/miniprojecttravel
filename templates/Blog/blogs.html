@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blogs & Itineraries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .blog-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e1e2f, #2c2c44);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>✈️ Travel Blogs & Stories</h1>
+        <p class="lead">Explore our collection of travel experiences and adventures</p>
+    </div>
+
+    <div class="container">
+        <!-- Add Filter Section -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <select class="form-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="hiking">Hiking</option>
+                    <option value="culture">Culture</option>
+                    <option value="spiritual">Spiritual</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="India">India</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Alaska">Alaska</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="budgetFilter">
+                    <option value="">All Budgets</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="durationFilter">
+                    <option value="">All Durations</option>
+                    <option value="1-3">1-3 days</option>
+                    <option value="4-7">4-7 days</option>
+                    <option value="7+">7+ days</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Blog Cards Container -->
+        <div class="row" id="blogContainer">
+            <!-- Blog cards will be dynamically inserted here -->
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="text-center mt-4 mb-5">
+            <a href="../allcodeshtml/Planyourtrip.html" class="btn btn-outline-primary"></a>
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import { blogPosts } from '../js code/blogData.js';
+
+        const blogContainer = document.getElementById('blogContainer');
+        const filters = {
+            category: document.getElementById('categoryFilter'),
+            location: document.getElementById('locationFilter'),
+            budget: document.getElementById('budgetFilter'),
+            duration: document.getElementById('durationFilter')
+        };
+
+        function filterPosts() {
+            const selectedCategory = filters.category.value;
+            const selectedLocation = filters.location.value;
+            const selectedBudget = filters.budget.value;
+            const selectedDuration = filters.duration.value;
+
+            const filteredPosts = blogPosts.filter(post => {
+                return (!selectedCategory || post.category === selectedCategory) &&
+                       (!selectedLocation || post.location === selectedLocation) &&
+                       (!selectedBudget || post.budget === selectedBudget) &&
+                       (!selectedDuration || matchesDuration(post.duration, selectedDuration));
+            });
+
+            displayPosts(filteredPosts);
+        }
+
+        function matchesDuration(postDuration, filterDuration) {
+            const days = parseInt(postDuration);
+            switch(filterDuration) {
+                case '1-3': return days <= 3;
+                case '4-7': return days > 3 && days <= 7;
+                case '7+': return days > 7;
+                default: return true;
+            }
+        }
+
+        function displayPosts(posts) {
+            blogContainer.innerHTML = posts.map(post => `
+                <div class="col-md-6 mb-4">
+                    <div class="card blog-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="${post.icon}"></i> ${post.title}</h5>
+                            <p class="card-text">${post.description}</p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary me-2">${post.category}</span>
+                                <span class="badge bg-secondary me-2">${post.duration}</span>
+                                <span class="badge bg-info">${post.location}</span>
+                            </div>
+                            <a href="${post.url}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add event listeners to filters
+        Object.values(filters).forEach(filter => {
+            filter.addEventListener('change', filterPosts);
+        });
+
+        // Initial display
+        displayPosts(blogPosts);
+    </script>
+</body>
+</html>

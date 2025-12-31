@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Holiday Packages - God's Own Country</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/kerala-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+        .highlight-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Kerala</h1>
+        <p class="lead">Experience God's Own Country - Where Nature Meets Tranquility</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2>Kerala Holiday Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 6 Days / 5 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Nature Lovers, Couples, Families</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: September to March</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Featured Destinations</h2>
+                <div class="row">
+                    <!-- Backwaters -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/kerala-backwaters.jpg" class="card-img-top attraction-img" alt="Kerala Backwaters">
+                            <div class="card-body">
+                                <h5 class="card-title">Alleppey Backwaters</h5>
+                                <p class="card-text">Experience the serene backwaters on a traditional houseboat with overnight stay.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Munnar -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/munnar-teagardens.jpg" class="card-img-top attraction-img" alt="Munnar Tea Gardens">
+                            <div class="card-body">
+                                <h5 class="card-title">Munnar Tea Gardens</h5>
+                                <p class="card-text">Explore vast tea plantations and misty mountains in this hill station.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kovalam -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/kovalam-beach.jpg" class="card-img-top attraction-img" alt="Kovalam Beach">
+                            <div class="card-body">
+                                <h5 class="card-title">Kovalam Beach</h5>
+                                <p class="card-text">Relax at the pristine beaches with lighthouse views and water activities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fort Kochi -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/fort-kochi.jpg" class="card-img-top attraction-img" alt="Fort Kochi">
+                            <div class="card-body">
+                                <h5 class="card-title">Fort Kochi</h5>
+                                <p class="card-text">Discover colonial heritage, Chinese fishing nets, and local art scenes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Cultural Experiences</h2>
+                <div class="highlight-box">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-drum me-2"></i> Kathakali Dance Performance</li>
+                        <li class="mb-3"><i class="fas fa-spa me-2"></i> Traditional Ayurvedic Spa</li>
+                        <li class="mb-3"><i class="fas fa-utensils me-2"></i> Kerala Cuisine Cooking Class</li>
+                        <li class="mb-3"><i class="fas fa-theater-masks me-2"></i> Kalaripayattu Martial Arts Show</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card sticky-booking">
+                <div class="card-body">
+                    <h3 class="card-title">Book Your Kerala Adventure</h3>
+                    <div class="mb-3">
+                        <h4 class="text-primary">₹35,999</h4>
+                        <small class="text-muted">per person</small>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Package Type</label>
+                            <select class="form-select">
+                                <option>Backwater Special</option>
+                                <option>Hill Station Retreat</option>
+                                <option>Complete Kerala Tour</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="proceedToPayment()">
+                            Book Now
+                        </button>
+                        <small class="text-muted d-block text-center">Secure payment powered by Razorpay</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone me-2"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@letstravel.com</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function proceedToPayment() {
+    alert('Payment integration will be added here');
+}
+</script>
+
+</body>
+</html>

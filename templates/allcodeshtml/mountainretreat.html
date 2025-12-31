@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Retreat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f4f8; /* Light background for a clean look */
+            font-family: 'Poppins', sans-serif;
+        }
+        header {
+            background-color: #2c445d; /* Match header color */
+            padding: 10px 0;
+        }
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+        .navbar-brand {
+            font-size: 2rem; /* Reduced size */
+            font-weight: bold;
+            color: #ffffff; /* White color */
+            display: flex;
+            align-items: center; /* Center icon and text vertically */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow effect for outline */
+            padding: 10px; /* Added padding for better spacing */
+        }
+        .nav-link {
+            font-size: 1.5rem; /* Increased size for nav links */
+            color: white; /* White color for nav links */
+            transition: color 0.3s; /* Transition for hover */
+            margin: 0 15px; /* Equal spacing between buttons */
+        }
+        .nav-link:hover {
+            color: #f7f1f1; /* Change color on hover */
+        }
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 20px;
+        }
+        .carousel-item {
+            height: 60vh; /* Set height for carousel items */
+        }
+        .carousel-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8; /* Slightly transparent */
+        }
+        .discover-title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem; /* Reduced size for a cleaner look */
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .location-card {
+            transition: transform 0.3s;
+        }
+        .location-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-custom {
+            background-color: #007bff; /* Bright blue */
+            color: white; /* White text for Explore Locations */
+            font-size: 1rem; /* Adjusted size */
+            padding: 8px 16px; /* Reduced padding */
+            transition: background-color 0.3s, transform 0.3s; /* Transition for hover */
+            border-radius: 5px; /* Added rounded corners */
+        }
+        .btn-custom:hover {
+            background-color: #0056b3; /* Darker on hover */
+            transform: scale(1.05); /* Scale up on hover */
+        }
+        .btn-section {
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .discover-title {
+                font-size: 1.5rem; /* Smaller font on mobile */
+            }
+            .nav-link {
+                font-size: 1.2rem; /* Smaller nav links on mobile */
+            }
+            .btn-custom {
+                font-size: 0.9rem; /* Smaller button size on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-mountain" style="color: rgba(191, 210, 44, 0.941);"></i>
+                    Mountain Retreat
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/index.html"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#locations"><i class="fas fa-map-marker-alt"></i> Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-content">
+        <div class="discover-title">Discover Your Next Mountain Adventure</div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../images.png/moutain.Uk roopkund.jpg" class="d-block w-100" alt="Mountain 1">
+                    <h3 class="carousel-caption d-none d-md-block">Uttarakhand-Roopkund</h3>
+                </div>
+                <div class="carousel-item">
+                    <img src="../images.png/Mountain UK valley of flowers.webp" class="d-block w-100" alt="Mountain 2">
+                    <h3 class="carousel-caption d-none d-md-block">Uttarakhand-Valley of Flowers</h3>
+                </div>
+                <div class="carousel-item">
+                    <img src="../images.png/Mountain MH-kalsubai.jpg" class="d-block w-100" alt="Mountain 3">
+                    <h3 class="carousel-caption d-none d-md-block">Maharashtra -Kalsubai</h3>
+                </div>
+                <div class="carousel-item">
+                    <img src="../images.png/mountain.Rajmachi fort trek.jpg" class="d-block w-100" alt="Mountain 4">
+                    <h3 class="carousel-caption d-none d-md-block">Maharashtra-Rajmachi Fort</h3>
+                </div>
+                <div class="carousel-item">
+                    <img src="../images.png/Mountain. ladakh chadar trek.jpg" class="d-block w-100" alt="Mountain 5">
+                    <h3 class="carousel-caption d-none d-md-block">Ladakh-Chadar</h3>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <a href="#locations" class="btn btn-custom btn-lg mt-4">Explore Locations</a>
+    </section>
+
+    <section id="locations" class="container my-5">
+        <h2 class="text-center">India's Top Trekking Locations:</h2>
+        <div class="row">
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/Karol-Tibba-Trek.webp" class="card-img-top" alt="Shimla">
+                    <div class="card-body">
+                        <h5 class="card-title">Shimla</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Karol Tibba Trek</h6>
+                        <p class="card-text">“In Shimla, the mountains whisper secrets of the past and the beauty of the present.”</p>
+                        <a href="everest.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/hampta-pass-trek-scaled.jpg" class="card-img-top" alt="Manali">
+                    <div class="card-body">
+                        <h5 class="card-title">Manali</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Hampta Pass Trek</h6>
+                        <p class="card-text">"Manali's beauty is like a dream, waiting for you to explore."</p>
+                        <a href="hampta.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/nainitaTREK.webp" class="card-img-top" alt="Nainital">
+                    <div class="card-body">
+                        <h5 class="card-title">Nainital</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Naini Peak-Pangot Trek</h6>
+                        <p class="card-text">"Where the clouds touch the earth and the sun kisses the mountains."</p>
+                        <a href="andes.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/nanda_devi_trek.png" class="card-img-top" alt="Nanda Devi">
+                    <div class="card-body">
+                        <h5 class="card-title">Uttarakhand</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Nanda Devi Trek</h6>
+                        <p class="card-text">“Where the earth touches the sky, there lies Nanda Devi.”</p>
+                        <a href="nanda.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            <!-- Additional Demo Locations -->
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/Chopta trek.jpg" class="card-img-top" alt="Chopta">
+                    <div class="card-body">
+                        <h5 class="card-title">Chopta</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Tungnath Trek</h6>
+                        <p class="card-text">"Chopta is known as the 'Mini Switzerland' of India, offering stunning views."</p>
+                        <a href="chopta.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            <article class="col-md-4 mb-4">
+                <div class="card location-card">
+                    <img src="../images.png/Deoriatal trek.jpg" class="card-img-top" alt="Deoriatal">
+                    <div class="card-body">
+                        <h5 class="card-title">Deoriatal</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Deoriatal Trek</h6>
+                        <p class="card-text">"A serene lake surrounded by the beauty of the Himalayas."</p>
+                        <a href="deoriatal.html" class="btn btn-custom">Learn More</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="container my-5">
+        <h2 class="text-center">Contact Us</h2>
+        <p class="text-center">If you have any questions or need more information, feel free to reach out!</p>
+        <div class="text-center btn-section">
+            <a href="mailto:info@mountainretreat.com" class="btn btn-custom btn-lg">Email Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; letstravel.com Mountain Retreat.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

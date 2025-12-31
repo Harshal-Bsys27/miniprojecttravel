@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotels in Udaipur | LetsTravel.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('../images.png/udaipur-palace.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .price {
+            font-size: 1.5rem;
+            color: #1f116a;
+            font-weight: bold;
+        }
+        .booking-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            background-color: #1a73e8;
+            border: none;
+        }
+        .booking-btn:hover {
+            background-color: #1557b0;
+            transform: translateY(-2px);
+        }
+        .rating {
+            color: #ffd700;
+            margin: 10px 0;
+        }
+        /* Add to existing <style> section */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.form-select {
+    border-radius: 20px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}
+
+.form-select:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 0.2rem rgba(26, 115, 232, 0.25);
+}
+
+.booking-btn {
+    transition: all 0.3s ease;
+}
+
+.booking-btn:disabled {
+    background-color: #cccccc;
+    cursor: wait;
+}
+    </style>
+</head>
+<body>
+    <!-- Add right after opening body tag -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner-grow text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-light mt-2">Redirecting to booking...</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-hotel"></i> LetsTravel
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../templates/explore.html">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../firstflight-travels-main/flightamadeus.html">Flights</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="header">
+    <div class="container">
+        <h1>Luxury Hotels in Udaipur</h1>
+        <p>Experience the City of Lakes in royal comfort</p>
+    </div>
+</header>
+<!-- Add after the header section -->
+<div class="container mb-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <label for="priceRange" class="form-label">Filter by Price Range</label>
+                    <select id="priceRange" class="form-select">
+                        <option value="all">All Prices</option>
+                        <option value="0-30000">Under ₹30,000</option>
+                        <option value="30000-40000">₹30,000 - ₹40,000</option>
+                        <option value="40000+">Above ₹40,000</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="sortBy" class="form-label">Sort By</label>
+                    <select id="sortBy" class="form-select">
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- Taj Lake Palace -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                        <img src="../images.png/udaipurhotel1.png" class="card-img-top" alt="Taj Lake Palace">
+                        <div class="card-body">
+                            <h5 class="card-title">Taj Lake Palace</h5>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="card-text">Luxury palace hotel floating on Lake Pichola with stunning views.</p>
+                            <p class="price">₹35,000 per night</p>
+                            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547054&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=1"
+                          onclick="handleBooking(event)"
+                               target="_blank" 
+                               class="btn btn-primary booking-btn">
+                                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                        <!-- Add after the first hotel card -->
+
+<!-- The Oberoi Udaivilas -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="../images.png/udaipurhotel2.jpg" class="card-img-top" alt="The Oberoi Udaivilas">
+        <div class="card-body">
+            <h5 class="card-title">The Oberoi Udaivilas</h5>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="card-text">Luxury resort with stunning lake views and traditional Rajasthani architecture.</p>
+            <p class="price">₹45,000 per night</p>
+            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547053&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=1" 
+               target="_blank" 
+               class="btn btn-primary booking-btn">
+                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- The Leela Palace -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="../images.png/udaipurhotel3.jpg" class="card-img-top" alt="The Leela Palace">
+        <div class="card-body">
+            <h5 class="card-title">The Leela Palace</h5>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="card-text">Modern luxury hotel with traditional charm and lake-facing rooms.</p>
+            <p class="price">₹38,000 per night</p>
+            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547053&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=16" 
+               target="_blank" 
+               class="btn btn-primary booking-btn">
+                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Raffles Udaipur -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="../images.png/udaipurhotel4.jpg" class="card-img-top" alt="Raffles Udaipur">
+        <div class="card-body">
+            <h5 class="card-title">Raffles Udaipur</h5>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="card-text">Private island luxury resort with world-class amenities.</p>
+            <p class="price">₹42,000 per night</p>
+            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547053&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=1" 
+               target="_blank" 
+               class="btn btn-primary booking-btn">
+                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- RAAS Devigarh -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="../images.png/udaipurhotel5.webp" class="card-img-top" alt="RAAS Devigarh">
+        <div class="card-body">
+            <h5 class="card-title">RAAS Devigarh</h5>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="card-text">18th-century palace turned luxury hotel with contemporary design.</p>
+            <p class="price">₹32,000 per night</p>
+            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547053&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=1" 
+               target="_blank" 
+               class="btn btn-primary booking-btn">
+                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Taj Aravali Resort -->
+<div class="col-md-4 mb-4">
+    <div class="card">
+        <img src="../images.png/udaipurhotel6.webp" class="card-img-top" alt="Taj Aravali Resort">
+        <div class="card-body">
+            <h5 class="card-title">Taj Aravali Resort</h5>
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="card-text">Modern luxury resort nestled in the Aravali hills.</p>
+            <p class="price">₹28,000 per night</p>
+            <a href="https://www.skyscanner.com/hotels/search?entity_id=27547053&checkin=2025-03-15&checkout=2025-03-16&adults=2&rooms=1" 
+               target="_blank" 
+               class="btn btn-primary booking-btn">
+                <i class="fas fa-concierge-bell"></i> Book on Skyscanner
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar cards for other hotels -->
+        <!-- Add 5 more hotel cards with Skyscanner links -->
+
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p>&copy; 2025 LetsTravel.com. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add scroll animation for navbar
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+            navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+    });
+
+    // Track hotel bookings
+    const bookingButtons = document.querySelectorAll('.booking-btn');
+    bookingButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const hotelName = e.target.closest('.card-body').querySelector('.card-title').textContent;
+            console.log(`Booking initiated for ${hotelName}`);
+            // Add your analytics tracking code here
+        });
+    });
+});
+</script>
+<!-- Replace existing script section before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js code/udaipur.js"></script>
+</body>
+</html>

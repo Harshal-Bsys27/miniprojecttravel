@@ -1,0 +1,174 @@
+/* --- Package Section Title --- */
+.package-title {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.package-title h2 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* --- Package Content Layout --- */
+.package-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* --- Package Box Styling --- */
+.box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    max-width: 320px;
+    text-align: center;
+    position: relative;
+}
+
+.box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Best Offer Badge --- */
+.box::before {
+    content: "Best Offer!";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff5722;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Show badge only for premium packages */
+.box.premium::before {
+    display: block;
+}
+
+/* --- Image Styling --- */
+.image {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.image img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Price Tag on Image --- */
+.image h3 {
+    color: white;
+    position: absolute;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    top: 15px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+/* --- Package Details --- */
+.dest-content {
+    padding: 20px;
+}
+
+.location h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* --- List of Features --- */
+.pac-details {
+    list-style: none;
+    padding: 0;
+}
+
+.pac-details li {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pac-details li::before {
+    content: "✔";
+    color: #4CAF50;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- Glowing "Book Now" Button --- */
+.book-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(255, 126, 95, 0.4);
+    text-decoration: none;
+}
+
+.book-btn:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+    box-shadow: 0 5px 20px rgba(255, 126, 95, 0.6);
+    transform: scale(1.05);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .package-title h2 {
+        font-size: 36px;
+    }
+
+    .box {
+        max-width: 90%;
+    }
+
+    .image img {
+        height: 220px;
+    }
+
+    .image h3 {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+}

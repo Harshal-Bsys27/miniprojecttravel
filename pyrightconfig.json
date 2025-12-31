@@ -1,0 +1,21 @@
+{
+  "include": [
+    "backend",
+    "app.py",
+    "wsgi.py",
+    "manage.py",
+    "tools"
+  ],
+  "exclude": [
+    "node_modules",
+    "venv",
+    "__pycache__"
+  ],
+  "reportAttributeAccessIssue": "none",
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": ["backend"]
+    }
+  ]
+}

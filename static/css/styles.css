@@ -1,0 +1,311 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 2.2;
+    color: #b35050;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 98%;
+    margin: 0 auto;
+}
+
+/* Header and navigation */
+header {
+    background: #9a1515;
+    color: #fff;
+    padding: 10px 20px;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 3em;
+    text-align: left;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Logo Styling */
+.travel-icon {
+    color: rgba(72, 190, 225, 0.941);
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-text {
+    font-weight: bold;
+    font-size: 1.8em;
+    font-style: italic;
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5), 
+                 -1px -1px 0 rgba(0, 0, 0, 0.5), 
+                 1px -1px 0 rgba(0, 0, 0, 0.5), 
+                 -1px 1px 0 rgba(0, 0, 0, 0.5), 
+                 1px 1px 0 rgba(0, 0, 0, 0.5);
+    transition: none; /* Remove transition for text hover effect */
+}
+
+.navbar-brand:hover .travel-icon {
+    transform: rotateY(360deg) scale(1.1); /* Apply scale effect only to the icon */
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.search-form .input-group {
+    display: flex;
+    position: relative;
+}
+
+.search-form input[type="text"] {
+    padding: 10px 40px; /* Add padding for icon */
+    border: none;
+    border-radius: 4px;
+    width: 250px;
+    background-color: #fff;
+    transition: box-shadow 0.2s;
+}
+
+.search-form input[type="text"]:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-form .search-icon {
+    position: absolute;
+    left: 15px; /* Align with padding */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #df7385;
+    pointer-events: none;
+}
+
+.search-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #df7385;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.search-form button:hover {
+    background-color: #e7e7e7;
+}
+
+/* Hero Section */
+#home {
+    text-align: center;
+    padding: 50px 10px;
+}
+
+#home h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#home h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #1360de;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #114eb1;
+}
+
+/* Sections */
+section {
+    padding: 40px 10px;
+}
+
+h2 {
+    font-size: 1.8em;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.destination-list, .trip-list, .package-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.destination-card, .trip-card, .package-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(105, 37, 37, 0.1);
+    overflow: hidden;
+    width: calc(25% - 30px);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.destination-card img, .package-card img {
+    width: 100%;
+    height: auto;
+}
+
+.destination-card h3, .package-card h3 {
+    padding: 10px;
+    font-size: 1.4em;
+}
+
+.destination-card p, .package-card p {
+    padding: 0 10px 10px;
+}
+
+.destination-card a, .package-card a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: rgb(0, 64, 85);
+    text-decoration: none;
+    border-top: 1px solid #ddd;
+    background: #f4f4f4;
+}
+
+.destination-card a:hover, .package-card a:hover {
+    background: #ddd;
+}
+
+/* Footer */
+footer {
+    background: #584f4f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 0;
+    margin: 0 auto;
+    width: 98%;
+}
+
+/* Contact Section */
+#contact {
+    text-align: left;
+}
+
+#contact h2 {
+    font-size: 1.8em;
+}
+
+#contact p {
+    margin-bottom: 20px;
+}
+
+#contact .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background: #4050e0;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#contact .btn:hover {
+    background: #2733a0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .destination-card, .trip-card, .package-card {
+        width: calc(50% - 30px);
+    }
+
+    .destination-list, .trip-list, .package-list {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .destination-card, .trip-card, .package-card {
+        width: calc(100% - 30px);
+    }
+
+    .destination-list, .trip-list, .package-list {
+        gap: 15px;
+    }
+
+    nav h1 {
+        font-size: 2em;
+    }
+
+    #home h1 {
+        font-size: 2em;
+    }
+
+    #home h3 {
+        font-size: 1.2em;
+    }
+}
+
+/* Bootstrap utility classes for alignment and spacing */
+.text-center {
+    text-align: center;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.px-3, .py-3 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}

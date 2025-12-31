@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>letstravel.com</title>
+    <link rel="icon" href="/firstflight-travels-main/files/logo.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/pakeges.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <section class="package" id="package">
+        <div class="package-title">
+            <h2>Packages</h2>
+        </div>
+    
+        <div class="package-content">
+            
+            <div class="box">
+                <div class="image">
+                    <a href="/payment.html?package=bronze">
+                        <img src="/firstflight-travels-main/files/p1.jpg" alt="Click to visit">
+                        <h3>Rs.9,999/-</h3>
+                    </a>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Bronze</h4>
+                    <ul class="pac-details">
+                        <li>2 Star Hotel</li>
+                        <li>5 Nights Stay</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                    <a href="/payment.html?package=bronze" class="book-btn">Book Now</a>
+                </div>
+            </div>
+            </div>
+            
+            <div class="box">
+                <div class="image">
+                    <a href="/payment.html?package=silver">
+                        <img src="/firstflight-travels-main/files/p2.jpg" alt="">
+                        <h3>Rs.19,999/-</h3>
+                    </a>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Silver</h4>
+                    <ul class="pac-details">
+                        <li>3 Star Hotel</li>
+                        <li>7 Nights Stay</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                    <a href="/payment.html?package=silver" class="book-btn">Book Now</a>
+                </div>
+            </div>
+            </div>
+    
+            <!-- <div class="box">
+                <div class="image">
+                    <a href="/payment.html?package=gold">
+                        <img src="/firstflight-travels-main/files/p3.jpg" alt="">
+                        <h3>Rs.29,999/-</h3>
+                    </a>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Gold</h4>
+                    <ul class="pac-details">
+                        <li>4 Star Hotel</li>
+                        <li>10 Nights Stay</li>
+                        <li>Breakfast and Dinner</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                </div>
+            </div>
+            </div> -->
+
+            <div class="box premium">  <!-- Add "premium" class for the best offer badge -->
+                <div class="image">
+                    <a href="/payment.html?package=gold">
+                        <img src="/firstflight-travels-main/files/p3.jpg" alt="">
+                        <h3>Rs.29,999/-</h3>
+                    </a>
+                </div>
+                <div class="dest-content">
+                    <div class="location">
+                        <h4>Gold</h4>
+                        <ul class="pac-details">
+                            <li>4 Star Hotel</li>
+                            <li>10 Nights Stay</li>
+                            <li>Breakfast and Dinner</li>
+                            <li>Free Photo Session</li>
+                            <li>Friendly Tour Guide</li>
+                            <li>24/7 Customer Help Center</li>
+                        </ul>
+                        <a href="/payment.html?package=gold" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            
+    
+            <div class="box">
+                <div class="image">
+                    <a href="/payment.html?package=platinum">
+                        <img src="/firstflight-travels-main/files/p4.jpg" alt="">
+                        <h3>Rs.39,999/-</h3>
+                    </a>
+                </div>
+            
+            <div class="dest-content">
+                <div class="location">
+                    <h4>Platinum</h4>
+                    <ul class="pac-details">
+                        <li>5 Star Hotel</li>
+                        <li>14 Nights Stay</li>
+                        <li>Breakfast, Lunch and Dinner</li>
+                        <li>Bornfire</li>
+                        <li>Free photo Session</li>
+                        <li>Friendly Tour Guide</li>
+                        <li>24/7 Customer Help Center</li>
+                    </ul>
+                    <a href="/payment.html?package=platinum" class="book-btn">Book Now</a>
+                </div>
+            </div>
+            </div>
+    
+        </div>
+    
+    </section>
+    
+    <script>
+        // Get destination from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('destination');
+        const season = urlParams.get('season');
+
+        // Update package titles and descriptions based on destination
+        if (destination) {
+            document.querySelector('.package-title h2').textContent = `${destination.toUpperCase()} Packages`;
+            
+            // Update all book now links to include destination
+            document.querySelectorAll('.book-btn').forEach(btn => {
+                const href = btn.getAttribute('href');
+                btn.setAttribute('href', `${href}&destination=${destination}`);
+            });
+
+            // Store destination in sessionStorage for payment page
+            sessionStorage.setItem('selectedDestination', destination);
+            sessionStorage.setItem('selectedSeason', season);
+        }
+    </script>
+</body>
+</html>

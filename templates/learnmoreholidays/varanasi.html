@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varanasi Holiday Packages - The Spiritual Capital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/varanasi-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+        .spiritual-tag {
+            background: #FF9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Varanasi</h1>
+        <p class="lead">Experience the Spiritual Heart of India</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2>Varanasi Spiritual Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 3 Days / 2 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Spiritual Seekers, Culture Enthusiasts</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: October to March</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Sacred Attractions</h2>
+                <div class="row">
+                    <!-- Dashashwamedh Ghat -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/dashashwamedh-ghat.jpg" class="card-img-top attraction-img" alt="Dashashwamedh Ghat">
+                            <div class="card-body">
+                                <span class="spiritual-tag">Evening Aarti</span>
+                                <h5 class="card-title">Dashashwamedh Ghat</h5>
+                                <p class="card-text">Experience the mesmerizing Ganga Aarti ceremony at sunset.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kashi Vishwanath Temple -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/kashi-vishwanath.jpg" class="card-img-top attraction-img" alt="Kashi Vishwanath Temple">
+                            <div class="card-body">
+                                <span class="spiritual-tag">Sacred Temple</span>
+                                <h5 class="card-title">Kashi Vishwanath Temple</h5>
+                                <p class="card-text">One of the most famous Hindu temples dedicated to Lord Shiva.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sarnath -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/sarnath.jpg" class="card-img-top attraction-img" alt="Sarnath">
+                            <div class="card-body">
+                                <span class="spiritual-tag">Buddhist Site</span>
+                                <h5 class="card-title">Sarnath</h5>
+                                <p class="card-text">Where Buddha gave his first sermon after enlightenment.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assi Ghat -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card package-card">
+                            <img src="../images.png/assi-ghat.jpg" class="card-img-top attraction-img" alt="Assi Ghat">
+                            <div class="card-body">
+                                <span class="spiritual-tag">Morning Ritual</span>
+                                <h5 class="card-title">Assi Ghat</h5>
+                                <p class="card-text">Experience morning rituals and yoga by the Ganges.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Cultural Experiences</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-book fa-2x mb-2 text-warning"></i>
+                            <h5>Sanskrit Classes</h5>
+                            <p>Learn the ancient language</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <i class="fas fa-music fa-2x mb-2 text-warning"></i>
+                            <h5>Classical Music</h5>
+                            <p>Evening concerts at ghats</p>

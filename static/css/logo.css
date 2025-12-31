@@ -1,0 +1,36 @@
+/* Basic reset */
+body, h1 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.site-name {
+    font-size: 3em; /* Adjust size as needed */
+    font-weight: bold;
+    color: #0066cc; /* Stylish color for the text */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 2px; /* Spacing between letters */
+    font-family: 'Arial', sans-serif; /* You can use Google Fonts for more styling */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    margin: 0;
+}
+
+/* Additional styles if you want to use a custom font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.site-name {
+    font-family: 'Roboto', sans-serif;
+}

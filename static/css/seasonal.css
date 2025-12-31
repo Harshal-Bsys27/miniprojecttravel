@@ -1,0 +1,121 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4; /* Light background for contrast */
+}
+
+header {
+    background: #044b69; /* Deep blue background */
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow effect */
+    position: relative; /* Maintain positioning context */
+    z-index: 10; /* Ensure header is above other content */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Larger header size */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px; /* Increased spacing for a modern look */
+}
+
+nav ul li a {
+    color: #ffffff; /* White text color for links */
+    text-decoration: none;
+    font-weight: bold; /* Bold text for nav links */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    padding: 10px 15px; /* Padding for clickable area */
+    border-radius: 5px; /* Rounded corners for modern look */
+    background: transparent; /* Transparent background */
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Slightly lower shade of white on hover */
+    text-decoration: underline; /* Underline text on hover */
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem; /* Modern font size for section headers */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 0.5rem 0;
+}
+
+ul li a {
+    color: #bdc2c7; /* Link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+ul li a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative; /* Relative for better responsiveness */
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block; /* Stack nav items on smaller screens */
+        margin: 10px 0; /* Vertical spacing */
+    }
+
+    header h1 {
+        font-size: 2rem; /* Smaller header size for mobile */
+    }
+
+    section h2 {
+        font-size: 1.5rem; /* Smaller section header size for mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 0.5rem; /* Less padding for mobile */
+    }
+
+    main {
+        padding: 1rem; /* Less padding for mobile */
+    }
+
+    nav ul li a {
+        padding: 8px 12px; /* Adjust padding for smaller screens */
+    }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South India Tour - Book Now</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/theme-toggler.css">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
+        }
+        header {
+            background-color: #2c445d;
+            padding: 10px 0;
+        }
+        .tour-header {
+            background: url('/images.png/book.south-india.jpg') no-repeat center;
+            background-size: cover;
+            height: 300px;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .tour-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        .tour-header * {
+            position: relative;
+            z-index: 2;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .theme-toggle {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .theme-btn {
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 1.8rem;
+        }
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .theme-btn .fa-sun {
+            color: #ffd700;
+            display: none;
+        }
+        .theme-btn .fa-moon {
+            color: #ffffff;
+        }
+        body.dark-mode .theme-btn .fa-sun {
+            display: inline-block;
+        }
+        body.dark-mode .theme-btn .fa-moon {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-map-marker-alt" style="color: rgba(198, 29, 29, 0.941);"></i>
+                    South India Tour
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/templates/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="tour-header">
+        <h1>South India Tour Packages</h1>
+        <p>Discover the Rich Culture and Heritage of South India</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <!-- Package 1 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/kerala.jpg" class="card-img-top" alt="Kerala Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Kerala Experience</h5>
+                        <p class="card-text">7 Days / 6 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Munnar Hill Station</li>
+                            <li><i class="fas fa-check text-success"></i> Alleppey Backwaters</li>
+                            <li><i class="fas fa-check text-success"></i> Kovalam Beach</li>
+                        </ul>
+                        <a href="/templates/pakeges/pakeges.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/Tamilnadutemple.jpg" class="card-img-top" alt="Tamil Nadu Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tamil Nadu Temple Tour</h5>
+                        <p class="card-text">6 Days / 5 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Madurai Temple</li>
+                            <li><i class="fas fa-check text-success"></i> Thanjavur Palace</li>
+                            <li><i class="fas fa-check text-success"></i> Ooty Hill Station</li>
+                        </ul>
+                        <a href="/templates/pakeges/pakeges.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 4 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/MysoreRoyal.jpg" class="card-img-top" alt="Mysore Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Mysore Royal Tour</h5>
+                        <p class="card-text">4 Days / 3 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Mysore Palace</li>
+                            <li><i class="fas fa-check text-success"></i> Brindavan Gardens</li>
+                            <li><i class="fas fa-check text-success"></i> Chamundi Hills</li>
+                        </ul>
+                        <a href="/templates/pakeges/pakeges.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="col-md-4">
+                <div class="card package-card">
+                    <img src="/images.png/karnatakaheritage.jpg" class="card-img-top" alt="Karnataka Package" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Karnataka Heritage</h5>
+                        <p class="card-text">5 Days / 4 Nights</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Mysore Palace</li>
+                            <li><i class="fas fa-check text-success"></i> Hampi Ruins</li>
+                            <li><i class="fas fa-check text-success"></i> Coorg Hill Station</li>
+                        </ul>
+                        <a href="/templates/pakeges/pakeges.html" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="container my-5">
+        <h2 class="text-center"><strong>Contact Us</strong></h2>
+        <p class="text-center">Have questions about South India tours? We're here to help!</p>
+        <div class="text-center btn-section">
+            <a href="mailto:info@letstravel.com" class="btn btn-custom btn-lg">Email Us</a>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2024 letstravel.com - South India Tours</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/Theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolkata Holiday Packages - City of Joy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images.png/kolkata-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .package-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .attraction-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .sticky-booking {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="../templates/index.html">
+            <i class="fas fa-plane-departure"></i> letstravel.com
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-map-marked-alt"></i> Destinations
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="delhi.html">Delhi</a></li>
+                        <li><a class="dropdown-item" href="#">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="#">Jaipur</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-suitcase"></i> Packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-camera"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ms-2" href="#">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</nav>
+
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-3">Discover Kolkata</h1>
+        <p class="lead">Experience the cultural capital of India - where tradition and intellect thrive</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2>Kolkata Holiday Package Overview</h2>
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-clock me-2"></i> Duration: 4 Days / 3 Nights</li>
+                        <li><i class="fas fa-users me-2"></i> Ideal for: Culture Enthusiasts, Food Lovers, History Buffs</li>
+                        <li><i class="fas fa-calendar me-2"></i> Best Time: October to March</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Top Attractions</h2>
+                <div class="row">
+                    <!-- Victoria Memorial -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/victoria-memorial.jpg" class="card-img-top attraction-img" alt="Victoria Memorial">
+                            <div class="card-body">
+                                <h5 class="card-title">Victoria Memorial</h5>
+                                <p class="card-text">Magnificent marble building dedicated to Queen Victoria, surrounded by lush gardens.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Howrah Bridge -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/howrah-bridge.jpg" class="card-img-top attraction-img" alt="Howrah Bridge">
+                            <div class="card-body">
+                                <h5 class="card-title">Howrah Bridge</h5>
+                                <p class="card-text">Iconic cantilever bridge over the Hooghly River, a symbol of Kolkata.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- College Street -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/college-street.jpg" class="card-img-top attraction-img" alt="College Street">
+                            <div class="card-body">
+                                <h5 class="card-title">College Street</h5>
+                                <p class="card-text">World's largest book market and hub of intellectual discourse.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dakshineswar Temple -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="../images.png/dakshineswar-temple.jpg" class="card-img-top attraction-img" alt="Dakshineswar Temple">
+                            <div class="card-body">
+                                <h5 class="card-title">Dakshineswar Temple</h5>
+                                <p class="card-text">Beautiful Kali temple on the banks of Hooghly River.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>Cultural Experiences</h2>
+                <div class="accordion" id="culturalAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#culture1">
+                                Bengali Cuisine Tour
+                            </button>
+                        </h2>
+                        <div id="culture1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Street food at Park Street</li>
+                                    <li>Traditional Bengali thali experience</li>
+                                    <li>Famous Bengali sweets tasting</li>
+                                    <li>Coffee at College Street's Indian Coffee House</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card sticky-booking">
+                <div class="card-body">
+                    <h3 class="card-title">Book Your Kolkata Adventure</h3>
+                    <div class="mb-3">
+                        <h4 class="text-primary">₹22,999</h4>
+                        <small class="text-muted">per person</small>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Travel Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Travelers</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Package Type</label>
+                            <select class="form-select">
+                                <option>Cultural Package</option>
+                                <option>Heritage Package</option>
+                                <option>Food & Culture Package</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="proceedToPayment()">
+                            Book Now
+                        </button>
+                        <small class="text-muted d-block text-center">Secure payment powered by Razorpay</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Contact Us</h5>
+                <p><i class="fas fa-phone me-2"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@letstravel.com</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function proceedToPayment() {
+    alert('Payment integration will be added here');
+}
+</script>
+
+</body>
+</html>

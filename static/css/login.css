@@ -1,0 +1,92 @@
+/* General styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ec9b9b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Login container styling */
+.login-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(175, 70, 70, 0.1);
+    width: 100%;
+    max-width: 400px; /* Responsive max-width for larger screens */
+    text-align: center;
+}
+
+/* Styling for form elements */
+label {
+    display: block;
+    margin-bottom: 8px; /* Space above the input fields */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px; /* Input padding */
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #e7e4e4;
+    border-radius: 4px; /* Rounded corners for inputs */
+}
+
+.login-button {
+    width: 100%; /* Full width for the button */
+    padding: 10px;
+    background-color: #b2364f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #cc4874;
+}
+
+/* Center-align links */
+.login-container p {
+    margin: 15px 0; /* Space around the links */
+}
+
+.login-container a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-color: #ec9b9b; /* Full viewport background */
+    }
+
+    .login-container {
+        padding: 15px; /* Reduced padding for very small screens */
+        width: 100%; /* Full width for very small screens */
+        max-width: none; /* Remove max-width restriction */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
+
+    .login-button {
+        padding: 8px; /* Reduced padding for smaller screens */
+    }
+}
