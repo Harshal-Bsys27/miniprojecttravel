@@ -1,0 +1,137 @@
+/* Safe, global responsive defaults.
+   Include via <link rel="stylesheet" href="/css/responsive-base.css">.
+   Intentionally minimal to avoid changing visual design.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent long strings from forcing horizontal scroll */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+button,
+input,
+textarea {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+/* Make common layout containers breathe on small screens */
+@media (max-width: 768px) {
+  .container,
+  .container-fluid,
+  .content,
+  .page,
+  .wrapper,
+  .main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Allow navbars/menus to wrap instead of overflowing */
+nav,
+.navbar,
+.newNav,
+.topnav,
+.nav,
+.navLinks,
+.nav-links,
+.navlinks,
+ul.nav,
+ul.navbar-nav {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .navbar,
+  .newNav {
+    gap: 8px;
+  }
+
+  .navbar a,
+  .newNav a {
+    padding: 8px 10px;
+  }
+}
+
+/* Inputs should not overflow small screens */
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+/* Common auth/checkout card widths (many pages use these class names) */
+@media (max-width: 576px) {
+  .login-box,
+  .signup-box,
+  .register-box,
+  .auth-box,
+  .form-box,
+  .card,
+  .modal-content {
+    width: calc(100vw - 24px) !important;
+    max-width: 520px;
+  }
+}
+
+/* Allow wide tables/code blocks to scroll on small screens instead of breaking layout */
+pre,
+code,
+table {
+  max-width: 100%;
+}
+
+table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Bootstrap helper compatibility: some pages use legacy spacing classes */
+.mr-2 { margin-right: 0.5rem; }
+.ml-auto { margin-left: auto; }

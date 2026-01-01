@@ -251,7 +251,7 @@ def ticket_pdf(booking_id: str):
     y = height - 22 * mm
 
     c.setFont("Helvetica-Bold", 18)
-    c.drawString(margin_x, y, "letstravel.com")
+    c.drawString(margin_x, y, "letstravel")
     c.setFont("Helvetica", 10)
     y -= 10 * mm
     c.drawString(margin_x, y, "Invoice")

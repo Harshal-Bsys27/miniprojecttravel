@@ -406,7 +406,7 @@ function generateDetailedInvoice(bookingData) {
                 <div class="d-flex align-items-center justify-content-center">
                     <i class="fas fa-plane-departure fa-3x me-3"></i>
                     <div>
-                        <h2 class="mb-0">letstravel.com</h2>
+                        <h2 class="mb-0">letstravel</h2>
                         <p class="mb-0">Flight E-Ticket</p>
                     </div>
                 </div>

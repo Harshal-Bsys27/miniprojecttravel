@@ -45,7 +45,7 @@ function generatePDF() {
         // Add logo and header
         doc.setFontSize(24);
         doc.setTextColor(54, 133, 251);
-        doc.text('letstravel.com', 105, 20, { align: 'center' });
+        doc.text('letstravel', 105, 20, { align: 'center' });
         
         // Add invoice title
         doc.setFontSize(18);
@@ -84,7 +84,7 @@ function generatePDF() {
         
         // Add footer
         doc.setFontSize(10);
-        doc.text('Thank you for choosing letstravel.com', 105, 250, { align: 'center' });
+        doc.text('Thank you for choosing letstravel', 105, 250, { align: 'center' });
         doc.setFontSize(8);
         doc.text('This is a computer generated invoice', 105, 255, { align: 'center' });
         

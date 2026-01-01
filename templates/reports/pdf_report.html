@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="/css/responsive-base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { font-family: Arial, sans-serif; }
         .header { text-align: center; margin-bottom: 30px; }
@@ -13,7 +15,7 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">letstravel.com</div>
+        <div class="logo">letstravel</div>
         <h2>{{ title }}</h2>
         <p>Generated on: {{ generated_at.strftime('%Y-%m-%d %H:%M:%S UTC') }}</p>
     </div>
@@ -64,7 +66,7 @@
     </table>
 
     <div class="footer">
-        <p>© {{ generated_at.year }} letstravel.com - All rights reserved</p>
+        <p>© {{ generated_at.year }} letstravel - All rights reserved</p>
     </div>
 </body>
 </html>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>letstravel.com</title>
+    <link rel="stylesheet" href="/css/responsive-base.css">
+    <title>letstravel</title>
     <link rel="icon" href="/firstflight-travels-main/files/logo.png">
     <link rel="stylesheet" type="text/css" href="/static/css/pakeges.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,7 +181,7 @@
         if (destination) {
             const titleEl = document.querySelector('.package-title h2');
             if (titleEl) titleEl.textContent = `${destination.toUpperCase()} Packages`;
-            document.title = `${destination.toUpperCase()} Packages - letstravel.com`;
+            document.title = `${destination.toUpperCase()} Packages - letstravel`;
 
             // Update all Book Now links to include destination/season
             document.querySelectorAll('.book-btn').forEach((btn) => {
