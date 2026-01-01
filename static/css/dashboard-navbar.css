@@ -1,0 +1,111 @@
+/* Shared dashboard-style navbar (green + amber).
+   Include via <link rel="stylesheet" href="/css/dashboard-navbar.css">.
+   Designed to work for:
+   - <nav class="navbar ... dashboard-navbar">
+   - <header id="header" class="dashboard-navbar"> (legacy fixed header wrapper)
+*/
+
+:root {
+  --brand: #2f6b4f;
+  --brand-2: #f59e0b;
+  --brand-dark: #1f4d3a;
+  --brand-rgb: 47, 107, 79;
+  --brand2-rgb: 245, 158, 11;
+}
+
+.navbar.dashboard-navbar,
+#header.dashboard-navbar {
+  background: linear-gradient(135deg, rgba(28, 46, 38, 0.94), rgba(var(--brand-rgb), 0.62)) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.22),
+    0 10px 24px rgba(var(--brand-rgb), 0.18) !important;
+}
+
+/* Match dashboard spacing and keep the brand at the left edge */
+.navbar.dashboard-navbar {
+  padding: 1.05rem 1.15rem !important;
+}
+
+/* Fixed header wrapper used by some tour pages */
+#header.dashboard-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* The navbar itself handles padding (like dashboard). */
+  padding: 0 !important;
+}
+
+/* Some tour pages add a colored 3px strip using #header::after.
+   Disable it so the navbar matches dashboard exactly. */
+#header.dashboard-navbar::after {
+  content: none !important;
+  display: none !important;
+}
+
+#header.dashboard-navbar.scrolled {
+  background: linear-gradient(135deg, rgba(28, 46, 38, 0.96), rgba(var(--brand-rgb), 0.72)) !important;
+}
+
+.navbar.dashboard-navbar .navbar-brand,
+#header.dashboard-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.navbar.dashboard-navbar .brand-icon,
+#header.dashboard-navbar .brand-icon {
+  color: rgba(var(--brand2-rgb), 0.95);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.navbar.dashboard-navbar .brand-text,
+#header.dashboard-navbar .brand-text {
+  font-weight: 900;
+  font-size: 1.45rem;
+  font-style: italic;
+  color: #fff;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+.navbar.dashboard-navbar .nav-link,
+#header.dashboard-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.88) !important;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar.dashboard-navbar .nav-link:hover,
+#header.dashboard-navbar .nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.10);
+  transform: translateY(-1px);
+}
+
+.navbar.dashboard-navbar .nav-link:focus,
+.navbar.dashboard-navbar .nav-link.active,
+#header.dashboard-navbar .nav-link:focus,
+#header.dashboard-navbar .nav-link.active {
+  background: rgba(var(--brand2-rgb), 0.14);
+}
+
+.navbar.dashboard-navbar .navbar-toggler,
+#header.dashboard-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* When pages use underline hovers, make it amber. */
+#header.dashboard-navbar .nav-link::after {
+  background-color: rgba(var(--brand2-rgb), 0.95) !important;
+}
