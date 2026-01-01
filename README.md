@@ -1,8 +1,63 @@
 # LetsTravel
 
-A Flask + MongoDB travel web application with user authentication, tour browsing, booking/checkout flow, ticket generation, and an admin dashboard.
+## Introduction
 
-This repo was reorganized into a production-friendly Flask structure (`templates/`, `static/`, WSGI entrypoint), while keeping many legacy URLs working (for older HTML pages that still reference paths like `/css codes/...` and `/js code/...`).
+LetsTravel is a full-stack travel web application built for my portfolio. It lets users explore tour packages, plan trips, book tours, complete a checkout flow, and generate tickets — all in one place. It also includes an admin dashboard to manage tours, bookings, and basic user activity insights.
+
+This repo is organized into a production-friendly Flask structure (`templates/`, `static/`, `wsgi.py`), while keeping many legacy URLs working (older HTML pages that still reference paths like `/css codes/...` and `/js code/...`).
+
+## Demo video
+
+Coming soon.
+
+Note: GitHub README does not reliably support embedding an actual video player (iframe). The most common approach is to add a YouTube link (optionally with a clickable thumbnail).
+
+### Template (YouTube)
+
+- Link only:
+  - `ADD_YOUR_YOUTUBE_LINK_HERE`
+- Clickable thumbnail (recommended):
+
+```md
+[![LetsTravel Demo Video](docs/screenshots/demo-thumbnail.png)](ADD_YOUR_YOUTUBE_LINK_HERE)
+```
+
+### Template (Google Drive)
+
+- Link only:
+  - `ADD_YOUR_GOOGLE_DRIVE_LINK_HERE`
+- Clickable thumbnail:
+
+```md
+[![LetsTravel Demo Video](docs/screenshots/demo-thumbnail.png)](ADD_YOUR_GOOGLE_DRIVE_LINK_HERE)
+```
+
+## Screenshots
+
+Add screenshots under `docs/screenshots/` and update the file names below.
+
+- Login: `docs/screenshots/login.png`
+- Register: `docs/screenshots/register.png`
+- Dashboard: `docs/screenshots/dashboard.png`
+- Packages: `docs/screenshots/packages.png`
+- Checkout: `docs/screenshots/checkout.png`
+- Admin dashboard: `docs/screenshots/admin-dashboard.png`
+
+## Contents
+
+- [Key features](#key-features)
+- [Tech stack](#tech-stack)
+- [Project layout (high level)](#project-layout-high-level)
+- [Prerequisites](#prerequisites)
+- [Environment variables](#environment-variables)
+- [Setup (Windows PowerShell)](#setup-windows-powershell)
+- [Setup (macoslinux)](#setup-macoslinux)
+- [Admin setup & maintenance commands](#admin-setup--maintenance-commands)
+- [Main routes](#main-routes)
+- [Smoke test (quick local verification)](#smoke-test-quick-local-verification)
+- [MongoDB Atlas setup (step-by-step)](#mongodb-atlas-setup-step-by-step)
+- [Production deployment](#production-deployment)
+- [Troubleshooting](#troubleshooting)
 
 ## Key features
 
@@ -22,6 +77,8 @@ This repo was reorganized into a production-friendly Flask structure (`templates
 ## Tech stack
 
 - **Backend**: Python, Flask
+- **Frontend (UI)**: Server-rendered HTML using Flask/Jinja2 templates, CSS, JavaScript
+  - **What does “templates (Jinja2)” mean?** Jinja2 is Flask’s HTML template system. It lets the server fill values like the logged-in username and reuse common parts like the navbar. The browser still receives normal HTML/CSS/JS (it is not a separate React/Vue frontend).
 - **Database**: MongoDB (via MongoEngine)
 - **Exports**: Pandas + XlsxWriter
 - **PDF generation**: ReportLab
@@ -61,12 +118,28 @@ Common variables:
 - `SESSION_DAYS` — cookie session lifetime in days (default: 7).
 - `SESSION_COOKIE_SECURE` — `1` for HTTPS-only cookies (default in prod), `0` for local dev.
 
+Optional (Personalized Itineraries / AI):
+
+- `COHERE_API_KEY` — enables the itinerary generator.
+- `COHERE_API_URL` — optional override (defaults to Cohere Chat v2).
+- `COHERE_MODEL` — optional override.
+
 Optional (Node tooling):
 
 - `AMADEUS_CLIENT_ID`
 - `AMADEUS_CLIENT_SECRET`
 
 You can put variables in a local `.env` file (it is ignored by git).
+
+Quick `.env` example (local dev):
+
+```dotenv
+FLASK_ENV=development
+SECRET_KEY=dev-only-change-me
+MONGODB_URI=mongodb://localhost:27017/letstravel_db
+MONGODB_DB=letstravel_db
+SESSION_COOKIE_SECURE=0
+```
 
 ## Setup (Windows PowerShell)
 
@@ -185,23 +258,81 @@ python tools/smoke_flow.py
 
 It performs a lightweight flow check (login → dashboard → packages → checkout → payment confirm → ticket → ticket PDF) and also hits a few legacy URLs.
 
+## MongoDB Atlas setup (step-by-step)
+
+This app connects using:
+
+- `MONGODB_URI` (Atlas connection string)
+- `MONGODB_DB` (database name used by the app; defaults to `letstravel_db`)
+
+### 1) Create a cluster
+
+- Atlas → **Database** → **Build a Database** → choose the free tier (M0) for demo.
+
+### 2) Create a DB user
+
+- Atlas → **Security** → **Database Access** → **Add New Database User**
+  - Authentication method: Password
+  - Role: `readWrite` (for a demo app)
+
+### 3) Allow network access
+
+- Atlas → **Security** → **Network Access**
+  - For Render/hosts with changing IPs, the simplest demo setting is: `0.0.0.0/0`
+  - For better security, restrict to your fixed IP if you have one.
+
+### 4) Get the connection string
+
+- Atlas → **Database** → **Connect** → **Drivers**
+  - Copy the `mongodb+srv://...` connection string
+
+Example (format):
+
+```text
+mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_HOST>/?retryWrites=true&w=majority
+```
+
+### 5) Set environment variables
+
+Locally, add these to `.env` (or export them in your shell):
+
+```dotenv
+MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER_HOST/?retryWrites=true&w=majority
+MONGODB_DB=letstravel_db
+```
+
+Notes:
+
+- If your password contains special characters, URL-encode it.
+- This repo includes `dnspython` in `requirements.txt` which is required for `mongodb+srv://` URIs.
+
+### 6) Verify locally
+
+```powershell
+python app.py
+```
+
+If Atlas is configured correctly, the app should load and you can register/login.
+
 ## Production deployment
+
+This project includes a production WSGI entrypoint: `wsgi.py`.
 
 ### Render + MongoDB Atlas (recommended for demo deployments)
 
-1) Create a free MongoDB Atlas cluster and copy the connection string.
+1) Push this repo to GitHub.
 
-2) Create a new **Web Service** on Render from this GitHub repo.
+2) Create a new **Web Service** on Render from your GitHub repo.
 
 3) Set:
 
 - **Build Command**: `pip install -r requirements.txt`
 - **Start Command**: `gunicorn --bind 0.0.0.0:$PORT wsgi:app`
 
-4) Add Render environment variables (Dashboard → Environment):
+4) Add environment variables on Render (Dashboard → Environment):
 
-- `SECRET_KEY` (required)
-- `MONGODB_URI` (Atlas connection string)
+- `SECRET_KEY` (required; use a long random string)
+- `MONGODB_URI` (your Atlas connection string)
 - `MONGODB_DB=letstravel_db` (or your preferred DB name)
 - `FLASK_ENV=production`
 
@@ -257,10 +388,14 @@ These scripts require `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` in your `.
 
 ## Troubleshooting
 
+- **Atlas connection fails (timeout / not authorized)**:
+  - Verify Atlas Network Access allows your IP (or `0.0.0.0/0` for demo).
+  - Re-check username/password in the `MONGODB_URI`.
+- **SRV / DNS errors with `mongodb+srv://`**: ensure `dnspython` is installed (it is included in `requirements.txt`).
 - **Login works but dashboard/admin looks stuck**: hard refresh (`Ctrl+F5`) to clear cached JS/CSS.
 - **Mongo connection errors**: verify MongoDB is running and `MONGODB_URI` is correct.
 - **Port conflicts**: if port 5000 is already in use, set `FLASK_RUN_PORT` (or change the run command) and try again.
 
 ---
 
-If you want, I can also add a `.env.example` (safe template) and a short “Deploy to Render/Heroku” section tailored to where you plan to host it.
+If you tell me where you’re deploying (Render/Railway/Azure/VPS), I can tailor the deployment section to that platform (exact start command + environment variable setup).
