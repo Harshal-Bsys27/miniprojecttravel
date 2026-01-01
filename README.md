@@ -415,4 +415,3 @@ These scripts require `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` in your `.
 
 ---
 
-If you tell me where you’re deploying (Render/Railway/Azure/VPS), I can tailor the deployment section to that platform (exact start command + environment variable setup).
