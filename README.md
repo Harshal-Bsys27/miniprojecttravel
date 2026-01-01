@@ -34,14 +34,31 @@ Note: GitHub README does not reliably support embedding an actual video player (
 
 ## Screenshots
 
-Add screenshots under `docs/screenshots/` and update the file names below.
+All screenshots are stored in `docs/screenshots/`.
 
-- Login: `docs/screenshots/login.png`
-- Register: `docs/screenshots/register.png`
-- Dashboard: `docs/screenshots/dashboard.png`
-- Packages: `docs/screenshots/packages.png`
-- Checkout: `docs/screenshots/checkout.png`
-- Admin dashboard: `docs/screenshots/admin-dashboard.png`
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Packages
+
+![Packages](docs/screenshots/packages.png)
+
+### Tour Package
+
+![Tour Package](docs/screenshots/tourpkg.png)
+
+### Personalized Itinerary
+
+![Personalized Itinerary](docs/screenshots/personalizeditinerary.png)
+
+### Checkout
+
+![Checkout](docs/screenshots/checkout.png)
+
+### Ticket
+
+![Ticket](docs/screenshots/ticket.png)
 
 ## Contents
 
