@@ -32,22 +32,70 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--dark-gradient);
-            background-size: 400% 400%;
+            --lt-admin-green: #18a084;
+            --lt-admin-green-deep: #0f7b66;
+            --lt-admin-amber: #f6c453;
+            background:
+                radial-gradient(1200px 800px at 20% 10%, rgba(255, 255, 255, 0.18), transparent 60%),
+                linear-gradient(135deg, rgba(15, 123, 102, 0.95), rgba(26, 41, 59, 0.92) 55%, rgba(246, 196, 83, 0.28));
+            background-size: 200% 200%;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 14s ease infinite;
+            transition: opacity 500ms ease, visibility 500ms ease;
+        }
+
+        .admin-loader::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(800px 520px at 80% 70%, rgba(246, 196, 83, 0.14), transparent 60%),
+                radial-gradient(900px 700px at 30% 85%, rgba(24, 160, 132, 0.12), transparent 60%);
+            opacity: 0.9;
+            pointer-events: none;
+            animation: adminGlow 10s ease-in-out infinite alternate;
+        }
+
+        .admin-loader::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.0), rgba(255,255,255,0.04));
+            transform: translateX(-20%);
+            opacity: 0.35;
+            pointer-events: none;
+            animation: adminSweep 8s ease-in-out infinite;
+        }
+
+        .admin-loader.lt-loader-hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .loader-container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.10);
+            padding: 40px 44px;
+            border-radius: 22px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+            transform: translateY(10px) scale(0.98);
+            opacity: 0;
+            animation: adminCardIn 900ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+        }
+
+        .admin-loader.lt-loader-hide .loader-container {
+            transform: translateY(12px) scale(0.98);
+            opacity: 0;
+            filter: blur(2px);
+            transition: transform 450ms ease, opacity 450ms ease, filter 450ms ease;
         }
 
         .loader-logo {
@@ -61,7 +109,8 @@
 
         .loader-logo i {
             font-size: 2.5em;
-            color: rgba(72, 190, 225, 0.941);
+            color: var(--lt-admin-green);
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));
         }
 
         .loader-logo span {
@@ -69,7 +118,11 @@
             font-size: 2em;
             font-style: italic;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow:
+                0 2px 6px rgba(0,0,0,0.35),
+                0 1px 0 rgba(246, 196, 83, 0.35);
+            line-height: 1.1;
+            padding-right: 2px;
         }
 
         @keyframes fadeInDown {
@@ -86,13 +139,14 @@
         .loader-icon {
             font-size: 4em;
             color: white;
-            animation: adminIcon 2s ease infinite;
+            animation: adminIcon 2.2s ease-in-out infinite;
             margin-bottom: 20px;
+            filter: drop-shadow(0 14px 22px rgba(0,0,0,0.35));
         }
 
         .loader-text {
             color: white;
-            font-size: 2em;
+            font-size: 1.75em;
             font-weight: 600;
             margin: 20px 0;
             text-transform: uppercase;
@@ -123,8 +177,36 @@
             left: 0;
             height: 100%;
             width: 50%;
-            background: white;
+            background: linear-gradient(90deg, rgba(255,255,255,0.0), rgba(246, 196, 83, 0.95), rgba(24, 160, 132, 0.95), rgba(255,255,255,0.0));
             animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes adminCardIn {
+            0% { opacity: 0; transform: translateY(18px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes adminGlow {
+            from { transform: scale(1); opacity: 0.75; }
+            to { transform: scale(1.02); opacity: 0.95; }
+        }
+
+        @keyframes adminSweep {
+            0%, 100% { transform: translateX(-25%); }
+            50% { transform: translateX(25%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .admin-loader,
+            .admin-loader::before,
+            .admin-loader::after,
+            .loader-container,
+            .loader-logo,
+            .loader-icon,
+            .progress-bar::after {
+                animation: none !important;
+                transition: none !important;
+            }
         }
 
         @keyframes gradientBG {
@@ -1041,6 +1123,7 @@
                 }, 2000);
                 
                 setTimeout(() => {
+                    loader.classList.add('lt-loader-hide');
                     loader.style.opacity = '0';
                     clearInterval(updateMessage);
                     setTimeout(() => {

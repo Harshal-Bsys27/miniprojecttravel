@@ -1,0 +1,299 @@
+/* Modern auth loader / preloader styles.
+   Used by: templates/auth/loader.html, templates/auth/login.html, templates/auth/register.html
+*/
+
+:root {
+  --brand: #2f6b4f;
+  --brand-2: #f59e0b;
+  --brand-dark: #1f4d3a;
+  --brand-rgb: 47, 107, 79;
+  --brand2-rgb: 245, 158, 11;
+}
+
+/* Shared full-screen overlay */
+.lt-preloader,
+.preloader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  z-index: 10000;
+  color: #0f172a;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  /* Opaque fallback background (prevents any page BG image bleed-through) */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--brand-rgb), 0.98),
+    rgba(var(--brand2-rgb), 0.92)
+  );
+}
+
+/* Admin variant: more restrained, shield-focused, no shimmer/rainbow brand */
+.preloader.lt-admin-preloader {
+  background: linear-gradient(135deg, rgba(15, 77, 58, 0.98), rgba(15, 123, 102, 0.96));
+}
+
+.preloader.lt-admin-preloader::before {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(246, 196, 83, 0.10), transparent 50%),
+    radial-gradient(circle at 82% 22%, rgba(255, 255, 255, 0.10), transparent 48%),
+    radial-gradient(circle at 50% 90%, rgba(15, 23, 42, 0.18), transparent 58%),
+    linear-gradient(135deg, rgba(15, 77, 58, 0.98), rgba(15, 123, 102, 0.96));
+}
+
+.preloader.lt-admin-preloader::after {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.preloader.lt-admin-preloader .lt-preloader-logo {
+  background: linear-gradient(135deg, rgba(246, 196, 83, 0.88), rgba(15, 123, 102, 0.88));
+}
+
+.preloader.lt-admin-preloader .lt-preloader-brand {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: rgba(255, 255, 255, 0.96);
+  animation: none;
+  text-shadow: 0 10px 26px rgba(15, 23, 42, 0.22);
+}
+
+.preloader.lt-admin-preloader .lt-preloader-message,
+.preloader.lt-admin-preloader .lt-preloader-quote {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.preloader.lt-admin-preloader .lt-preloader-dots span {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.preloader.lt-admin-preloader .lt-preloader-dots span:nth-child(2) {
+  background: rgba(var(--brand2-rgb), 0.85);
+}
+
+/* Animated modern background */
+.lt-preloader::before,
+.preloader::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 48%),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.12), transparent 46%),
+    radial-gradient(circle at 50% 90%, rgba(15, 23, 42, 0.10), transparent 58%),
+    linear-gradient(135deg,
+      rgba(var(--brand-rgb), 0.98),
+      rgba(var(--brand2-rgb), 0.92)
+    );
+  transform: translate3d(0, 0, 0);
+  animation: ltBgShift 7.5s ease-in-out infinite;
+}
+
+.lt-preloader::after,
+.preloader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@keyframes ltBgShift {
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.06) translate3d(1.5%, -1.5%, 0); }
+}
+
+.lt-preloader-card,
+.preloader-content,
+.loader-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px;
+  padding: 22px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--brand2-rgb), 0.16),
+    rgba(255, 255, 255, 0.82) 42%,
+    rgba(var(--brand-rgb), 0.14)
+  );
+  border: 1px solid rgba(var(--brand-rgb), 0.18);
+  box-shadow:
+    0 26px 70px rgba(15, 23, 42, 0.22),
+    0 10px 22px rgba(var(--brand2-rgb), 0.10);
+  backdrop-filter: blur(12px);
+  text-align: center;
+}
+
+.lt-preloader-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.lt-preloader-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(var(--brand2-rgb), 0.22), rgba(var(--brand-rgb), 0.20));
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.lt-preloader-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.lt-preloader-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(var(--brand2-rgb), 0.92), rgba(var(--brand-rgb), 0.82));
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.25);
+  transform: translateZ(0);
+  animation: ltFloat 1.9s ease-in-out infinite;
+}
+
+.lt-preloader-logo i {
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+@keyframes ltFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.lt-preloader-brand,
+.brand-text,
+.preloader-text {
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  font-size: 34px;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(90deg, rgba(var(--brand-rgb), 1), rgba(var(--brand2-rgb), 1), rgba(var(--brand-rgb), 1));
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+  animation: ltShimmer 2.6s ease-in-out infinite;
+}
+
+@keyframes ltShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.lt-preloader-message,
+.loading-text {
+  margin-top: 10px;
+  font-size: 1.02rem;
+  color: rgba(15, 23, 42, 0.84);
+}
+
+.lt-preloader-sub {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: rgba(51, 65, 85, 0.92);
+}
+
+.lt-preloader-quote {
+  margin-top: 10px;
+  font-size: 0.98rem;
+  font-style: italic;
+  color: rgba(30, 41, 59, 0.88);
+}
+
+.lt-preloader-dots {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lt-preloader-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(var(--brand-rgb), 0.6);
+  opacity: 0.4;
+  animation: ltDot 1.1s ease-in-out infinite;
+}
+
+.lt-preloader-dots span:nth-child(2) { background: rgba(var(--brand2-rgb), 0.75); }
+.lt-preloader-dots span:nth-child(3) { background: rgba(var(--brand-rgb), 0.65); }
+
+.lt-preloader-dots span:nth-child(2) { animation-delay: 0.15s; }
+.lt-preloader-dots span:nth-child(3) { animation-delay: 0.30s; }
+
+@keyframes ltDot {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-7px); opacity: 0.95; }
+}
+
+/* Fade-out helper (used when redirecting) */
+.lt-preloader.lt-fade,
+.preloader.lt-fade {
+  opacity: 0;
+  transform: scale(0.995);
+}
+
+@media (max-width: 480px) {
+  .lt-preloader-card,
+  .preloader-content,
+  .loader-content {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
+  .lt-preloader-brand,
+  .brand-text,
+  .preloader-text {
+    font-size: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-preloader::before,
+  .preloader::before,
+  .lt-preloader-logo,
+  .lt-preloader-brand,
+  .brand-text,
+  .preloader-text,
+  .lt-preloader-dots span {
+    animation: none !important;
+  }
+}
+
+/* Auth pages: prevent the form from showing behind the loader */
+.lt-auth-page:not(.lt-content-ready) .login-box,
+.lt-auth-page:not(.lt-content-ready) .register-box {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* While loader is active, force a solid brand background on the BODY too (overrides inline BG images). */
+body.lt-auth-page:not(.lt-content-ready) {
+  background-image: none !important;
+  background-attachment: initial !important;
+  background-size: auto !important;
+  background-position: center !important;
+  background: linear-gradient(135deg, rgba(var(--brand-rgb), 1), rgba(var(--brand2-rgb), 1)) !important;
+}
+
+.lt-auth-page.lt-content-ready .login-box,
+.lt-auth-page.lt-content-ready .register-box {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}

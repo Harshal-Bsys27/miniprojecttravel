@@ -2,11 +2,22 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/responsive-base.css">
+    <link rel="stylesheet" href="/css/auth-preloader.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join the Adventure - Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --lt-ink: #1f2937;
+            --lt-muted: #6b7280;
+            --lt-green: #0f7b66;
+            --lt-green-2: #18a084;
+            --lt-amber: #f6c453;
+            --lt-card: rgba(255, 255, 255, 0.92);
+            --lt-border: rgba(17, 24, 39, 0.10);
+            --lt-shadow: 0 18px 45px rgba(17, 24, 39, 0.18);
+        }
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -19,14 +30,32 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            position: relative;
+            color: var(--lt-ink);
         }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(15, 123, 102, 0.55), rgba(246, 196, 83, 0.35)),
+                radial-gradient(900px 700px at 20% 10%, rgba(255, 255, 255, 0.35), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Prevent a flash of the form before the full-screen loader overlays */
+        body.lt-auth-page:not(.lt-content-ready) .register-box { visibility: hidden; }
         .register-box {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            width: 480px;
-            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+            width: min(520px, calc(100vw - 32px));
+            padding: 34px;
+            border-radius: 18px;
+            background: linear-gradient(var(--lt-card), var(--lt-card)) padding-box,
+                        linear-gradient(135deg, rgba(15, 123, 102, 0.55), rgba(246, 196, 83, 0.38)) border-box;
+            border: 1px solid transparent;
+            box-shadow: var(--lt-shadow);
+            backdrop-filter: blur(10px);
             margin: 40px 0;
             animation: slideIn 0.8s ease-out;
         }
@@ -34,15 +63,46 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .register-header i {
-            font-size: 48px;
-            color: #4CAF50;
-            margin-bottom: 15px;
+        .lt-auth-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
-        .register-header h2 {
-            color: #2D4059;
-            font-size: 28px;
-            margin: 0;
+        .lt-auth-brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15, 123, 102, 0.16), rgba(246, 196, 83, 0.20));
+            border: 1px solid rgba(246, 196, 83, 0.35);
+            color: var(--lt-green);
+        }
+        .lt-auth-brand-icon i { font-size: 1.25rem; }
+        .lt-auth-brand-text {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            font-style: italic;
+            color: var(--lt-green);
+            line-height: 1.15;
+            padding-right: 2px; /* prevents last character clipping on some browsers */
+            display: inline-block;
+            position: relative;
+            text-shadow: 0 1px 0 rgba(246, 196, 83, 0.35);
+        }
+        .lt-auth-brand-text::after {
+            content: "";
+            display: block;
+            height: 3px;
+            margin-top: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(246, 196, 83, 0.85), rgba(246, 196, 83, 0.0));
+        }
+        .lt-auth-tagline {
+            margin: 10px 0 0;
+            color: var(--lt-muted);
         }
         .form-group {
             margin-bottom: 20px;
@@ -55,7 +115,7 @@
         .form-group:nth-child(4) { animation-delay: 0.5s; }
         .form-group:nth-child(5) { animation-delay: 0.6s; }
         .form-group label {
-            color: #2D4059;
+            color: var(--lt-ink);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -63,12 +123,12 @@
         }
         .form-group label i {
             font-size: 1.2em;
-            color: #4CAF50;
-            margin-right: 8px;
+            color: var(--lt-green);
+            margin-right: 6px;
         }
         .input-group {
-            border: 2px solid #E8E8E8;
-            border-radius: 8px;
+            border: 1px solid var(--lt-border);
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
             margin-top: 8px;
@@ -77,54 +137,58 @@
             padding: 0;
             width: 100%;
             transform: scale(1);
-        }
-        .input-group i {
-            color: #4CAF50;
-            padding: 0 12px;
-            min-width: 46px;
-            display: flex;
-            justify-content: center;
+            background: rgba(255, 255, 255, 0.90);
+            box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
         }
         .input-group:focus-within {
-            border-color: #4CAF50;
+            border-color: rgba(15, 123, 102, 0.55);
+            box-shadow: 0 0 0 4px rgba(15, 123, 102, 0.14), 0 10px 26px rgba(17, 24, 39, 0.08);
         }
         .input-group:hover {
             transform: scale(1.02);
-            border-color: #4CAF50;
+            border-color: rgba(246, 196, 83, 0.65);
         }
         .input-group-text {
             background-color: transparent;
             border: none;
-            color: #4CAF50;
+            color: var(--lt-green);
+            padding: 12px;
+            margin: 0;
+            min-width: 46px;
+            display: flex;
+            justify-content: center;
         }
-        input {
+        .form-control {
             border: none;
             padding: 12px;
             width: 100%;
             background: transparent;
             font-size: 1.1em;
             margin: 0;
+            color: var(--lt-ink);
         }
-        input::placeholder {
-            color: #999;
+        .form-control::placeholder {
+            color: rgba(107, 114, 128, 0.90);
             font-size: 0.95em;
         }
-        input:focus {
+        .form-control:focus {
             outline: none;
+            box-shadow: none;
         }
         button {
             width: 100%;
             padding: 14px;
-            background-color: #4CAF50;
+            background: var(--lt-green);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 14px 34px rgba(15, 123, 102, 0.22);
         }
         button:after {
             content: '';
@@ -146,8 +210,13 @@
             transition: 0s;
         }
         button:hover {
-            background-color: #45a049;
+            background: var(--lt-green-2);
             transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.75;
+            transform: none;
+            cursor: not-allowed;
         }
         .login-link {
             text-align: center;
@@ -157,20 +226,21 @@
             animation-fill-mode: both;
         }
         .login-link a {
-            color: #4CAF50;
+            color: var(--lt-green);
             font-weight: 500;
             text-decoration: none;
         }
         .login-link a:hover {
+            color: #0a5b4b;
             text-decoration: underline;
         }
         .alert {
             background-color: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid #4CAF50;
-            color: #2D4059;
+            border-left: 4px solid var(--lt-green);
+            color: var(--lt-ink);
             padding: 15px 20px;
             margin-bottom: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.3s ease-out;
             position: relative;
@@ -202,7 +272,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #2D4059, #4CAF50);
+            background: linear-gradient(45deg, var(--lt-green), var(--lt-amber));
             z-index: 9999;
             opacity: 0;
             pointer-events: none;
@@ -214,48 +284,7 @@
             pointer-events: all;
         }
 
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #2D4059, #4CAF50);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .preloader-content {
-            text-align: center;
-            color: white;
-        }
-
-        .preloader i {
-            font-size: 3em;
-            margin-bottom: 20px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .preloader-text {
-            font-size: 1.5em;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-top: 15px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        /* Preloader styles are in /css/auth-preloader.css */
         .fade-out {
             animation: fadeOut 0.5s ease forwards;
         }
@@ -265,20 +294,24 @@
         }
     </style>
 </head>
-<body>
+<body class="lt-auth-page">
     <div class="page-transition"></div>
     <div class="preloader">
-        <div class="preloader-content">
-            <i class="fas fa-plane-departure" style="color: white;"></i>
-            <div class="preloader-text">LETSTRAVEL</div>
-            <div style="font-size: 0.9em; margin-top: 10px;">Setting up your adventure...</div>
+        <div class="lt-preloader-card">
+            <div class="lt-preloader-logo" aria-hidden="true"><i class="fas fa-plane-departure"></i></div>
+            <div class="lt-preloader-brand">letstravel</div>
+            <div class="lt-preloader-quote">Collect moments, not things.</div>
+            <div class="lt-preloader-message" id="ltPreloaderMsg">Setting up your adventure…</div>
+            <div class="lt-preloader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
     </div>
     <div class="register-box">
         <div class="register-header">
-            <i class="fas fa-plane-departure" style="color: rgba(72, 190, 225, 0.941); font-size: 2em;"></i>
-            <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: #2D4059;">letstravel</span>
-            <p style="color: #666; margin-top: 10px;">Join our community of adventurers</p>
+            <div class="lt-auth-brand">
+                <span class="lt-auth-brand-icon" aria-hidden="true"><i class="fas fa-plane-departure"></i></span>
+                <span class="lt-auth-brand-text">letstravel</span>
+            </div>
+            <p class="lt-auth-tagline">Join our community of adventurers</p>
         </div>
         {% if error %}
             <div class="alert">
@@ -294,59 +327,84 @@
                 </div>
             {% endif %}
         {% endwith %}
-        <form onsubmit="return validateForm()" method="POST" autocomplete="off">
+        <form id="registerForm" onsubmit="return validateForm()" method="POST" autocomplete="off">
             <div class="form-group">
                 <label><i class="fas fa-user"></i> Username</label>
                 <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
                     <input type="text" id="username" name="username" 
-                           placeholder="Choose your username" required autocomplete="off">
+                           class="form-control" placeholder="Choose your username" required autocomplete="username">
                 </div>
             </div>
             <div class="form-group">
                 <label><i class="fas fa-envelope"></i> Email</label>
                 <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
                     <input type="email" id="email" name="email" 
-                           placeholder="Your email address" required autocomplete="new-email">
+                           class="form-control" placeholder="Your email address" required autocomplete="email">
                 </div>
             </div>
             <div class="form-group">
                 <label><i class="fas fa-phone"></i> Mobile Number</label>
                 <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-phone"></i></span>
                     <input type="tel" id="mobile" name="mobile" 
-                           placeholder="Your mobile number" required autocomplete="off">
+                           class="form-control" placeholder="Your mobile number" required autocomplete="tel">
                 </div>
             </div>
             <div class="form-group">
                 <label><i class="fas fa-lock"></i> Password</label>
                 <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
                     <input type="password" id="password" name="password" 
-                           placeholder="Create a password" required autocomplete="new-password">
+                           class="form-control" placeholder="Create a password" required autocomplete="new-password">
                 </div>
             </div>
             <div class="form-group">
                 <label><i class="fas fa-check-circle"></i> Confirm Password</label>
                 <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
                     <input type="password" id="confirm_password" name="confirm_password" 
-                           placeholder="Confirm your password" required autocomplete="new-password">
+                           class="form-control" placeholder="Confirm your password" required autocomplete="new-password">
                 </div>
             </div>
-            <button type="submit">Begin Adventure</button>
+            <button type="submit" id="registerSubmit">Begin Adventure</button>
         </form>
         <div class="login-link">
             <p>Already a traveler? <a href="{{ url_for('auth.login') }}" onclick="handleLoginClick(event)">Login here</a></p>
         </div>
     </div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <script>
         window.addEventListener('load', () => {
             const preloader = document.querySelector('.preloader');
             if (preloader) {
                 preloader.style.opacity = '0';
-                setTimeout(() => preloader.remove(), 500);
+                setTimeout(() => {
+                    preloader.remove();
+                    document.body.classList.add('lt-content-ready');
+                }, 500);
+            } else {
+                document.body.classList.add('lt-content-ready');
             }
         });
+
+        // Back/forward cache safety: never keep the loader stuck.
+        window.addEventListener('pageshow', () => {
+            document.body.classList.add('lt-content-ready');
+            const preloader = document.querySelector('.preloader');
+            if (preloader) preloader.remove();
+        });
+
+        function showPreloader(message) {
+            const box = document.querySelector('.register-box');
+            const preloader = document.querySelector('.preloader') || createPreloader(message);
+            const msg = preloader.querySelector('#ltPreloaderMsg');
+            if (msg && message) msg.textContent = message;
+            if (!preloader.parentElement) document.body.appendChild(preloader);
+            if (box) box.classList.add('fade-out');
+            preloader.style.opacity = '1';
+        }
 
         function validateForm() {
             const username = document.getElementById('username').value;
@@ -389,31 +447,37 @@
                 // Ignore storage errors (private mode, blocked storage, etc.)
             }
 
+            // Professional submit transition
+            try {
+                const btn = document.getElementById('registerSubmit');
+                if (btn) {
+                    btn.disabled = true;
+                    btn.setAttribute('aria-busy', 'true');
+                }
+            } catch (_e) {}
+
+            showPreloader('Creating your account…');
             return true;
         }
 
         function handleLoginClick(event) {
             event.preventDefault();
-            const registerBox = document.querySelector('.register-box');
-            const preloader = document.querySelector('.preloader') || createPreloader();
-            
-            registerBox.classList.add('fade-out');
-            document.body.appendChild(preloader);
-            
+            showPreloader('Redirecting to login…');
             setTimeout(() => {
-                preloader.style.opacity = '1';
                 window.location.href = event.target.href;
-            }, 300);
+            }, 450);
         }
 
-        function createPreloader() {
+        function createPreloader(message) {
             const preloader = document.createElement('div');
             preloader.className = 'preloader';
             preloader.innerHTML = `
-                <div class="preloader-content">
-                    <i class="fas fa-plane-departure" style="color: white;"></i>
-                    <div class="preloader-text">LETSTRAVEL</div>
-                    <div style="font-size: 0.9em; margin-top: 10px;">Redirecting to login...</div>
+                <div class="lt-preloader-card">
+                    <div class="lt-preloader-logo" aria-hidden="true"><i class="fas fa-plane-departure"></i></div>
+                    <div class="lt-preloader-brand">letstravel</div>
+                    <div class="lt-preloader-quote">Collect moments, not things.</div>
+                    <div class="lt-preloader-message" id="ltPreloaderMsg">${message || 'Loading…'}</div>
+                    <div class="lt-preloader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                 </div>
             `;
             return preloader;

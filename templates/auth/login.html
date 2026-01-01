@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/responsive-base.css">
+    <link rel="stylesheet" href="/css/auth-preloader.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Adventure Awaits</title>
     <!-- Add Bootstrap CSS -->
@@ -9,6 +10,16 @@
     <!-- Add Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --lt-ink: #1f2937;
+            --lt-muted: #6b7280;
+            --lt-green: #0f7b66;
+            --lt-green-2: #18a084;
+            --lt-amber: #f6c453;
+            --lt-card: rgba(255, 255, 255, 0.92);
+            --lt-border: rgba(17, 24, 39, 0.10);
+            --lt-shadow: 0 18px 45px rgba(17, 24, 39, 0.18);
+        }
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -21,14 +32,32 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            position: relative;
+            color: var(--lt-ink);
         }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(15, 123, 102, 0.55), rgba(246, 196, 83, 0.35)),
+                radial-gradient(900px 700px at 20% 10%, rgba(255, 255, 255, 0.35), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Prevent a flash of the form before the full-screen loader overlays */
+        body.lt-auth-page:not(.lt-content-ready) .login-box { visibility: hidden; }
         .login-box {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            width: 450px;
-            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+            width: min(460px, calc(100vw - 32px));
+            padding: 34px;
+            border-radius: 18px;
+            background: linear-gradient(var(--lt-card), var(--lt-card)) padding-box,
+                        linear-gradient(135deg, rgba(15, 123, 102, 0.55), rgba(246, 196, 83, 0.38)) border-box;
+            border: 1px solid transparent;
+            box-shadow: var(--lt-shadow);
+            backdrop-filter: blur(10px);
             transition: opacity 0.5s, transform 0.5s;
             animation: slideIn 0.8s ease-out;
         }
@@ -36,15 +65,46 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .login-header i {
-            font-size: 48px;
-            color: #FF6B6B;
-            margin-bottom: 15px;
+        .lt-auth-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
-        .login-header h2 {
-            color: #2D4059;
-            font-size: 28px;
-            margin: 0;
+        .lt-auth-brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15, 123, 102, 0.16), rgba(246, 196, 83, 0.20));
+            border: 1px solid rgba(246, 196, 83, 0.35);
+            color: var(--lt-green);
+        }
+        .lt-auth-brand-icon i { font-size: 1.25rem; }
+        .lt-auth-brand-text {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            font-style: italic;
+            color: var(--lt-green);
+            line-height: 1.15;
+            padding-right: 2px; /* prevents last character clipping on some browsers */
+            display: inline-block;
+            position: relative;
+            text-shadow: 0 1px 0 rgba(246, 196, 83, 0.35);
+        }
+        .lt-auth-brand-text::after {
+            content: "";
+            display: block;
+            height: 3px;
+            margin-top: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(246, 196, 83, 0.85), rgba(246, 196, 83, 0.0));
+        }
+        .lt-auth-tagline {
+            margin: 10px 0 0;
+            color: var(--lt-muted);
         }
         .form-group {
             margin-bottom: 25px;
@@ -58,12 +118,12 @@
             animation-delay: 0.4s;
         }
         .form-group label {
-            color: #2D4059;
+            color: var(--lt-ink);
             font-weight: 500;
         }
         .input-group {
-            border: 2px solid #E8E8E8;
-            border-radius: 8px;
+            border: 1px solid var(--lt-border);
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
             margin-top: 8px;
@@ -72,18 +132,21 @@
             padding: 0;
             width: 100%;
             transform: scale(1);
+            background: rgba(255, 255, 255, 0.90);
+            box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
         }
         .input-group:focus-within {
-            border-color: #FF6B6B;
+            border-color: rgba(15, 123, 102, 0.55);
+            box-shadow: 0 0 0 4px rgba(15, 123, 102, 0.14), 0 10px 26px rgba(17, 24, 39, 0.08);
         }
         .input-group:hover {
             transform: scale(1.02);
-            border-color: #FF6B6B;
+            border-color: rgba(246, 196, 83, 0.65);
         }
         .input-group-text {
             background-color: transparent;
             border: none;
-            color: #FF6B6B;
+            color: var(--lt-green);
             padding: 12px;
             margin: 0;
             min-width: 46px;
@@ -98,29 +161,36 @@
             flex: 1;
             margin: 0;
             width: 100%;
+            color: var(--lt-ink);
         }
         .form-control::placeholder {
-            color: #999;
+            color: rgba(107, 114, 128, 0.90);
             font-size: 0.95em;
         }
         .form-control:focus {
             box-shadow: none;
         }
         button {
-            background-color: #FF6B6B;
+            background: var(--lt-green);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 14px;
             font-size: 16px;
             font-weight: 600;
             transition: transform 0.2s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 14px 34px rgba(15, 123, 102, 0.22);
         }
         button:hover {
-            background-color: #FF5252;
+            background: var(--lt-green-2);
             transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.75;
+            transform: none;
+            cursor: not-allowed;
         }
         button:after {
             content: '';
@@ -149,16 +219,20 @@
             animation-fill-mode: both;
         }
         .register-link a {
-            color: #FF6B6B;
+            color: var(--lt-green);
             font-weight: 500;
+        }
+        .register-link a:hover {
+            color: #0a5b4b;
+            text-decoration: underline;
         }
         .alert {
             background-color: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid #FF6B6B;
-            color: #2D4059;
+            border-left: 4px solid var(--lt-green);
+            color: var(--lt-ink);
             padding: 15px 20px;
             margin-bottom: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.3s ease-out;
             position: relative;
@@ -188,63 +262,29 @@
                 transform: translateY(0);
             }
         }
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #2D4059, #FF6B6B);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .preloader-content {
-            text-align: center;
-            color: white;
-        }
-
-        .preloader i {
-            font-size: 3em;
-            margin-bottom: 20px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .preloader-text {
-            font-size: 1.5em;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-top: 15px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        /* Preloader styles are in /css/auth-preloader.css */
     </style>
 </head>
-<body>
+{% set lt_admin_mode = (admin_login or request.args.get('admin')) %}
+<body class="lt-auth-page" data-lt-admin-login="{{ '1' if lt_admin_mode else '0' }}">
+    {% if not lt_admin_mode %}
     <div class="preloader">
-        <div class="preloader-content">
-            <i class="fas fa-plane-departure" style="color: white;"></i>
-            <div class="preloader-text">LETSTRAVEL</div>
-            <div style="font-size: 0.9em; margin-top: 10px;">Preparing your journey...</div>
+        <div class="lt-preloader-card">
+            <div class="lt-preloader-logo" aria-hidden="true"><i class="fas fa-plane-departure"></i></div>
+            <div class="lt-preloader-brand">letstravel</div>
+            <div class="lt-preloader-quote">Collect moments, not things.</div>
+            <div class="lt-preloader-message" id="ltPreloaderMsg">Preparing your journey…</div>
+            <div class="lt-preloader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
     </div>
+    {% endif %}
     <div class="login-box">
         <div class="login-header">
-            <i class="fas fa-plane-departure" style="color: rgba(72, 190, 225, 0.941); font-size: 2em;"></i>
-            <span style="font-weight: bold; font-size: 1.8em; font-style: italic; color: #2D4059;">letstravel</span>
-            <p style="color: #666; margin-top: 10px;">Your journey begins here</p>
+            <div class="lt-auth-brand">
+                <span class="lt-auth-brand-icon" aria-hidden="true"><i class="fas fa-plane-departure"></i></span>
+                <span class="lt-auth-brand-text">letstravel</span>
+            </div>
+            <p class="lt-auth-tagline">Your journey begins here</p>
         </div>
         {% if error %}
             <div class="alert">{{ error }}</div>
@@ -254,7 +294,8 @@
                 <div class="alert">{{ messages[0] }}</div>
             {% endif %}
         {% endwith %}
-        <form onsubmit="return validateForm()" method="POST" autocomplete="off">
+        <form id="loginForm" onsubmit="return validateForm()" method="POST" autocomplete="off">
+            <input type="hidden" id="ltAdminLogin" name="admin_login" value="{{ '1' if lt_admin_mode else '0' }}">
             <div class="form-group">
                 <label for="identifier">Username or Email</label>
                 <div class="input-group">
@@ -266,10 +307,10 @@
                 <label for="password">Password</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="new-password">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
                 </div>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" id="loginSubmit">Login</button>
         </form>
         <div class="register-link">
             <p>Don't have an account? <a href="{{ url_for('auth.register') }}" onclick="handleRegisterClick(event)">Register here</a></p>
@@ -277,13 +318,57 @@
     </div>
 
     <script>
+        const LT_IS_ADMIN_LOGIN = (document.body?.dataset?.ltAdminLogin === '1');
+        const LT_ADMIN_EMAIL = 'admin@letstravel.com';
+
+        function isAdminIdentifier(value) {
+            return (String(value || '').trim().toLowerCase() === LT_ADMIN_EMAIL);
+        }
+
         window.addEventListener('load', () => {
             const preloader = document.querySelector('.preloader');
             if (preloader) {
                 preloader.style.opacity = '0';
-                setTimeout(() => preloader.remove(), 500);
+                setTimeout(() => {
+                    preloader.remove();
+                    document.body.classList.add('lt-content-ready');
+                }, 500);
+            } else {
+                document.body.classList.add('lt-content-ready');
             }
         });
+
+        // Back/forward cache safety: never keep the loader stuck.
+        window.addEventListener('pageshow', () => {
+            document.body.classList.add('lt-content-ready');
+            const preloader = document.querySelector('.preloader');
+            if (preloader) preloader.remove();
+        });
+
+        function showPreloader(message) {
+            const box = document.querySelector('.login-box');
+            const existing = document.querySelector('.preloader');
+            if (existing) existing.remove();
+            const preloader = document.querySelector('.preloader') || createPreloader(message);
+            const msg = preloader.querySelector('#ltPreloaderMsg');
+            if (msg && message) msg.textContent = message;
+            if (!preloader.parentElement) document.body.appendChild(preloader);
+            if (box) box.classList.add('fade-out');
+            // ensure it is visible
+            preloader.style.opacity = '1';
+        }
+
+        function showAdminPreloader(message) {
+            const box = document.querySelector('.login-box');
+            const existing = document.querySelector('.preloader');
+            if (existing) existing.remove();
+            const preloader = document.querySelector('.preloader') || createAdminPreloader(message);
+            const msg = preloader.querySelector('#ltPreloaderMsg');
+            if (msg && message) msg.textContent = message;
+            if (!preloader.parentElement) document.body.appendChild(preloader);
+            if (box) box.classList.add('fade-out');
+            preloader.style.opacity = '1';
+        }
 
         function validateForm() {
             const identifier = document.getElementById('identifier').value;
@@ -317,6 +402,28 @@
                 return false;
             }
 
+            // Show modern loader while submitting.
+            try {
+                const btn = document.getElementById('loginSubmit');
+                if (btn) {
+                    btn.disabled = true;
+                    btn.setAttribute('aria-busy', 'true');
+                }
+            } catch (_e) {}
+
+            const isAdminAttempt = LT_IS_ADMIN_LOGIN || isAdminIdentifier(trimmed);
+
+            // Persist admin mode across the POST-back so the user preloader doesn't re-appear.
+            try {
+                const adminField = document.getElementById('ltAdminLogin');
+                if (adminField) adminField.value = isAdminAttempt ? '1' : (adminField.value || '0');
+            } catch (_e) {}
+
+            if (isAdminAttempt) {
+                showAdminPreloader('Authenticating administrator…');
+            } else {
+                showPreloader('Signing you in…');
+            }
             return true;
         }
 
@@ -338,30 +445,58 @@
 
         function handleRegisterClick(event) {
             event.preventDefault();
-            const loginBox = document.querySelector('.login-box');
-            const preloader = document.querySelector('.preloader') || createPreloader();
-            
-            loginBox.classList.add('fade-out');
-            document.body.appendChild(preloader);
-            
+            if (!LT_IS_ADMIN_LOGIN) {
+                showPreloader('Preparing registration…');
+            }
             setTimeout(() => {
-                preloader.style.opacity = '1';
                 window.location.href = event.target.href;
-            }, 300);
+            }, 450);
         }
 
-        function createPreloader() {
+        function createPreloader(message) {
             const preloader = document.createElement('div');
             preloader.className = 'preloader';
             preloader.innerHTML = `
-                <div class="preloader-content">
-                    <i class="fas fa-plane-departure" style="color: white;"></i>
-                    <div class="preloader-text">LETSTRAVEL</div>
-                    <div style="font-size: 0.9em; margin-top: 10px;">Preparing registration...</div>
+                <div class="lt-preloader-card">
+                    <div class="lt-preloader-logo" aria-hidden="true"><i class="fas fa-plane-departure"></i></div>
+                    <div class="lt-preloader-brand">letstravel</div>
+                    <div class="lt-preloader-quote">Collect moments, not things.</div>
+                    <div class="lt-preloader-message" id="ltPreloaderMsg">${message || 'Loading…'}</div>
+                    <div class="lt-preloader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                 </div>
             `;
             return preloader;
         }
+
+        function createAdminPreloader(message) {
+            const preloader = document.createElement('div');
+            preloader.className = 'preloader lt-admin-preloader';
+            preloader.innerHTML = `
+                <div class="lt-preloader-card">
+                    <div class="lt-preloader-logo" aria-hidden="true"><i class="fas fa-user-shield"></i></div>
+                    <div class="lt-preloader-brand">Admin Access</div>
+                    <div class="lt-preloader-quote">Securing your dashboard.</div>
+                    <div class="lt-preloader-message" id="ltPreloaderMsg">${message || 'Authenticating…'}</div>
+                    <div class="lt-preloader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                </div>
+            `;
+            return preloader;
+        }
+
+        // If the admin email is typed on the normal login page, persist admin mode on submit.
+        window.addEventListener('DOMContentLoaded', () => {
+            const identifier = document.getElementById('identifier');
+            const adminField = document.getElementById('ltAdminLogin');
+            if (!identifier || !adminField) return;
+            const sync = () => {
+                if (isAdminIdentifier(identifier.value)) {
+                    adminField.value = '1';
+                }
+            };
+            identifier.addEventListener('input', sync);
+            identifier.addEventListener('blur', sync);
+            sync();
+        });
     </script>
 
     <!-- Add Bootstrap JS and dependencies -->

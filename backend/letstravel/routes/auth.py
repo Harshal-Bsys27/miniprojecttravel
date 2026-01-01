@@ -26,7 +26,7 @@ def admin_required(fn):
     @wraps(fn)
     def decorated(*args, **kwargs):
         if "user_id" not in session:
-            return redirect(url_for("auth.login"))
+            return redirect(url_for("auth.login", admin=1))
 
         user = User.objects(id=session["user_id"]).first()
         if not user or not user.is_admin:
@@ -94,11 +94,17 @@ def register():
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     prefill_identifier = (request.args.get("prefill") or session.pop("prefill_login_identifier", "") or "").strip()
+    admin_login_context = bool(request.args.get("admin"))
+
+    # If the login page is prefilled with the default admin email, keep admin UI.
+    if prefill_identifier.lower() == "admin@letstravel.com":
+        admin_login_context = True
 
     if request.method == "POST":
         try:
             identifier = (request.form.get("identifier") or request.form.get("email") or "").strip()
             password = request.form.get("password")
+            admin_login_context = admin_login_context or (request.form.get("admin_login") == "1")
 
             user = None
             if identifier:
@@ -110,6 +116,7 @@ def login():
 
             if user:
                 print(f"User found, is_admin: {user.is_admin}")
+                admin_login_context = admin_login_context or bool(user.is_admin)
 
                 # Admin must login using email (not username) for clarity + policy.
                 if user.is_admin and identifier.lower() != (user.email or "").lower():
@@ -118,6 +125,7 @@ def login():
                         "auth/login.html",
                         error="Admin must login using email and password",
                         prefill_identifier=prefill_identifier or identifier,
+                        admin_login=admin_login_context,
                     )
 
                 if check_password_hash(user.password, password):
@@ -150,13 +158,14 @@ def login():
                 "auth/login.html",
                 error="Invalid email/username or password",
                 prefill_identifier=prefill_identifier or identifier,
+                admin_login=admin_login_context,
             )
 
         except Exception as e:
             print(f"Login error: {e}")
             flash("Login failed. Please try again.")
 
-    return render_template("auth/login.html", prefill_identifier=prefill_identifier)
+    return render_template("auth/login.html", prefill_identifier=prefill_identifier, admin_login=admin_login_context)
 
 
 @auth_bp.route("/logout")
