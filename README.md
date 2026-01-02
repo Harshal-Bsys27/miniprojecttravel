@@ -12,16 +12,6 @@ Coming soon.
 
 Note: GitHub README does not reliably support embedding an actual video player (iframe). The most common approach is to add a YouTube link (optionally with a clickable thumbnail).
 
-### Template (YouTube)
-
-- Link only:
-  - `ADD_YOUR_YOUTUBE_LINK_HERE`
-- Clickable thumbnail (recommended):
-
-```md
-[![LetsTravel Demo Video](docs/screenshots/demo-thumbnail.png)](ADD_YOUR_YOUTUBE_LINK_HERE)
-```
-
 ### Template (Google Drive)
 
 - Link only:
