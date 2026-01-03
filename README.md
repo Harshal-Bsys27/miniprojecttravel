@@ -10,8 +10,8 @@ This repo is organized into a production-friendly Flask structure (`templates/`,
 
 | Resource | Link |
 |----------|------|
-| 🌐 **Live Demo** | [https://letstravel-w00j.onrender.com](https://letstravel-w00j.onrender.com) |
-| 💻 **GitHub Repository** | [https://github.com/Harshal-Bsys27/LetsTravel-](https://github.com/Harshal-Bsys27/LetsTravel-) |
+| 🌐 **Live Demo** | [Click here ](https://letstravel-w00j.onrender.com) |
+| 💻 **GitHub Repository** | [Click here ](https://github.com/Harshal-Bsys27/LetsTravel-) |
 
 ## Demo video
 
@@ -25,7 +25,7 @@ This repo is organized into a production-friendly Flask structure (`templates/`,
 [![LetsTravel Demo Video](docs/screenshots/demo-thumbnail.png)](ADD_YOUR_GOOGLE_DRIVE_LINK_HERE)
 ```
 
-## Screenshots
+## 📸 Screenshots
 
 All screenshots are stored in `docs/screenshots/`.
 
@@ -69,7 +69,7 @@ All screenshots are stored in `docs/screenshots/`.
 - [Production deployment](#production-deployment)
 - [Troubleshooting](#troubleshooting)
 
-## Key features
+## ✨Key features
 
 - **User auth**: Register, login, logout.
 - **User dashboard**: Browse featured tours and categories.
@@ -84,7 +84,7 @@ All screenshots are stored in `docs/screenshots/`.
   - Basic user activity table (page views/search counts)
 - **Legacy compatibility**: Many old URLs are routed/served via a dedicated public blueprint.
 
-## Tech stack
+## 🛠️Tech stack
 
 - **Backend**: Python, Flask
 - **Frontend (UI)**: Server-rendered HTML using Flask/Jinja2 templates, CSS, JavaScript
@@ -95,7 +95,7 @@ All screenshots are stored in `docs/screenshots/`.
 - **Production servers**: Gunicorn (Linux/macOS) or Waitress (Windows)
 - **Optional tooling**: Node.js scripts for Amadeus API testing (see `tools/node/`)
 
-## Project layout (high level)
+##  📁 Project layout (high level)
 
 - `app.py` — local dev entrypoint (creates the Flask app).
 - `wsgi.py` — production WSGI entrypoint (`gunicorn wsgi:app`, `waitress-serve --call wsgi:app`).
@@ -151,7 +151,7 @@ MONGODB_DB=letstravel_db
 SESSION_COOKIE_SECURE=0
 ```
 
-## Setup (Windows PowerShell)
+## ⚙️ Setup (Windows PowerShell)
 
 1) Create and activate a virtual environment:
 
@@ -407,4 +407,6 @@ These scripts require `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` in your `.
 - **Port conflicts**: if port 5000 is already in use, set `FLASK_RUN_PORT` (or change the run command) and try again.
 
 ---
+## 👤 Author
+
 
