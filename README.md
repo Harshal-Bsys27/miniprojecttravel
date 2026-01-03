@@ -6,13 +6,19 @@ LetsTravel is a full-stack travel web application built for my portfolio. It let
 
 This repo is organized into a production-friendly Flask structure (`templates/`, `static/`, `wsgi.py`), while keeping many legacy URLs working (older HTML pages that still reference paths like `/css codes/...` and `/js code/...`).
 
+
+
+## 🚀 Live Demo
+
+[🌐 Live Demo](https://letstravel-w00j.onrender.com)
+
+## 📦 GitHub Repository
+
+[💻 GitHub Repository](https://github.com/Harshal-Bsys27/LetsTravel-)
+
 ## Demo video
 
-Coming soon.
-
-Note: GitHub README does not reliably support embedding an actual video player (iframe). The most common approach is to add a YouTube link (optionally with a clickable thumbnail).
-
-### Template (Google Drive)
+**Google Drive template:**
 
 - Link only:
   - `ADD_YOUR_GOOGLE_DRIVE_LINK_HERE`
