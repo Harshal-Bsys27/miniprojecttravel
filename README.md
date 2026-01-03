@@ -409,4 +409,11 @@ These scripts require `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` in your `.
 ---
 ## 👤 Author
 
+Harshal Vasudev Barhate
+
+GitHub: https://github.com/Harshal-Bsys27
+
+LinkedIn: https://www.linkedin.com/in/harshalbarhate778945ag/
+
+Email: harshalbarhate2028@gmail.com
 
