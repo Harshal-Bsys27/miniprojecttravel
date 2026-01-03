@@ -18,6 +18,8 @@ def init_extensions(app: Flask):
     # 1️⃣ MongoDB Atlas connection
     # Support both names: older deployments use MONGO_URI; config uses MONGODB_URI.
     mongo_uri = os.environ.get("MONGO_URI") or os.environ.get("MONGODB_URI")
+    if mongo_uri:
+        mongo_uri = mongo_uri.strip()
     
     if mongo_uri:
         # Connect using Atlas URI
