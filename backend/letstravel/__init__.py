@@ -78,11 +78,15 @@ def create_app() -> Flask:
         from models.user_activity import PageView, UserActivity
 
         page_view = PageView(page=path, timestamp=datetime.now(timezone.utc))
-        UserActivity.objects(user_id=session["user_id"]).update_one(
-            push__page_views=page_view,
-            set__updated_at=datetime.now(timezone.utc),
-            upsert=True,
-        )
+        try:
+            UserActivity.objects(user_id=session["user_id"]).update_one(
+                push__page_views=page_view,
+                set__updated_at=datetime.now(timezone.utc),
+                upsert=True,
+            )
+        except Exception as e:
+            # Never block page rendering / login flows due to analytics.
+            app.logger.warning("User activity tracking failed: %s", e)
 
     @app.errorhandler(404)
     def _not_found_error(_error):

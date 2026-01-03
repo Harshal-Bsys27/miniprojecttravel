@@ -22,9 +22,18 @@ def init_extensions(app: Flask):
         mongo_uri = mongo_uri.strip()
     
     if mongo_uri:
-        # Connect using Atlas URI
-        connect(host=mongo_uri, alias="default")
-        app.logger.info("Connected to MongoDB Atlas")
+        # Connect using Atlas URI.
+        # IMPORTANT: some hosts (and some env var copy/pastes) omit the /<db> in the URI.
+        # If no DB is provided in the URI, Mongo drivers default to "test".
+        # We force an explicit DB name so the app always uses the intended database.
+        settings = app.config.get("MONGODB_SETTINGS") or {}
+        db_name = (
+            os.environ.get("MONGODB_DB")
+            or settings.get("db")
+            or os.environ.get("MONGODB_DB", "letstravel")
+        )
+        connect(db=db_name, host=mongo_uri, alias="default")
+        app.logger.info("Connected to MongoDB Atlas (db=%s)", db_name)
     else:
         # Fallback to local dev
         settings = app.config.get("MONGODB_SETTINGS") or {}
