@@ -12,6 +12,26 @@ from models.database import User
 login_manager = LoginManager()
 login_manager.login_view = "auth.login"  # adjust if your login route is different
 
+
+def _infer_db_from_mongo_uri(uri: str) -> str | None:
+    """Infer db name from Atlas-style connection string.
+
+    Examples:
+    - mongodb+srv://...mongodb.net/letstravel?x=y -> letstravel
+    - mongodb+srv://...mongodb.net/?x=y -> None
+    """
+    if not uri:
+        return None
+    try:
+        tail = uri.split("mongodb.net/", 1)[1]
+    except Exception:
+        return None
+    path = tail.split("?", 1)[0]
+    path = path.lstrip("/").strip()
+    if not path:
+        return None
+    return path.split("/", 1)[0] or None
+
 def init_extensions(app: Flask):
     """Initialize DB connection using MongoEngine and other extensions."""
     
@@ -23,15 +43,11 @@ def init_extensions(app: Flask):
     
     if mongo_uri:
         # Connect using Atlas URI.
-        # IMPORTANT: some hosts (and some env var copy/pastes) omit the /<db> in the URI.
-        # If no DB is provided in the URI, Mongo drivers default to "test".
+        # IMPORTANT: if URI omits /<db>, drivers default to "test".
         # We force an explicit DB name so the app always uses the intended database.
-        settings = app.config.get("MONGODB_SETTINGS") or {}
-        db_name = (
-            os.environ.get("MONGODB_DB")
-            or settings.get("db")
-            or os.environ.get("MONGODB_DB", "letstravel")
-        )
+        inferred = _infer_db_from_mongo_uri(mongo_uri)
+        db_name = inferred or os.environ.get("MONGODB_DB") or "letstravel"
+
         connect(db=db_name, host=mongo_uri, alias="default")
         app.logger.info("Connected to MongoDB Atlas (db=%s)", db_name)
     else:

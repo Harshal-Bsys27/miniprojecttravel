@@ -22,8 +22,10 @@ class Config:
 
     # MongoEngine / pymongo connection.
     # Prefer a single URI in production.
-    MONGODB_URI = os.environ.get("MONGODB_URI")
-    MONGODB_DB = os.environ.get("MONGODB_DB", "letstravel_db")
+    # Support both names: Render env is commonly MONGO_URI.
+    MONGODB_URI = os.environ.get("MONGODB_URI") or os.environ.get("MONGO_URI")
+    # Default DB name should match the project.
+    MONGODB_DB = os.environ.get("MONGODB_DB", "letstravel")
 
     if MONGODB_URI:
         MONGODB_SETTINGS = {
@@ -33,7 +35,7 @@ class Config:
     else:
         MONGODB_SETTINGS = {
             "db": MONGODB_DB,
-            "host": os.environ.get("MONGODB_HOST", "mongodb://localhost:27017/letstravel_db"),
+            "host": os.environ.get("MONGODB_HOST", "mongodb://localhost:27017/letstravel"),
         }
 
     # Flask session lifetime (cookie-based sessions by default).
